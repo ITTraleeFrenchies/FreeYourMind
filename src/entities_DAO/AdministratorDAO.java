@@ -13,33 +13,28 @@ import java.util.List;
  *
  * @author t00178747
  */
-public class AdministratorDAO implements DAO{
+public class AdministratorDAO{
 
-    @Override
-    public Administrator find(long id) {
+    public Administrator find(int id) {
         return null;
     }
 
-    @Override
-    public Administrator create(Object obj) {
+    public Administrator create(Administrator obj) {
         return null;
     }
 
-    @Override
-    public Administrator update(Object obj) {
+    public Administrator update(Administrator obj) {
         return null;
     }
 
-    @Override
-    public void delete(Object obj) {
+    public Administrator delete(Administrator obj) {
+          return null;
     }
 
-    @Override
     public List<Administrator> findAll() {
         return null;
     }
 
-    @Override
     public List<Administrator> findById() {
         return null;
     }

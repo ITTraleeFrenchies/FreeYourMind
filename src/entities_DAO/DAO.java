@@ -20,7 +20,7 @@ public interface DAO<T> {
      * @param id
      * @return
      */
-    public abstract T find(long id);
+    public T find(long id);
 
     /**
      * Create an object in database
@@ -28,7 +28,7 @@ public interface DAO<T> {
      * @param obj
      * @return
      */
-    public abstract T create(T obj);
+    public  T create(T obj);
 
     /**
      * Update an object in database
@@ -36,26 +36,26 @@ public interface DAO<T> {
      * @param obj
      * @return
      */
-    public abstract T update(T obj);
+    public  T update(T obj);
 
     /**
      * Delete an object from database
      *
      * @param obj
      */
-    public abstract void delete(T obj);
+    public  void delete(T obj);
 
     /**
      * Find all the objects for an entity
      * @return List<T>
      */
-    public abstract List<T> findAll();
+    public  List<T> findAll();
     
     /**
      * Find all the objects for an ID
      * @return List<T>
      */
-    public abstract List<T> findById();
+    public  List<T> findById();
     
     
 }
