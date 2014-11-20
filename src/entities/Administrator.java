@@ -11,5 +11,50 @@ package entities;
  * @author t00178747
  */
 public class Administrator {
+    private String Tnumber;
+    private String nickname;
+    private String password;
+    private String email_addr;
+
+    public Administrator(String Tnumber, String nickname, String password, String email_addr) {
+        this.Tnumber = Tnumber;
+        this.nickname = nickname;
+        this.password = password;
+        this.email_addr = email_addr;
+    }
+
+    
+    public String getTnumber() {
+        return Tnumber;
+    }
+
+    public void setTnumber(String Tnumber) {
+        this.Tnumber = Tnumber;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail_addr() {
+        return email_addr;
+    }
+
+    public void setEmail_addr(String email_addr) {
+        this.email_addr = email_addr;
+    }
+    
     
 }
