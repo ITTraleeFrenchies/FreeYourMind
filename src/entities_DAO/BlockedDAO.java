@@ -3,38 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities_DAO;
 
-import entities.Music;
+import entities.Blocked;
 import java.util.List;
 
 /**
  *
- * @author t00178760
+ * @author t00178747
  */
-public class MusicDAO {
+public class BlockedDAO {
 
-    public Music find(long id) {
+    public Blocked find(long id) {
         return null;
     }
 
-    public Music create(Music music) {
+    public Blocked create(Blocked obj) {
         return null;
     }
 
-    public Music update(Music music) {
+    public Blocked update(Blocked obj) {
         return null;
     }
 
-    public void delete(Music music) {
-    }
-
-    public List<Music> findAll() {
+    public Blocked delete(Blocked obj) {
         return null;
     }
 
-    public List<Music> findById() {
+    public List<Blocked> findAll() {
         return null;
     }
+
+    public List<Blocked> findById() {
+        return null;
+    }
+
 }

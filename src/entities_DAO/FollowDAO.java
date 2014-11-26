@@ -6,35 +6,34 @@
 
 package entities_DAO;
 
-import entities.Music;
+import entities.Follow;
 import java.util.List;
 
 /**
  *
- * @author t00178760
+ * @author t00178747
  */
-public class MusicDAO {
-
-    public Music find(long id) {
+public class FollowDAO {
+       public Follow find(long id) {
         return null;
     }
 
-    public Music create(Music music) {
+    public Follow create(Follow music) {
         return null;
     }
 
-    public Music update(Music music) {
+    public Follow update(Follow music) {
         return null;
     }
 
-    public void delete(Music music) {
+    public void delete(Follow music) {
     }
 
-    public List<Music> findAll() {
+    public List<Follow> findAll() {
         return null;
     }
 
-    public List<Music> findById() {
+    public List<Follow> findById() {
         return null;
     }
 }
