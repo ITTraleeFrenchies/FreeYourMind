@@ -19,15 +19,15 @@ public class AdministratorDAO{
         return null;
     }
 
-    public Administrator create(Administrator obj) {
+    public Administrator create(Administrator admin) {
         return null;
     }
 
-    public Administrator update(Administrator obj) {
+    public Administrator update(Administrator admin) {
         return null;
     }
 
-    public Administrator delete(Administrator obj) {
+    public Administrator delete(Administrator admin) {
           return null;
     }
 

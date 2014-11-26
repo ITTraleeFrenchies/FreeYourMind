@@ -18,15 +18,15 @@ public class FollowDAO {
         return null;
     }
 
-    public Follow create(Follow music) {
+    public Follow create(Follow follow) {
         return null;
     }
 
-    public Follow update(Follow music) {
+    public Follow update(Follow follow) {
         return null;
     }
 
-    public void delete(Follow music) {
+    public void delete(Follow follow) {
     }
 
     public List<Follow> findAll() {

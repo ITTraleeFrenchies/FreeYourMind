@@ -6,35 +6,34 @@
 
 package entities_DAO;
 
-import entities.Member;
+import entities.Followers;
 import java.util.List;
 
 /**
  *
  * @author t00178747
  */
-public class MemberDAO {
-      public Member find(int id) {
+public class FollowersDAO {
+       public Followers find(long id) {
         return null;
     }
 
-    public Member create(Member member) {
+    public Followers create(Followers follow) {
         return null;
     }
 
-    public Member update(Member member) {
+    public Followers update(Followers follow) {
         return null;
     }
 
-    public Member delete(Member member) {
-          return null;
+    public void delete(Followers follow) {
     }
 
-    public List<Member> findAll() {
+    public List<Followers> findAll() {
         return null;
     }
 
-    public List<Member> findById() {
+    public List<Followers> findById() {
         return null;
     }
 }

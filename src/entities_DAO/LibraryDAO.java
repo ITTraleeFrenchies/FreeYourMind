@@ -6,35 +6,36 @@
 
 package entities_DAO;
 
-import entities.Member;
+import entities.Library;
 import java.util.List;
-
 /**
  *
- * @author t00178747
+ * @author t00178764
  */
-public class MemberDAO {
-      public Member find(int id) {
+
+
+
+public class LibraryDAO {
+       public Library find(long id) {
         return null;
     }
 
-    public Member create(Member member) {
+    public Library create(Library library) {
         return null;
     }
 
-    public Member update(Member member) {
+    public Library update(Library library) {
         return null;
     }
 
-    public Member delete(Member member) {
-          return null;
+    public void delete(Library library) {
     }
 
-    public List<Member> findAll() {
+    public List<Library> findAll() {
         return null;
     }
 
-    public List<Member> findById() {
+    public List<Library> findById() {
         return null;
     }
 }

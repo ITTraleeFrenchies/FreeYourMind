@@ -18,15 +18,15 @@ public class BlockedDAO {
         return null;
     }
 
-    public Blocked create(Blocked obj) {
+    public Blocked create(Blocked blocked) {
         return null;
     }
 
-    public Blocked update(Blocked obj) {
+    public Blocked update(Blocked blocked) {
         return null;
     }
 
-    public Blocked delete(Blocked obj) {
+    public Blocked delete(Blocked blocked) {
         return null;
     }
 

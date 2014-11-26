@@ -6,35 +6,36 @@
 
 package entities_DAO;
 
-import entities.Member;
+import entities.Like_Playlist;
 import java.util.List;
-
 /**
  *
- * @author t00178747
+ * @author t00178764
  */
-public class MemberDAO {
-      public Member find(int id) {
+
+
+
+public class Like_PlaylistDAO {
+       public Like_Playlist find(long id) {
         return null;
     }
 
-    public Member create(Member member) {
+    public Like_Playlist create(Like_Playlist likePlaylist) {
         return null;
     }
 
-    public Member update(Member member) {
+    public Like_Playlist update(Like_Playlist likePlaylist) {
         return null;
     }
 
-    public Member delete(Member member) {
-          return null;
+    public void delete(Like_Playlist likePlaylist) {
     }
 
-    public List<Member> findAll() {
+    public List<Like_Playlist> findAll() {
         return null;
     }
 
-    public List<Member> findById() {
+    public List<Like_Playlist> findById() {
         return null;
     }
 }
