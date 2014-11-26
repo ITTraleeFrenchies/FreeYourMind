@@ -42,6 +42,11 @@ public class Member {
         this.profile_pic = profile_pic;
     }
 
+    public Member() {
+       
+    }
+
+
     public String getTnumber() {
         return Tnumber;
     }

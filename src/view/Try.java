@@ -5,10 +5,12 @@
  */
 package view;
 
+import Controller.ConnectionDatabaseManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Label;
+import java.sql.SQLException;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -21,8 +23,10 @@ public class Try extends javax.swing.JPanel {
     /**
      * Creates new form Try
      */
-    public Try() {
+    public Try() throws SQLException {
         initComponents();
+        
+      //  t_textArea.setText(connect.getMEMBERContent());
         
        /* this.setPreferredSize(new Dimension(700, 700));
         Label label = new Label("Coucou");

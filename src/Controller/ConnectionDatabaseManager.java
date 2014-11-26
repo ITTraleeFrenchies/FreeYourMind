@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,48 +17,102 @@ import java.util.Properties;
  */
 public class ConnectionDatabaseManager {
 
-    private static String nameDriver = "jdbc:oracle:thin:@cp3dbinstance.c4pxnpz4ojk8.us-east-1.rds.amazonaws.com:1521:cp3db";
-    private static String username = "mm3";
-    private static String password = "mm3";
-    private static Connection connection;
-    private static Statement statement;
-    private static ResultSet resultSet;
-
+    private String nameDriver = "jdbc:oracle:thin:@cp3dbinstance.c4pxnpz4ojk8.us-east-1.rds.amazonaws.com:1521:cp3db";
+    private String username = "mm3";
+    private String password = "mm3";
+    private Connection connection;
+    private Statement statement;
+    private ResultSet resultSet;
 
     /**
      * Obtain a connection to the Oracle database.
      *
      * @throws java.sql.SQLException
      */
-    public static void connectionDatabase() throws SQLException {
-         connection = DriverManager.getConnection(nameDriver, username, password);
-         statement = connection.createStatement();
+    public void connectionDatabase() throws SQLException {
+        connection = DriverManager.getConnection(nameDriver, username, password);
+        statement = connection.createStatement();
     }
 
-    public static void getMEMBERContent() throws SQLException {
+    public String getMEMBERContent() throws SQLException {
         resultSet = statement.executeQuery("SELECT * FROM MEMBER");
-
+        String content = "";
+        String newLine = System.getProperty("line.separator");
         while (resultSet.next()) {
             String tnumber = resultSet.getString("TNUMBER");
             String nickname = resultSet.getString("NICKNAME");
-            System.out.println(tnumber + "   " + nickname);
+            String password = resultSet.getString("PASSWORD");
+            String firstname = resultSet.getString("FIRSTNAME");
+            String surname = resultSet.getString("SURNAME");
+            String date_birth = resultSet.getString("DATE_BIRTH");
+            String email_addr = resultSet.getString("EMAIL_ADDR");
+            String street = resultSet.getString("STREET");
+            String city = resultSet.getString("CITY");
+            String country = resultSet.getString("COUNTY");
+            String subscription_date = resultSet.getString("SUBSCRIPTION_DATE");
+            //  String profile_pic = resultSet.getString("PROFILE_PIC");
+            //  System.out.println(tnumber + "   " + nickname);
+            content += tnumber + "," + nickname +newLine;
         }
-
-       
+        return content;
     }
-    
-    public static void closeConnection(){
-         try {
+
+    public void closeConnection() {
+        try {
             resultSet.close();
             statement.close();
             connection.close();
         } catch (Exception e) {
-            System.out.println(" Error : " + e.getMessage());
+            System.out.println(" Error with the close connection. ");
         }
     }
 
-    public static void main(String[] args) throws SQLException {
-        connectionDatabase();
+    public String getNameDriver() {
+        return nameDriver;
+    }
+
+    public void setNameDriver(String nameDriver) {
+        this.nameDriver = nameDriver;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public void setStatement(Statement statement) {
+        this.statement = statement;
+    }
+
+    public ResultSet getResultSet() {
+        return resultSet;
+    }
+
+    public void setResultSet(ResultSet resultSet) {
+        this.resultSet = resultSet;
     }
 
 }

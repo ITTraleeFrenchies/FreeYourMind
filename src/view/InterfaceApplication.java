@@ -7,6 +7,9 @@
 package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -29,7 +32,11 @@ public class InterfaceApplication implements Runnable{
         workingManager.setResizable(false);
 
         homePanel = new Home();
-        tryPanel = new Try();
+       try {
+           tryPanel = new Try();
+       } catch (SQLException ex) {
+           Logger.getLogger(InterfaceApplication.class.getName()).log(Level.SEVERE, null, ex);
+       }
 
       //  workingManager.add(homePanel, BorderLayout.CENTER);
        workingManager.getContentPane().add(tryPanel,BorderLayout.CENTER);
