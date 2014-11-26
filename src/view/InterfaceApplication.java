@@ -6,9 +6,7 @@
 
 package view;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -22,17 +20,21 @@ public class InterfaceApplication implements Runnable{
    private JFrame workingManager;
 
     private JPanel homePanel;
+    private JPanel tryPanel;
 
     @Override
     public void run() {
-        workingManager = new JFrame("Hello");
+        workingManager = new JFrame("Free Your Mind");
         workingManager.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        workingManager.setResizable(false);
 
         homePanel = new Home();
+        tryPanel = new Try();
 
-        workingManager.add(homePanel, BorderLayout.CENTER);
+      //  workingManager.add(homePanel, BorderLayout.CENTER);
+       workingManager.getContentPane().add(tryPanel,BorderLayout.CENTER);
         workingManager.pack();
-        workingManager.setLocationByPlatform(true);
+        workingManager.setLocationRelativeTo(null);
         workingManager.setVisible(true);
         workingManager.setPreferredSize(new Dimension(700,700));
     }

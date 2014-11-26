@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Label;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -17,6 +23,38 @@ public class Try extends javax.swing.JPanel {
      */
     public Try() {
         initComponents();
+        this.setPreferredSize(new Dimension(700, 700));
+        Label label = new Label("Coucou");
+        label.setBounds(100, 100, 100, 100);
+
+        Object[][] donnees = {
+            {"Johnathan", "Sykes", Color.red, true, Sport.TENNIS},
+            {"Nicolas", "Van de Kampf", Color.black, true, Sport.FOOTBALL},
+            {"Damien", "Cuthbert", Color.cyan, true, Sport.RIEN},
+            {"Corinne", "Valance", Color.blue, false, Sport.NATATION},
+            {"Emilie", "Schrödinger", Color.magenta, false, Sport.FOOTBALL},
+            {"Delphine", "Duke", Color.yellow, false, Sport.TENNIS},
+            {"Eric", "Trump", Color.pink, true, Sport.FOOTBALL},};
+        
+
+        String[] entetes = {"Prénom", "Nom", "Couleur favorite", "Homme", "Sport"};
+
+        JTable tableau = new JTable(donnees, entetes);
+        System.out.println(tableau.getWidth());
+        tableau.setBounds(0, 0, 500,  150);
+        this.add(new JScrollPane(tableau), BorderLayout.CENTER);
+        this.add(tableau);
+        this.add(label);
+
+        this.setVisible(true);
+    }
+
+    public enum Sport {
+
+        TENNIS,
+        FOOTBALL,
+        NATATION,
+        RIEN;
     }
 
     /**
@@ -32,11 +70,11 @@ public class Try extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
