@@ -23,7 +23,8 @@ public class Try extends javax.swing.JPanel {
      */
     public Try() {
         initComponents();
-        this.setPreferredSize(new Dimension(700, 700));
+        
+       /* this.setPreferredSize(new Dimension(700, 700));
         Label label = new Label("Coucou");
         label.setBounds(100, 100, 100, 100);
 
@@ -46,7 +47,7 @@ public class Try extends javax.swing.JPanel {
         this.add(tableau);
         this.add(label);
 
-        this.setVisible(true);
+        this.setVisible(true);*/
     }
 
     public enum Sport {
@@ -66,19 +67,34 @@ public class Try extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        t_textArea = new javax.swing.JTextArea();
+
+        t_textArea.setColumns(20);
+        t_textArea.setRows(5);
+        jScrollPane1.setViewportView(t_textArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea t_textArea;
     // End of variables declaration//GEN-END:variables
 }
