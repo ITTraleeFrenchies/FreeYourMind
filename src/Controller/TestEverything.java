@@ -28,17 +28,17 @@ public class TestEverything {
         
          // -------------- TEST FOR FINDBYTNUMBER ----------------
         
-        Member member = memberDAO.findByTnumber("T10000000");
+       /* Member member = memberDAO.findByTnumber("T10000000");
          System.out.println(member.getNickname());
         
          Administrator admin = adminDAO.findByTnumber("T20000000");
-         System.out.println(admin.getNickname());      
+         System.out.println(admin.getNickname());   */   
         // -------------- TEST FOR CREATE ----------------
      /*  Member member = new Member("T00000012","nicknamemember3","password3",null,null,null,"addr3@gmail.com",null,null,null,null,null);
          System.out.println(memberDAO.create(member).getTnumber());
          */
-       /* Administrator admin = new Administrator("T20000002","nicknameadmin3","password3","addradmin3@gmail.com");
-        System.out.println(adminDAO.create(admin).getTnumber());*/
+        Administrator admin = new Administrator("T20000002","nicknameadmin3","password3","addradmin3@gmail.com");
+        System.out.println(adminDAO.create(admin).getTnumber());
         
         // -------------- TEST FOR UPDATE ----------------
        /* Member member = new Member("T00000012", "nicknamemember3", "password45", null, null, null, "addr3@gmail.com", null, null, null, null, null);
