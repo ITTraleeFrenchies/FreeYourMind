@@ -56,66 +56,66 @@ public class MemberDAO {
         }
 
     }
-
-    public Member find(String tnumber) {
-        Member member = null;
-        Image profile_pic = null;
-
-        openConnection();
-        try {
-            // ResultSet result = this.connection.getConnection().createStatement().executeQuery("SELECT * FROM MEMBER WHERE TNUMBER = " + tnumber);
-            this.resultSet = statement.executeQuery("SELECT * FROM MEMBER WHERE TNUMBER = '" + tnumber+"';");
-            if (this.resultSet.first()) {
-                member = new Member(
-                        tnumber,
-                        this.resultSet.getString("nickname"),
-                        this.resultSet.getString("password"),
-                        this.resultSet.getString("firstname"),
-                        this.resultSet.getString("surname"),
-                        this.resultSet.getDate("date_birth"),
-                        this.resultSet.getString("email_addr"),
-                        this.resultSet.getString("street"),
-                        this.resultSet.getString("city"),
-                        this.resultSet.getString("county"),
-                        this.resultSet.getDate("subscription_date"),
-                        profile_pic
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        closeConnection();
-
-        return member;
-    }
-
     public Member create(Member memberToCreate) {
         Member member = memberToCreate;
         String sql = " INSERT INTO MEMBER(TNUMBER,NICKNAME,PASSWORD,FIRSTNAME,"
                 + "SURNAME,DATE_BIRTH,EMAIL_ADDR,STREET,CITY,COUNTY,SUBSCRIPTION_DATE,"
-                + "PROFILE_PIC) VALUES('" + memberToCreate.getTnumber() +"','" 
-                + memberToCreate.getNickname() +"','"+memberToCreate.getPassword()+"','"
-                + memberToCreate.getFirstname() +"','"+memberToCreate.getSurname()+"','"
-                + memberToCreate.getDate_birth() +"','" +memberToCreate.getEmail_addr()+"','"
-                + memberToCreate.getStreet()+"','"+memberToCreate.getCity()+"','"
-                + memberToCreate.getCounty()+"','"+memberToCreate.getSurbscription_date()+"','"
-                + memberToCreate.getProfile_pic()+"');";
-        
-        System.out.println(sql);
+                + "PROFILE_PIC) VALUES('" + memberToCreate.getTnumber() + "','"
+                + memberToCreate.getNickname() + "','" + memberToCreate.getPassword() + "','"
+                + memberToCreate.getFirstname() + "','" + memberToCreate.getSurname() + "',"
+                + memberToCreate.getDate_birth() + ",'" + memberToCreate.getEmail_addr() + "','"
+                + memberToCreate.getStreet() + "','" + memberToCreate.getCity() + "','"
+                + memberToCreate.getCounty() + "'," + memberToCreate.getSurbscription_date() + ","
+                + memberToCreate.getProfile_pic() + ")";
+
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-             ex.printStackTrace();
+            ex.printStackTrace();
         }
         closeConnection();
 
         return member;
     }
 
-    public Member update(Member member) {
-        return null;
+    public Member update(Member memberToUpdate) {
+        Member memberToChange = findByTnumber(memberToUpdate.getTnumber());
+
+        java.sql.Date sqlDateBirth = null;
+        java.sql.Date sqlDateSubscription = null;
+        if(memberToChange.getDate_birth()!= null){
+            sqlDateBirth = new java.sql.Date(memberToChange.getDate_birth().getTime());
+        }
+        if(memberToChange.getSurbscription_date()!= null){
+            sqlDateSubscription = new java.sql.Date(memberToChange.getSurbscription_date().getTime());
+        }
+        System.out.println(sqlDateSubscription);
+
+        String sql = " UPDATE MEMBER SET NICKNAME = '" + memberToChange.getNickname()
+                + "', PASSWORD = '" + memberToChange.getPassword()
+                + "', FIRSTNAME = '" + memberToChange.getFirstname()
+                + "', SURNAME = '" + memberToChange.getSurname()
+                + "', DATE_BIRTH = TO_DATE("+ sqlDateBirth+", 'YYYY-MM-DD')" 
+                + ", EMAIL_ADDR = '" + memberToChange.getEmail_addr()
+                + "', STREET = '" + memberToChange.getStreet()
+                + "', CITY = '" + memberToChange.getCity()
+                + "', COUNTY = '" + memberToChange.getCounty()
+                + "', SUBSCRIPTION_DATE = TO_DATE("+ sqlDateSubscription+", 'YYYY-MM-DD')" 
+                + ",  PROFILE_PIC = " + memberToChange.getProfile_pic()
+                + " WHERE TNUMBER = '" + memberToChange.getTnumber() + "'";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+
+        return memberToChange;
     }
 
     public Member delete(Member member) {
@@ -158,7 +158,7 @@ public class MemberDAO {
     public Member findByTnumber(String tnumber) {
 
         Member member = null;
-        String sql = "SELECT * FROM MEMBER WHERE TNUMBER = '" + tnumber+ "'";
+        String sql = "SELECT * FROM MEMBER WHERE TNUMBER = '" + tnumber + "'";
 
         openConnection();
         try {

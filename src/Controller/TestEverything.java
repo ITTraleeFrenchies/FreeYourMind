@@ -18,25 +18,29 @@ import java.util.logging.Logger;
  */
 public class TestEverything {
 
-    
-
     public static void main(String[] args) {
        // ConnectionDatabaseManager connect = new ConnectionDatabaseManager();
-        
-        MemberDAO memberDAO= new MemberDAO();
-        // -------------- TEST FOR FINDALL ----------------
-       /* List<Member> members =  memberDAO.findAll();
-        for (Member member : members){
-            System.out.println(member.getTnumber());
-        }
-        */
-        // -------------- TEST FOR FINDBYTNUMBER ----------------
+
+        MemberDAO memberDAO = new MemberDAO();
         /*
-        Member member = memberDAO.findByTnumber("T10000000");
-        System.out.println(member.getNickname());
-                */
+         // -------------- TEST FOR FINDBYTNUMBER ----------------
+         /*
+         Member member = memberDAO.findByTnumber("T10000000");
+         System.out.println(member.getNickname());
+         */
         // -------------- TEST FOR CREATE ----------------
-        Member member = new Member("T0000012","nicknamemember3","password3",null,null,null,"addr3@gmail.com",null,null,null,null,null);
-        System.out.println(memberDAO.create(member));
+     /*  Member member = new Member("T00000012","nicknamemember3","password3",null,null,null,"addr3@gmail.com",null,null,null,null,null);
+         System.out.println(memberDAO.create(member).getTnumber());
+         */
+        // -------------- TEST FOR UPDATE ----------------
+        Member member = new Member("T00000012", "nicknamemember3", "password45", null, null, null, "addr3@gmail.com", null, null, null, null, null);
+        memberDAO.update(member);
+
+        // -------------- TEST FOR FINDALL ----------------
+        List<Member> members0 = memberDAO.findAll();
+        for (Member member0 : members0) {
+            System.out.println(member0.getTnumber() + " - " + member0.getNickname() + " - " + member0.getPassword());
+        }
+
     }
 }
