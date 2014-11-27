@@ -56,6 +56,7 @@ public class MemberDAO {
         }
 
     }
+    
     public Member create(Member memberToCreate) {
         Member member = memberToCreate;
         String sql = " INSERT INTO MEMBER(TNUMBER,NICKNAME,PASSWORD,FIRSTNAME,"
@@ -97,12 +98,12 @@ public class MemberDAO {
                 + "', PASSWORD = '" + memberToChange.getPassword()
                 + "', FIRSTNAME = '" + memberToChange.getFirstname()
                 + "', SURNAME = '" + memberToChange.getSurname()
-                + "', DATE_BIRTH = TO_DATE("+ sqlDateBirth+", 'YYYY-MM-DD')" 
+                + "', DATE_BIRTH = TO_DATE('"+ sqlDateBirth+"', 'YYYY-MM-DD')" 
                 + ", EMAIL_ADDR = '" + memberToChange.getEmail_addr()
                 + "', STREET = '" + memberToChange.getStreet()
                 + "', CITY = '" + memberToChange.getCity()
                 + "', COUNTY = '" + memberToChange.getCounty()
-                + "', SUBSCRIPTION_DATE = TO_DATE("+ sqlDateSubscription+", 'YYYY-MM-DD')" 
+                + "', SUBSCRIPTION_DATE = TO_DATE('"+ sqlDateSubscription+"', 'YYYY-MM-DD')" 
                 + ",  PROFILE_PIC = " + memberToChange.getProfile_pic()
                 + " WHERE TNUMBER = '" + memberToChange.getTnumber() + "'";
 
