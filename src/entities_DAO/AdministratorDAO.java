@@ -63,7 +63,7 @@ public class AdministratorDAO{
         String sql = " INSERT INTO ADMINISTRATOR(TNUMBER,NICKNAME,PASSWORD,EMAIL_ADDRESS)"+
                 "VALUES('" + adminToCreate.getTnumber() + "','"
                 + adminToCreate.getNickname() + "','" + adminToCreate.getPassword() + 
-                "','" + adminToCreate.getEmail_address() + "');";
+                "','" + adminToCreate.getEmail_address() + "')";
                 
         System.out.println(sql);
         openConnection();
@@ -93,7 +93,8 @@ public class AdministratorDAO{
     public Administrator findByTnumber(String tnumber) {
 
         Administrator admin = null;
-        String sql = "SELECT * FROM ADMINISTRATOR WHERE TNUMBER = '" + tnumber + "';";
+        String sql = "SELECT * FROM ADMINISTRATOR WHERE TNUMBER = '" + tnumber + "'";
+        
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
