@@ -14,13 +14,13 @@ public class Administrator {
     private String Tnumber;
     private String nickname;
     private String password;
-    private String email_addr;
+    private String email_address;
 
     public Administrator(String Tnumber, String nickname, String password, String email_addr) {
         this.Tnumber = Tnumber;
         this.nickname = nickname;
         this.password = password;
-        this.email_addr = email_addr;
+        this.email_address = email_addr;
     }
 
     
@@ -48,12 +48,12 @@ public class Administrator {
         this.password = password;
     }
 
-    public String getEmail_addr() {
-        return email_addr;
+    public String getEmail_address() {
+        return email_address;
     }
 
-    public void setEmail_addr(String email_addr) {
-        this.email_addr = email_addr;
+    public void setEmail_address(String email_address) {
+        this.email_address = email_address;
     }
     
     
