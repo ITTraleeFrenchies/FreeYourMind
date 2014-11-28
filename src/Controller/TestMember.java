@@ -30,8 +30,7 @@ public class TestMember {
             select sysdate from dual;
         
         */
-       // ConnectionDatabaseManager connect = new ConnectionDatabaseManager();
-
+        
         MemberDAO memberDAO = new MemberDAO();
         
          // -------------- TEST FOR FINDBYTNUMBER ----------------
@@ -41,6 +40,7 @@ public class TestMember {
         
          Administrator admin = adminDAO.findByTnumber("T20000000");
          System.out.println(admin.getNickname());   */   
+        
         // -------------- TEST FOR CREATE ----------------
      /*  Member member = new Member("T00000012","nicknamemember3","password3",null,null,null,"addr3@gmail.com",null,null,null,null,null);
          System.out.println(memberDAO.create(member).getTnumber());
@@ -55,6 +55,9 @@ public class TestMember {
         for (Member member0 : members0) {
             System.out.println(member0.getTnumber() + " - " + member0.getNickname() + " - " + member0.getPassword());
         }*/
-
+         // -------------- TEST FOR DELET ----------------
+      /*  Member member = memberDAO.findByTnumber("T00000012");
+        memberDAO.delete(member);
+      */
     }
 }

@@ -116,8 +116,20 @@ public class MemberDAO {
         return memberToUpdate;
     }
 
-    public Member delete(Member member) {
-        return null;
+    public Member delete(Member memberToDelete) {
+         Member member = memberToDelete;
+        String sql = " DELETE FROM MEMBER WHERE TNUMBER ='" + member.getTnumber()+"'";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+
+        return member;
     }
 
     public List<Member> findAll() {
