@@ -5,18 +5,15 @@
  */
 package entities_DAO;
 
-import Controller.ConnectionDatabaseManager;
 import entities.Member;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -56,7 +53,7 @@ public class MemberDAO {
         }
 
     }
-    
+
     public Member create(Member memberToCreate) {
         Member member = memberToCreate;
         String sql = " INSERT INTO MEMBER(TNUMBER,NICKNAME,PASSWORD,FIRSTNAME,"
@@ -82,31 +79,31 @@ public class MemberDAO {
     }
 
     public Member update(Member memberToUpdate) {
-        Member memberToChange = findByTnumber(memberToUpdate.getTnumber());
 
-        java.sql.Date sqlDateBirth = null;
-        java.sql.Date sqlDateSubscription = null;
-        if(memberToChange.getDate_birth()!= null){
-            sqlDateBirth = new java.sql.Date(memberToChange.getDate_birth().getTime());
+        String dateBirth = null;
+        String dateSubscription = null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        if (memberToUpdate.getDate_birth() != null) {
+            dateBirth = dateFormat.format(memberToUpdate.getDate_birth());
         }
-        if(memberToChange.getSurbscription_date()!= null){
-            sqlDateSubscription = new java.sql.Date(memberToChange.getSurbscription_date().getTime());
+        if (memberToUpdate.getSurbscription_date() != null) {
+            dateSubscription = dateFormat.format(memberToUpdate.getSurbscription_date());
         }
-        System.out.println(sqlDateSubscription);
 
-        String sql = " UPDATE MEMBER SET NICKNAME = '" + memberToChange.getNickname()
-                + "', PASSWORD = '" + memberToChange.getPassword()
-                + "', FIRSTNAME = '" + memberToChange.getFirstname()
-                + "', SURNAME = '" + memberToChange.getSurname()
-                + "', DATE_BIRTH = TO_DATE('"+ sqlDateBirth+"', 'YYYY-MM-DD')" 
-                + ", EMAIL_ADDR = '" + memberToChange.getEmail_addr()
-                + "', STREET = '" + memberToChange.getStreet()
-                + "', CITY = '" + memberToChange.getCity()
-                + "', COUNTY = '" + memberToChange.getCounty()
-                + "', SUBSCRIPTION_DATE = TO_DATE('"+ sqlDateSubscription+"', 'YYYY-MM-DD')" 
-                + ",  PROFILE_PIC = " + memberToChange.getProfile_pic()
-                + " WHERE TNUMBER = '" + memberToChange.getTnumber() + "'";
-
+        String sql = " UPDATE MEMBER SET NICKNAME = '" + memberToUpdate.getNickname()
+                + "', PASSWORD = '" + memberToUpdate.getPassword()
+                + "', FIRSTNAME = '" + memberToUpdate.getFirstname()
+                + "', SURNAME = '" + memberToUpdate.getSurname()
+                + "', DATE_BIRTH = TO_DATE('" + dateBirth +"', 'yyyy/MM/dd')"
+                + ", EMAIL_ADDR = '" + memberToUpdate.getEmail_addr()
+                + "', STREET = '" + memberToUpdate.getStreet()
+                + "', CITY = '" + memberToUpdate.getCity()
+                + "', COUNTY = '" + memberToUpdate.getCounty()
+                + "', SUBSCRIPTION_DATE = TO_DATE('" + dateSubscription +"', 'yyyy/MM/dd')"
+                + ",  PROFILE_PIC = " + memberToUpdate.getProfile_pic()
+                + " WHERE TNUMBER = '" + memberToUpdate.getTnumber() + "'";
+        
+        System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
@@ -116,7 +113,7 @@ public class MemberDAO {
         }
         closeConnection();
 
-        return memberToChange;
+        return memberToUpdate;
     }
 
     public Member delete(Member member) {
