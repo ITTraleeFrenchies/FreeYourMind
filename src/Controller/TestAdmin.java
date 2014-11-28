@@ -33,8 +33,13 @@ public class TestAdmin {
         adminDAO.update(admin);*/
         
         //TEST FOR DELETE
-        Administrator admin=new Administrator("T20000002","nicknameadmin4","password4","addradmin4@gmail.com");
-        System.out.println(adminDAO.delete(admin).getTnumber());
+        /*Administrator admin=new Administrator("T20000002","nicknameadmin4","password4","addradmin4@gmail.com");
+        System.out.println(adminDAO.delete(admin).getTnumber());*/
+        
+        //TEST FOR FIND ALL
+         List<Administrator> admins0 = adminDAO.findAll();
+        for (Administrator admin0 : admins0) {
+            System.out.println(admin0.getTnumber() + " - " + admin0.getNickname() + " - " + admin0.getPassword());
     }
-    
+    }
 }

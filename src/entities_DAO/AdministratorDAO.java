@@ -114,7 +114,31 @@ public Administrator update(Administrator adminUpdate) {
     }
 
     public List<Administrator> findAll() {
-        return null;
+        
+        List<Administrator> admins = new ArrayList();
+        Administrator admin = null;
+        
+        String sql="SELECT * FROM ADMINISTRATOR";
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            while (this.resultSet.next()) {
+                admin = new Administrator(
+                        this.resultSet.getString("tnumber"),
+                        this.resultSet.getString("nickname"),
+                        this.resultSet.getString("password"),
+                        this.resultSet.getString("email_address")
+                        );
+                admins.add(admin);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " error with the sql request.");
+        }
+        closeConnection();
+        
+        
+        return admins;
     }
 
     public Administrator findByTnumber(String tnumber) {
