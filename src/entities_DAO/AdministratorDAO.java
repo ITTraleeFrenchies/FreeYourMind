@@ -78,14 +78,12 @@ public class AdministratorDAO{
         return admin;
     }
 
-public Administrator update(Administrator adminToUpdate) {
-        Administrator adminToChange = findByTnumber(adminToUpdate.getTnumber());
+public Administrator update(Administrator adminUpdate) {
 
-
-        String sql = " UPDATE ADMINISTRATOR SET NICKNAME = '" + adminToChange.getNickname()
-                + "', PASSWORD = '" + adminToChange.getPassword()
-                + ", EMAIL_ADDR = '" + adminToChange.getEmail_address()
-                + " WHERE TNUMBER = '" + adminToChange.getTnumber() + "'";
+        String sql = " UPDATE ADMINISTRATOR SET NICKNAME = '" + adminUpdate.getNickname()
+                + "', PASSWORD = '" + adminUpdate.getPassword()
+                + "', EMAIL_ADDRESS = '" + adminUpdate.getEmail_address()
+                + "' WHERE TNUMBER = '" + adminUpdate.getTnumber() + "'";
         System.out.println(sql);
         openConnection();
         try {
@@ -96,11 +94,23 @@ public Administrator update(Administrator adminToUpdate) {
         }
         closeConnection();
 
-        return adminToChange;
+        return adminUpdate;
     }
 
-    public Administrator delete(Administrator admin) {
-          return null;
+    public Administrator delete(Administrator adminToDelete) {
+        String sql = "DELETE FROM ADMINISTRATOR WHERE TNUMBER = '" + adminToDelete.getTnumber() + "'";
+        System.out.println(sql);
+        
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+        
+        return adminToDelete;
     }
 
     public List<Administrator> findAll() {

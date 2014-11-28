@@ -32,7 +32,9 @@ public class TestAdmin {
         /*Administrator admin=new Administrator("T20000002","nicknameadmin4","password4","addradmin4@gmail.com");
         adminDAO.update(admin);*/
         
-        //
+        //TEST FOR DELETE
+        Administrator admin=new Administrator("T20000002","nicknameadmin4","password4","addradmin4@gmail.com");
+        System.out.println(adminDAO.delete(admin).getTnumber());
     }
     
 }
