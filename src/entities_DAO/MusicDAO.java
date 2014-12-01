@@ -69,7 +69,7 @@ public class MusicDAO {
                 );
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getErrorCode() + " error with the method find");
         }
         closeConnection();
 
@@ -92,7 +92,7 @@ public class MusicDAO {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-             ex.printStackTrace();
+              System.out.println(ex.getErrorCode() + " error with the method create");
         }
         closeConnection();
 
@@ -115,8 +115,8 @@ public class MusicDAO {
         try {
             this.resultSet = statement.executeQuery(sql);
 
-        } catch (SQLException ex) {
-             ex.printStackTrace();
+        } catch (SQLException e) {
+              System.out.println(e.getErrorCode() + " error with the method update");
         }
         closeConnection();
 
@@ -130,7 +130,7 @@ public class MusicDAO {
         try {
             this.resultSet = statement.executeQuery(sql);
         }catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the sql request.");
+             System.out.println(ex.getErrorCode() + " error with the method find");
         }
     }
 
@@ -157,7 +157,7 @@ public class MusicDAO {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the sql request.");
+            System.out.println(ex.getErrorCode() + " error with the method findAll");
         }
         closeConnection();
 

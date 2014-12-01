@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities_DAO;
 
 import entities.Library;
@@ -12,24 +11,24 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author t00178764
  */
 
-
-
 public class LibraryDAO {
-    
+
     private String nameDriver = "jdbc:oracle:thin:@cp3dbinstance.c4pxnpz4ojk8.us-east-1.rds.amazonaws.com:1521:cp3db";
     private String username = "mm3";
     private String password = "mm3";
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
-    
-      public void openConnection() {
+
+    public void openConnection() {
         try {
             this.connection = DriverManager.getConnection(nameDriver, username, password);
             this.statement = connection.createStatement();
@@ -53,8 +52,7 @@ public class LibraryDAO {
 
     public LibraryDAO() {
     }
-    
-    
+
     public Library findById(int id) {
         Library library = null;
         String sql = "SELECT * FROM LIBRARY WHERE ID_LIBRARY = '" + id + "'";
@@ -69,27 +67,90 @@ public class LibraryDAO {
                         this.resultSet.getString("member"));
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the sql request.");
+            System.out.println(ex.getErrorCode() + " error with the method findById");
         }
         closeConnection();
 
         return library;
     }
 
-    public Library create(Library library) {
-        return null;
+    /*
+    =========== We're not supposed to have this method because there is a trigger for that. =============
+    public Library create(Library libraryToCreate) {
+        Library library = libraryToCreate;
+        String sql = " INSERT INTO LIBRARY(ID_LIBRARY,NAME,MEMBER) VALUES('"
+                + library.get_id_library() + "','"
+                + library.get_name() + "','"
+                + library.get_member() + ")";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+               System.out.println(ex.getErrorCode() + " error with the method create");
+        }
+        closeConnection();
+
+        return library;
+    }
+    */
+
+    public Library update(Library libraryToUpdate) {
+        Library library = libraryToUpdate;
+        String sql = " UPDATE LIBRARY SET NAME = '" +  library.get_name() + "' "+ 
+                "WHERE ID_LIBRARY = "+ library.get_id_library() + ")";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+              System.out.println(ex.getErrorCode() + " error with the method update");
+        }
+        closeConnection();
+
+        return library;
     }
 
-    public Library update(Library library) {
-        return null;
-    }
+    public Library delete(Library libraryToDelete) {
+         Library library = libraryToDelete;
+        String sql = " DELETE FROM LIBRARY WHERE ID_LIBRARY = "+ libraryToDelete.get_id_library() + ")";
 
-    public void delete(Library library) {
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+             System.out.println(ex.getErrorCode() + " error with the method delete");
+        }
+        closeConnection();
+
+        return library;
     }
 
     public List<Library> findAll() {
-        return null;
+        List<Library> libraries = new ArrayList();
+        Library library = null;
+        String sql = "SELECT * FROM MEMBER";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            while (this.resultSet.next()) {
+                library = new Library(
+                        this.resultSet.getInt("id_library"),
+                        this.resultSet.getString("name"),
+                        this.resultSet.getString("member"));
+                libraries.add(library);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " error with the method findAll");
+        }
+        closeConnection();
+
+        return libraries;
     }
 
-    
 }
