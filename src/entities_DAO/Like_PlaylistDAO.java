@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -91,19 +92,63 @@ public class Like_PlaylistDAO {
         return like_playlist;
     }
 
-    public Like_Playlist update(Like_Playlist likePlaylist) {
-        return null;
+    public Like_Playlist update(Like_Playlist likePlaylistToUpdate) {
+        String sql = " UPDATE LIKE_PLAYLIST SET ID_LIKELIST = '" + likePlaylistToUpdate.getId_likelist()
+                + "', TNUMBER = '" + likePlaylistToUpdate.getTNumber()
+                + "', ID_PLAYLIST = '" + likePlaylistToUpdate.getId_playlist()
+                + "', DATE_CREATION = '" + likePlaylistToUpdate.getDate_creation()
+                + " WHERE ID_LIKELIST = '" + likePlaylistToUpdate.getId_likelist() + "'";
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+
+        return likePlaylistToUpdate;
     }
 
-    public Like_Playlist delete(Like_Playlist likePlaylist) {
-        return null;
+    public Like_Playlist delete(Like_Playlist likePlaylistToDelete) {
+        Like_Playlist likePlaylist = likePlaylistToDelete;
+        String sql = " DELETE FROM LIKE_PLAYLIST WHERE ID_LIKELIST ='" + likePlaylist.getId_playlist()+"'";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+
+        return likePlaylist;
     }
 
     public List<Like_Playlist> findAll() {
-        return null;
+          List<Like_Playlist> list_likePlaylist = new ArrayList();
+        Like_Playlist likePlaylist = null;
+        String sql = "SELECT * FROM LIKE_PLAYLIST";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            while (this.resultSet.next()) {
+                likePlaylist = new Like_Playlist(
+                       this.resultSet.getInt("id_likelist"),
+                        this.resultSet.getString("tnumber"),
+                        this.resultSet.getString("id_playlist"),
+                        this.resultSet.getDate("date_creation"));
+                list_likePlaylist.add(likePlaylist);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " error with the sql request.");
+        }
+        closeConnection();
+
+        return list_likePlaylist;
     }
 
-    public List<Like_Playlist> findById() {
-        return null;
-    }
 }
