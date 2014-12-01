@@ -21,8 +21,8 @@ public class TestPlaylist {
         PlaylistDAO playlistDAO = new PlaylistDAO();
         
         //TEST FOR FIND BY TNUMBER
-       /* Playlist playlist = playlistDAO.findByTnumber("T20000000");
-        System.out.println(playlist.getNickname()); */
+        /*Playlist playlist = playlistDAO.find("P182");
+        System.out.println(playlist.getIDPlaylist());*/ 
         
         //TEST FOR CREATE
         /*Playlist playlist = new Playlist("T20000002","nicknameplaylist3","password3","addrplaylist3@gmail.com");
