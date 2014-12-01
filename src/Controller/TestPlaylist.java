@@ -25,21 +25,21 @@ public class TestPlaylist {
         System.out.println(playlist.getIDPlaylist());*/ 
         
         //TEST FOR CREATE
-        /*Playlist playlist = new Playlist("T20000002","nicknameplaylist3","password3","addrplaylist3@gmail.com");
-        System.out.println(playlistDAO.create(playlist).getTnumber());*/
+       /* Playlist playlist = new Playlist(null,89,"postrock",null,false); //wrong library id, to be changed when db available
+        System.out.println(playlistDAO.create(playlist).getIDPlaylist());*/
         
         //TEST FOR UPDATE
-        /*Playlist playlist=new Playlist("T20000002","nicknameplaylist4","password4","addrplaylist4@gmail.com");
+        /*Playlist playlist=new Playlist("P184",89,"dub",null,false);//wrong library id, to be changed when db available. playlist id to check
         playlistDAO.update(playlist);*/
         
         //TEST FOR DELETE
-        /*Playlist playlist=new Playlist("T20000002","nicknameplaylist4","password4","addrplaylist4@gmail.com");
-        System.out.println(playlistDAO.delete(playlist).getTnumber());*/
+       /* Playlist playlist=new Playlist("P184",89,"dub",null,false);//wrong library id, to be changed when db available. playlist id to check
+        System.out.println(playlistDAO.delete(playlist).getIDPlaylist());*/
         
         //TEST FOR FIND ALL
         /* List<Playlist> playlists0 = playlistDAO.findAll();
         for (Playlist playlist0 : playlists0) {
-            System.out.println(playlist0.getTnumber() + " - " + playlist0.getNickname() + " - " + playlist0.getPassword());
+            System.out.println(playlist0.getIDPlaylist() + " - " + playlist0.getIDPlaylist() + " - " + playlist0.getIDPlaylist());
     }*/
     }
 }
