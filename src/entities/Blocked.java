@@ -11,12 +11,21 @@ package entities;
  * @author t00178764
  */
 public class Blocked {
+    private int id_blocked;
     private String tNumber_admin;
     private String tNumber_user;
     
-    public Blocked(String tNumber_admin,String tNumber_user){
+    public Blocked(int id_blocked, String tNumber_admin,String tNumber_user){
+        this.id_blocked=id_blocked;
         this.tNumber_admin=tNumber_admin;
         this.tNumber_user=tNumber_user;
+    }
+    
+    public int get_id_blocked(){
+        return id_blocked;
+    }
+    public void set_id_blocked(){
+        this.id_blocked=id_blocked;
     }
     
     public String get_tNumber_admin(){

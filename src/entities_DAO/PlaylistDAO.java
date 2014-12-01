@@ -27,6 +27,10 @@ public class PlaylistDAO {
     private Statement statement;
     private ResultSet resultSet;
     
+    public PlaylistDAO(){
+        
+    }
+    
         public void openConnection() {
         try {
             this.connection = DriverManager.getConnection(nameDriver, username, password);
