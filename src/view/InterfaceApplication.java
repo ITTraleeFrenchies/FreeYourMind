@@ -6,19 +6,8 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -30,8 +19,9 @@ public class InterfaceApplication implements Runnable {
 
     private JFrame workingManager;
 
-    private JPanel homePanel;
-    private JPanel tryPanel;
+  //  private JPanel homePanel;
+   // private JPanel subscribe;
+  //  private JPanel tryPanel;
 
     @Override
     public void run() {
@@ -39,7 +29,8 @@ public class InterfaceApplication implements Runnable {
         workingManager.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         workingManager.setResizable(false);
 
-        homePanel = new Home();
+      //  homePanel = new Home();
+       // subscribe = new Subscribe();
 
          // =============== display a panel ==========
         /*  try {
@@ -66,8 +57,18 @@ public class InterfaceApplication implements Runnable {
                */
 
         //  workingManager.add(homePanel, BorderLayout.CENTER);
-        homePanel.setBackground(Color.LIGHT_GRAY);
-        workingManager.getContentPane().add(homePanel, BorderLayout.CENTER);
+        
+       // workingManager.getContentPane().add(homePanel, BorderLayout.CENTER);
+        
+        /*
+        ========== MANAGE SEVERAL PANELS ==============
+        */
+        //Create and set up the content pane.
+        CardLayoutDemo demo = new CardLayoutDemo();
+        demo.addComponentToPane(workingManager.getContentPane());
+        
+        // ================== AT THE END ===============
+       // workingManager.getContentPane().add(homePanel, BorderLayout.CENTER);
         workingManager.pack();
         workingManager.setLocationRelativeTo(null);
         workingManager.setVisible(true);
@@ -77,5 +78,11 @@ public class InterfaceApplication implements Runnable {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new InterfaceApplication());
     }
+
+    public JFrame getWorkingManager() {
+        return workingManager;
+    }
+    
+    
 
 }
