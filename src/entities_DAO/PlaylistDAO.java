@@ -27,6 +27,10 @@ public class PlaylistDAO {
     private Statement statement;
     private ResultSet resultSet;
     
+    public PlaylistDAO(){
+        
+    }
+    
         public void openConnection() {
         try {
             this.connection = DriverManager.getConnection(nameDriver, username, password);
@@ -113,7 +117,7 @@ public class PlaylistDAO {
         return upPlaylist;
     }
     
-    public void delete(Playlist playlist) {
+    public Playlist delete(Playlist playlist) {
         String sql = "DELETE FROM PLAYLIST WHERE ID_PLAYLIST = '"+playlist.getIDPlaylist()+"';";
         
         openConnection();
@@ -122,6 +126,7 @@ public class PlaylistDAO {
         }catch (SQLException ex) {
             System.out.println(ex.getErrorCode() + " error with the sql request.");
         }
+        return playlist;
     }
     
     public List<Playlist> findAll() {
