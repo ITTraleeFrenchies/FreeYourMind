@@ -55,10 +55,10 @@ public class Home extends javax.swing.JPanel {
         l_title.setText("Free Your Mind");
 
         l_tnumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        l_tnumber.setText("Login(T-Number :) ");
+        l_tnumber.setText("Login (T-Number): ");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Password : ");
+        jLabel1.setText("Password: ");
 
         b_login.setText("Log in");
 
@@ -68,33 +68,29 @@ public class Home extends javax.swing.JPanel {
         l_forgot.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         l_forgot.setText("Forgot password ?");
 
-        b_subscribe.setText("susbscribe");
+        b_subscribe.setText("Susbscribe");
         b_subscribe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_subscribeActionPerformed(evt);
             }
         });
 
-        b_retrieve.setText("jButton1");
+        b_retrieve.setText("Retrieve");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(177, 177, 177)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(191, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_tnumber)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_noAccount)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -102,21 +98,25 @@ public class Home extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_forgot)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(b_retrieve))))
-                    .addComponent(l_title))
-                .addContainerGap(201, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b_login)
-                .addGap(315, 315, 315))
+                                .addComponent(b_retrieve))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(l_tnumber)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(63, 63, 63))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(b_login)
+                        .addGap(156, 156, 156))
+                    .addComponent(l_title, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(187, 187, 187))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(71, 71, 71)
                 .addComponent(l_title)
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l_tnumber)
                     .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -131,9 +131,9 @@ public class Home extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_forgot)
                     .addComponent(b_retrieve))
-                .addGap(3, 3, 3)
+                .addGap(18, 18, 18)
                 .addComponent(b_login)
-                .addContainerGap(372, Short.MAX_VALUE))
+                .addContainerGap(357, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
