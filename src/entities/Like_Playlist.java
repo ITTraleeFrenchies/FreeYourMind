@@ -13,12 +13,12 @@ import java.util.Date;
  */
 public class Like_Playlist {
 
-    int id_likelist;
+    String id_likelist;
     private String TNumber;
     private String id_playlist;
     private Date date_creation;
 
-    public Like_Playlist(int id_likelist, String TNumber, String id_playlist, Date date_creation) {
+    public Like_Playlist(String id_likelist, String TNumber, String id_playlist, Date date_creation) {
         this.id_likelist = id_likelist;
         this.TNumber = TNumber;
         this.id_playlist = id_playlist;
@@ -27,11 +27,11 @@ public class Like_Playlist {
     
     
 
-    public int getId_likelist() {
+    public String getId_likelist() {
         return id_likelist;
     }
 
-    public void setId_likelist(int id_likelist) {
+    public void setId_likelist(String id_likelist) {
         this.id_likelist = id_likelist;
     }
 

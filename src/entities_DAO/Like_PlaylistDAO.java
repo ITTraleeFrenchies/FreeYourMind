@@ -18,7 +18,6 @@ import java.util.List;
  *
  * @author t00178764
  */
-
 public class Like_PlaylistDAO {
 
     private String nameDriver = "jdbc:oracle:thin:@cp3dbinstance.c4pxnpz4ojk8.us-east-1.rds.amazonaws.com:1521:cp3db";
@@ -59,7 +58,7 @@ public class Like_PlaylistDAO {
             this.resultSet = statement.executeQuery(sql);
             while (this.resultSet.next()) {
                 like_playlist = new Like_Playlist(
-                        this.resultSet.getInt("id_likelist"),
+                        this.resultSet.getString("id_likelist"),
                         this.resultSet.getString("tnumber"),
                         this.resultSet.getString("id_playlist"),
                         this.resultSet.getDate("date_creation"));
@@ -73,17 +72,17 @@ public class Like_PlaylistDAO {
     }
 
     public Like_Playlist create(Like_Playlist likePlaylistToCreate) {
-         Like_Playlist like_playlist = likePlaylistToCreate;
-        String sql = "INSERT INTO LIKE_PLAYLIST VALUES(" 
+        Like_Playlist like_playlist = likePlaylistToCreate;
+        String sql = "INSERT INTO LIKE_PLAYLIST VALUES("
                 + like_playlist.getId_playlist() + ",'"
-                + like_playlist.getTNumber()+ "','"
+                + like_playlist.getTNumber() + "','"
                 + like_playlist.getId_playlist() + "',"
-                + like_playlist.getDate_creation()+ ")";
+                + like_playlist.getDate_creation() + ")";
 
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
-          
+
         } catch (SQLException ex) {
             System.out.println(ex.getErrorCode() + " error with the method create");
         }
@@ -103,7 +102,7 @@ public class Like_PlaylistDAO {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getErrorCode() + " error with the method update.");
         }
         closeConnection();
 
@@ -112,14 +111,14 @@ public class Like_PlaylistDAO {
 
     public Like_Playlist delete(Like_Playlist likePlaylistToDelete) {
         Like_Playlist likePlaylist = likePlaylistToDelete;
-        String sql = " DELETE FROM LIKE_PLAYLIST WHERE ID_LIKELIST ='" + likePlaylist.getId_playlist()+"'";
+        String sql = " DELETE FROM LIKE_PLAYLIST WHERE ID_LIKELIST ='" + likePlaylist.getId_playlist() + "'";
 
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getErrorCode() + " error with the method delete.");
         }
         closeConnection();
 
@@ -127,7 +126,7 @@ public class Like_PlaylistDAO {
     }
 
     public List<Like_Playlist> findAll() {
-          List<Like_Playlist> list_likePlaylist = new ArrayList();
+        List<Like_Playlist> list_likePlaylist = new ArrayList();
         Like_Playlist likePlaylist = null;
         String sql = "SELECT * FROM LIKE_PLAYLIST";
 
@@ -136,7 +135,7 @@ public class Like_PlaylistDAO {
             this.resultSet = statement.executeQuery(sql);
             while (this.resultSet.next()) {
                 likePlaylist = new Like_Playlist(
-                       this.resultSet.getInt("id_likelist"),
+                        this.resultSet.getString("id_likelist"),
                         this.resultSet.getString("tnumber"),
                         this.resultSet.getString("id_playlist"),
                         this.resultSet.getDate("date_creation"));
@@ -144,7 +143,7 @@ public class Like_PlaylistDAO {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the sql request.");
+            System.out.println(ex.getErrorCode() + " error with the method findAll.");
         }
         closeConnection();
 
