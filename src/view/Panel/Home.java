@@ -5,6 +5,8 @@
  */
 package view.Panel;
 
+import entities.Member;
+import entities_DAO.MemberDAO;
 import view.Others.InterfaceApplication;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,6 +25,7 @@ public class Home extends javax.swing.JPanel {
      */
     private JPanel subscribe;
     private InterfaceApplication interfaceApplication;
+    public boolean canConnect = false;
     
     public Home() {
         initComponents();
@@ -54,7 +57,6 @@ public class Home extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         b_login = new javax.swing.JButton();
         t_tnumber = new javax.swing.JTextField();
-        t_password = new javax.swing.JTextField();
         l_noAccount = new javax.swing.JLabel();
         l_forgot = new javax.swing.JLabel();
         b_subscribe = new javax.swing.JButton();
@@ -63,6 +65,7 @@ public class Home extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         l_error = new javax.swing.JLabel();
+        p_password = new javax.swing.JPasswordField();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
@@ -111,41 +114,36 @@ public class Home extends javax.swing.JPanel {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(85, 191, Short.MAX_VALUE)
+                .addGap(110, 186, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(l_error, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(p_password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(l_noAccount)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(b_subscribe))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(l_forgot)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(b_retrieve))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(l_tnumber)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(225, 225, 225))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(b_login)
                         .addGap(343, 343, 343))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(l_title)
-                        .addGap(187, 187, 187))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(37, 37, 37)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(l_noAccount)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(b_subscribe))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(l_forgot)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(b_retrieve))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(l_tnumber)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(l_error, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(195, 195, 195))))
+                        .addGap(187, 187, 187))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +161,7 @@ public class Home extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(p_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_noAccount)
@@ -190,13 +188,28 @@ public class Home extends javax.swing.JPanel {
         b_retrieve.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JOptionPane.showMessageDialog(b_retrieve, "An email has been sent.");
+                String email = JOptionPane.showInputDialog(b_retrieve, "Enter your email : ");
+               // System.out.println(email);
             }
         });
     }//GEN-LAST:event_b_retrieveActionPerformed
 
     private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
-       
+        String tnumber ="";
+        String password="";
+        
+        tnumber = this.t_tnumber.getText();
+        password = this.p_password.getText();
+        
+        MemberDAO memberDAO = new MemberDAO();
+        Member member = memberDAO.findByTnumber(tnumber);
+        
+        if(member != null){
+            if(password.equalsIgnoreCase(member.getPassword())){
+                canConnect = true;
+            }
+        }
+        //System.out.println(tnumber + " -  " + password);
     }//GEN-LAST:event_b_loginActionPerformed
 
 
@@ -213,7 +226,7 @@ public class Home extends javax.swing.JPanel {
     private javax.swing.JLabel l_noAccount;
     private javax.swing.JLabel l_title;
     private javax.swing.JLabel l_tnumber;
-    private javax.swing.JTextField t_password;
+    private javax.swing.JPasswordField p_password;
     private javax.swing.JTextField t_tnumber;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,21 +9,20 @@ import view.Panel.Subscribe;
 import view.Panel.Home;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CLMainInterface extends JFrame {
 
-    private int currentCard = 1;
+ //   private int currentCard = 1;
     private JPanel container;
-    private Home cardHome;
+    private final Home cardHome;
     private CardLayout cl;
-    private Subscribe cardSubscribe;
+    private final Subscribe cardSubscribe;
 
     public CLMainInterface() {
         container = new JPanel();
@@ -34,13 +33,14 @@ public class CLMainInterface extends JFrame {
         container.setLayout(cl);
         container.add(cardHome, "home");
         container.add(cardSubscribe, "subscribe");
-      //  cl.addLayoutComponent(cardHome, null);
-        //   cl.addLayoutComponent(cardSubscribe, null);
 
-        cardHome.b_login.addActionListener(new ActionListener() {
+        cardHome.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                cl.next(container);
+                if(cardHome.canConnect){
+                     cl.next(container);
+                }
+               
             }
         });
 
@@ -59,25 +59,19 @@ public class CLMainInterface extends JFrame {
          }
          }
          });
-        
-         previousBtn.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent arg0) {
-         if (currentCard > 1) {
-         currentCard -= 1;
-         cl.show(cardPanel, "" + (currentCard));
-         }
-         }
-         });
-         */
+        */
         getContentPane().add(container, BorderLayout.CENTER);
     }
 
     public static void main(String[] args) {
         CLMainInterface cl = new CLMainInterface();
+        cl.setTitle("Free Your Mind");
         cl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cl.setVisible(true);
         cl.setSize(700, 700);
         cl.setResizable(false);
+        cl.setLocationRelativeTo(null);
+     //   cl.setIconImage(new ImageIcon("src/Ressources/logo.PNG").getImage());
 
     }
 }
