@@ -55,7 +55,6 @@ public class AdministratorDAO{
         } catch (SQLException ex) {
             System.out.println(ex.getErrorCode() + " : error with the closing of connection. ");
         }
-
     }
 
     public Administrator create(Administrator adminToCreate) {
