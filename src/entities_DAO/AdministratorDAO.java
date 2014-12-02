@@ -6,13 +6,9 @@
 
 package entities_DAO;
 
-import Controller.ConnectionDatabaseManager;
 import entities.Administrator;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -25,12 +21,17 @@ import java.sql.Statement;
  */
 public class AdministratorDAO{
     
-    private String nameDriver = "jdbc:oracle:thin:@cp3dbinstance.c4pxnpz4ojk8.us-east-1.rds.amazonaws.com:1521:cp3db";
-    private String username = "mm3";
-    private String password = "mm3";
+    private final String nameDriver = "jdbc:oracle:thin:@cp3dbinstance.c4pxnpz4ojk8.us-east-1.rds.amazonaws.com:1521:cp3db";
+    private final String username = "mm3";
+    private final String password = "mm3";
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
+    
+    public final String tnumber_Aurelien = "t00178764";
+    public final String tnumber_Angele = "t00178747";
+    public final String tnumber_Mickael = "t00178760";
+    public final String tnumber_Quentin = "t00178730";
 
     public AdministratorDAO(){
         
@@ -77,7 +78,7 @@ public class AdministratorDAO{
         return admin;
     }
 
-public Administrator update(Administrator adminUpdate) {
+    public Administrator update(Administrator adminUpdate) {
 
         String sql = " UPDATE ADMINISTRATOR SET NICKNAME = '" + adminUpdate.getNickname()
                 + "', PASSWORD = '" + adminUpdate.getPassword()
