@@ -5,6 +5,7 @@
  */
 package view.Panel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,6 +29,8 @@ public class Subscribe extends javax.swing.JPanel {
     public Subscribe() {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
+        this.setBackground(Color.LIGHT_GRAY);
+        
         // ========== FOR THE IMAGE AND UPLOAD =============
       /*  JLabel l_loadImage = new JLabel("Select an image from your Computer");
         JButton b_loadImage = new JButton("Load");
@@ -102,6 +105,8 @@ public class Subscribe extends javax.swing.JPanel {
         l_asterix4 = new javax.swing.JLabel();
         l_asterix5 = new javax.swing.JLabel();
         l_asterix6 = new javax.swing.JLabel();
+        l_asterix7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(700, 700));
 
@@ -214,6 +219,14 @@ public class Subscribe extends javax.swing.JPanel {
         l_asterix6.setForeground(new java.awt.Color(204, 0, 0));
         l_asterix6.setText("*");
 
+        l_asterix7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        l_asterix7.setForeground(new java.awt.Color(204, 0, 0));
+        l_asterix7.setText("*");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setText("Fiels marqued by this asterix must are mandatory");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -270,6 +283,10 @@ public class Subscribe extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(l_asterix5))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(l_country)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(t_country, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_dateBirth)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(t_dateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,6 +294,20 @@ public class Subscribe extends javax.swing.JPanel {
                                 .addComponent(l_indication2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(l_asterix6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(l_county)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(t_county, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(l_asterix7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(b_subscribe)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(b_backHome))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_email)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -287,23 +318,9 @@ public class Subscribe extends javax.swing.JPanel {
                                 .addComponent(t_street, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_city)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_county)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_county, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_country)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(t_country, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(203, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(b_subscribe)
-                .addGap(18, 18, 18)
-                .addComponent(b_backHome)
-                .addGap(177, 177, 177))
+                                .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,12 +381,12 @@ public class Subscribe extends javax.swing.JPanel {
                     .addComponent(t_street, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_city)
-                    .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_county)
                     .addComponent(t_county, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l_city)
+                    .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_country)
@@ -377,8 +394,10 @@ public class Subscribe extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_subscribe)
-                    .addComponent(b_backHome))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addComponent(b_backHome)
+                    .addComponent(l_asterix7)
+                    .addComponent(jLabel1))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -390,6 +409,7 @@ public class Subscribe extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton b_backHome;
     private javax.swing.JButton b_subscribe;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel l_asterix;
@@ -399,6 +419,7 @@ public class Subscribe extends javax.swing.JPanel {
     private javax.swing.JLabel l_asterix4;
     private javax.swing.JLabel l_asterix5;
     private javax.swing.JLabel l_asterix6;
+    private javax.swing.JLabel l_asterix7;
     private javax.swing.JLabel l_city;
     private javax.swing.JLabel l_country;
     private javax.swing.JLabel l_county;

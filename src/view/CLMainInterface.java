@@ -37,9 +37,15 @@ public class CLMainInterface extends JFrame {
         cardHome.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if(cardHome.canConnect){
                      cl.next(container);
-                }
+               
+            }
+        });
+        
+        cardHome.b_login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                  //   cl.next(container);
                
             }
         });

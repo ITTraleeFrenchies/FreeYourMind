@@ -80,6 +80,11 @@
                               <Component id="l_asterix5" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="l_country" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="t_country" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="l_dateBirth" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="t_dateBirth" min="-2" pref="100" max="-2" attributes="0"/>
@@ -87,6 +92,24 @@
                               <Component id="l_indication2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="l_asterix6" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="l_county" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="t_county" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="l_asterix7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="b_subscribe" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="b_backHome" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="l_email" min="-2" max="-2" attributes="0"/>
@@ -100,30 +123,13 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="l_city" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="t_city" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="l_county" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="t_county" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="l_country" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="t_country" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="t_city" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="203" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="b_subscribe" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="b_backHome" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+              <EmptySpace pref="158" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -195,13 +201,13 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="l_city" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="t_city" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="l_county" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="t_county" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="l_city" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="t_city" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -212,8 +218,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="b_subscribe" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="b_backHome" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="l_asterix7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="124" max="32767" attributes="0"/>
+              <EmptySpace pref="121" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -501,6 +509,28 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="*"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="l_asterix7">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="*"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fiels marqued by this asterix must are mandatory"/>
       </Properties>
     </Component>
   </SubComponents>
