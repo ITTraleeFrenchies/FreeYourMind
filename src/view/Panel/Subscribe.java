@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.Panel;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -388,7 +388,7 @@ public class Subscribe extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_backHome;
+    public javax.swing.JButton b_backHome;
     private javax.swing.JButton b_subscribe;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

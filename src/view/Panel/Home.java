@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.Panel;
 
+import view.Others.InterfaceApplication;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -28,7 +29,6 @@ public class Home extends javax.swing.JPanel {
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
         
-        subscribe = new Subscribe();
     }
 
     @Override
@@ -38,6 +38,7 @@ public class Home extends javax.swing.JPanel {
         g.fillOval(0, 0, 30, 30);
         g.drawOval(0, 50, 30, 30);*/
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,9 +201,9 @@ public class Home extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_login;
+    public javax.swing.JButton b_login;
     private javax.swing.JButton b_retrieve;
-    private javax.swing.JButton b_subscribe;
+    public javax.swing.JButton b_subscribe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
