@@ -5,7 +5,9 @@
  */
 package view.Panel;
 
+import entities.Administrator;
 import entities.Member;
+import entities_DAO.AdministratorDAO;
 import entities_DAO.MemberDAO;
 import view.Others.InterfaceApplication;
 import java.awt.Color;
@@ -26,22 +28,21 @@ public class Home extends javax.swing.JPanel {
     private JPanel subscribe;
     private InterfaceApplication interfaceApplication;
     public boolean canConnect = false;
-    
+
     public Home() {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
-        
+
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-/*        g.setColor(Color.CYAN);
-        g.fillOval(0, 0, 30, 30);
-        g.drawOval(0, 50, 30, 30);*/
+        /*        g.setColor(Color.CYAN);
+         g.fillOval(0, 0, 30, 30);
+         g.drawOval(0, 50, 30, 30);*/
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,26 +190,49 @@ public class Home extends javax.swing.JPanel {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 String email = JOptionPane.showInputDialog(b_retrieve, "Enter your email : ");
-               // System.out.println(email);
+                // System.out.println(email);
             }
         });
     }//GEN-LAST:event_b_retrieveActionPerformed
 
     private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
-        String tnumber ="";
-        String password="";
-        
+        String tnumber = "";
+        String password = "";
+
         tnumber = this.t_tnumber.getText();
         password = this.p_password.getText();
-        
+
         MemberDAO memberDAO = new MemberDAO();
-        Member member = memberDAO.findByTnumber(tnumber);
-        
-        if(member != null){
-            if(password.equalsIgnoreCase(member.getPassword())){
-                canConnect = true;
+        AdministratorDAO adminDAO = new AdministratorDAO();
+
+        if (!tnumber.equalsIgnoreCase("")) {
+            /* //==========================
+                if the user is an administrator
+            */ //==========================
+            if (tnumber.equalsIgnoreCase(adminDAO.tnumber_Aurelien)
+                    || tnumber.equalsIgnoreCase(adminDAO.tnumber_Angele)
+                    || tnumber.equalsIgnoreCase(adminDAO.tnumber_Mickael)
+                    || tnumber.equalsIgnoreCase(adminDAO.tnumber_Quentin)) {
+                Administrator admin = adminDAO.findByTnumber(tnumber);
+                if (admin != null) {
+                    if (password.equalsIgnoreCase(admin.getPassword())) {
+                        canConnect = true;
+                    }
+                }
+            } 
+             /* //==========================
+                if the user is a member
+            */ //===========================
+            else {
+                Member member = memberDAO.findByTnumber(tnumber);
+                if (member != null) {
+                    if (password.equalsIgnoreCase(member.getPassword())) {
+                        canConnect = true;
+                    }
+                }
             }
         }
+
         //System.out.println(tnumber + " -  " + password);
     }//GEN-LAST:event_b_loginActionPerformed
 
