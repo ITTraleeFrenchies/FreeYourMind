@@ -13,38 +13,38 @@ import java.util.Date;
  * @author t00178760
  */
 public class RecommendationMusic {
-    private int IDRecommendation;
-    private int IDMusic;
-    private Date DateRecommend;
+    private int idRecommendation;
+    private String idMusic;
+    private Date dateRecommend;
 
-    public RecommendationMusic(int IDRecommendation, int IDMusic, Date DateRecommend) {
-        this.IDRecommendation = IDRecommendation;
-        this.IDMusic = IDMusic;
-        this.DateRecommend = DateRecommend;
+    public RecommendationMusic(int idRecommendation, String idMusic, Date dateRecommend) {
+        this.idRecommendation = idRecommendation;
+        this.idMusic = idMusic;
+        this.dateRecommend = dateRecommend;
     }
 
     public int getIDRecommendation() {
-        return IDRecommendation;
+        return idRecommendation;
     }
 
     public void setIDRecommendation(int IDRecommendation) {
-        this.IDRecommendation = IDRecommendation;
+        this.idRecommendation = idRecommendation;
     }
 
-    public int getIDMusic() {
-        return IDMusic;
+    public String getIDMusic() {
+        return idMusic;
     }
 
-    public void setIDMusic(int IDMusic) {
-        this.IDMusic = IDMusic;
+    public void setIDMusic(String idMusic) {
+        this.idMusic = idMusic;
     }
 
     public Date getDateRecommend() {
-        return DateRecommend;
+        return dateRecommend;
     }
 
     public void setDateRecommend(Date DateRecommend) {
-        this.DateRecommend = DateRecommend;
+        this.dateRecommend = dateRecommend;
     }
     
     

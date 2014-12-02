@@ -13,37 +13,37 @@ import java.util.Date;
  * @author t00178760
  */
 public class RecommendationPlaylist {
-    private int IDRecommendation;
-    private int IDPlaylist;
-    private Date DateRecommend;
+    private int idRecommendation;
+    private String idPlaylist;
+    private Date dateRecommend;
 
-    public RecommendationPlaylist(int IDRecommendation, int IDMusic, Date DateRecommend) {
-        this.IDRecommendation = IDRecommendation;
-        this.IDPlaylist = IDPlaylist;
-        this.DateRecommend = DateRecommend;
+    public RecommendationPlaylist(int idRecommendation, String idPlaylist, Date dateRecommend) {
+        this.idRecommendation = idRecommendation;
+        this.idPlaylist = idPlaylist;
+        this.dateRecommend = dateRecommend;
     }
 
     public int getIDRecommendation() {
-        return IDRecommendation;
+        return idRecommendation;
     }
 
-    public void setIDRecommendation(int IDRecommendation) {
-        this.IDRecommendation = IDRecommendation;
+    public void setIDRecommendation(int idRecommendation) {
+        this.idRecommendation = idRecommendation;
     }
 
-    public int getIDPlaylist() {
-        return IDPlaylist;
+    public String getIDPlaylist() {
+        return idPlaylist;
     }
 
-    public void setIDPlaylist(int IDPlaylist) {
-        this.IDPlaylist = IDPlaylist;
+    public void setIDPlaylist(String idPlaylist) {
+        this.idPlaylist = idPlaylist;
     }
 
     public Date getDateRecommend() {
-        return DateRecommend;
+        return dateRecommend;
     }
 
-    public void setDateRecommend(Date DateRecommend) {
-        this.DateRecommend = DateRecommend;
+    public void setDateRecommend(Date dateRecommend) {
+        this.dateRecommend = dateRecommend;
     }
 }
