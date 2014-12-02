@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.Others;
 
  
 /*
@@ -13,16 +13,19 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import view.Panel.Home;
+import view.Panel.Subscribe;
  
-public class CardLayoutDemo implements ItemListener {
+public class CardLayoutDemo implements ActionListener {
     JPanel cards; //a panel that uses CardLayout
     final static String BUTTONPANEL = "Card with JButtons";
     final static String TEXTPANEL = "Card with JTextField";
      
     public void addComponentToPane(Container pane) {
         //Put the JComboBox in a JPanel to get a nicer look.
-        JPanel comboBoxPane = new JPanel(); //use FlowLayout
-        String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
+        JPanel generalPanel = new JPanel(); //use FlowLayout
+        
+      //  String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
        // JComboBox cb = new JComboBox(comboBoxItems);
       //  cb.setEditable(false);
         //cb.addItemListener(this);
@@ -30,7 +33,7 @@ public class CardLayoutDemo implements ItemListener {
          
         //Create the "cards".
         Home card1 = new Home();
-       // card1.b_subscribe.addItemListener(this);
+        card1.b_login.addActionListener(this);
          
         Subscribe card2 = new Subscribe();
          
@@ -39,15 +42,10 @@ public class CardLayoutDemo implements ItemListener {
         cards.add(card1, BUTTONPANEL);
         cards.add(card2, TEXTPANEL);
          
-        pane.add(comboBoxPane, BorderLayout.PAGE_START);
+       // pane.add(comboBoxPane, BorderLayout.PAGE_START);
         pane.add(cards, BorderLayout.CENTER);
     }
      
-    @Override
-    public void itemStateChanged(ItemEvent evt) {
-        CardLayout cl = (CardLayout)(cards.getLayout());
-        cl.show(cards, (String)evt.getItem());
-    }
      
     /**
      * Create the GUI and show it.  For thread safety,
@@ -94,4 +92,12 @@ public class CardLayoutDemo implements ItemListener {
             }
         });
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+         CardLayout cl = (CardLayout)(cards.getLayout());
+        cl.show(cards, (String)e.getActionCommand());
+    }
+
+   
 }
