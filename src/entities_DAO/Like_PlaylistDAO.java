@@ -58,7 +58,7 @@ public class Like_PlaylistDAO {
             this.resultSet = statement.executeQuery(sql);
             while (this.resultSet.next()) {
                 like_playlist = new Like_Playlist(
-                        this.resultSet.getString("id_likelist"),
+                        this.resultSet.getInt("id_likelist"),
                         this.resultSet.getString("tnumber"),
                         this.resultSet.getString("id_playlist"),
                         this.resultSet.getDate("date_creation"));
@@ -135,7 +135,7 @@ public class Like_PlaylistDAO {
             this.resultSet = statement.executeQuery(sql);
             while (this.resultSet.next()) {
                 likePlaylist = new Like_Playlist(
-                        this.resultSet.getString("id_likelist"),
+                        this.resultSet.getInt("id_likelist"),
                         this.resultSet.getString("tnumber"),
                         this.resultSet.getString("id_playlist"),
                         this.resultSet.getDate("date_creation"));

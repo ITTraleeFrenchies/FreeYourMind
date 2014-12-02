@@ -23,15 +23,15 @@ public class TestLike_Playlist {
         System.out.println(likePlaylist.getId_likelist());
 
         //TEST FOR CREATE
-        likePlaylist = new Like_Playlist("P182", "T20000002", null, null);
+        likePlaylist = new Like_Playlist(0, "T20000002", "P182", null);
         System.out.println(like_playlistDAO.create(likePlaylist).getId_likelist());
 
         //TEST FOR UPDATE
-        likePlaylist = new Like_Playlist("P182", "T20000002", null, null);
+        likePlaylist = new Like_Playlist(2, "T20000002", "P182", null); //id_likelist to be changed
         like_playlistDAO.update(likePlaylist);
 
         //TEST FOR DELETE
-        likePlaylist = new Like_Playlist("P182", "T20000002", null, null);
+        likePlaylist = new Like_Playlist(2, "T20000002","P182", null); //id_likelist to be changed
         like_playlistDAO.delete(likePlaylist);
 
         //TEST FOR FIND ALL
