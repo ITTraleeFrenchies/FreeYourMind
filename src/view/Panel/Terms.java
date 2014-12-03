@@ -16,7 +16,8 @@ public class Terms extends javax.swing.JPanel {
 
     /**
      * Creates new form Terms
-     */
+     */public boolean canSubscribe = false;
+             
     public Terms() {
         initComponents();
         this.setPreferredSize(new Dimension(700,700));
@@ -33,40 +34,112 @@ public class Terms extends javax.swing.JPanel {
     private void initComponents() {
 
         l_title = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        l_subscribe = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        t_terms = new javax.swing.JTextArea();
+        l_terms = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        cb_confirm = new javax.swing.JCheckBox();
+        b_previous = new javax.swing.JButton();
+        b_subscribe = new javax.swing.JButton();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
 
-        jLabel1.setText("jLabel1");
+        l_subscribe.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        l_subscribe.setText("Subscribe");
+
+        t_terms.setColumns(20);
+        t_terms.setRows(5);
+        t_terms.setEnabled(false);
+        jScrollPane1.setViewportView(t_terms);
+
+        l_terms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        l_terms.setText("Terms and Conditions");
+
+        cb_confirm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cb_confirm.setText("I have read and agree to the terms and conditions");
+
+        b_previous.setText("Previous");
+
+        b_subscribe.setText("Subscribe");
+        b_subscribe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_subscribeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addContainerGap(175, Short.MAX_VALUE)
                 .addComponent(l_title)
                 .addGap(173, 173, 173))
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(l_terms, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(cb_confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(b_previous)
+                                            .addGap(36, 36, 36)))
+                                    .addComponent(b_subscribe))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(l_subscribe))))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(l_title)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addContainerGap(531, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(l_subscribe)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_terms, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(cb_confirm)
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(b_previous)
+                    .addComponent(b_subscribe))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void b_subscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_subscribeActionPerformed
+        if(this.cb_confirm.isSelected()){
+            
+        }
+    }//GEN-LAST:event_b_subscribeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JButton b_previous;
+    public javax.swing.JButton b_subscribe;
+    public javax.swing.JCheckBox cb_confirm;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel l_subscribe;
+    private javax.swing.JLabel l_terms;
     private javax.swing.JLabel l_title;
+    public javax.swing.JTextArea t_terms;
     // End of variables declaration//GEN-END:variables
 }
