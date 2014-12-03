@@ -12,39 +12,41 @@ package entities;
  * @author t00178730
  */
 public class Follow {
-    private String IDFollowlist;
-    private int Tnumber;
-    private int NicknameFollowed;
+    private int IDFollowlist;
+    private String Tnumber;
+    private String NicknameFollowed;
     
-    public Follow(String IDFollowlist, int Tnumber, int NicknameFollowed) {
+    public Follow(int IDFollowlist, String Tnumber, String NicknameFollowed) {
         this.IDFollowlist = IDFollowlist;
         this.Tnumber = Tnumber;
         this.NicknameFollowed = NicknameFollowed;
     }
-    
-    public String getIDFollowlist() {
+
+    public int getIDFollowlist() {
         return IDFollowlist;
     }
 
-    public void setIDFollowlist(String IDFollowlist) {
+    public void setIDFollowlist(int IDFollowlist) {
         this.IDFollowlist = IDFollowlist;
     }
 
-    public int getTnumber() {
+    public String getTnumber() {
         return Tnumber;
     }
-        
-    public void setTnumber(int Tnumber) {
+
+    public void setTnumber(String Tnumber) {
         this.Tnumber = Tnumber;
     }
 
-    public int getNicknameFollowed() {
+    public String getNicknameFollowed() {
         return NicknameFollowed;
     }
 
-    public void setNicknameFollowed(int NicknameFollowed) {
+    public void setNicknameFollowed(String NicknameFollowed) {
         this.NicknameFollowed = NicknameFollowed;
     }
+    
+
     
     
     
