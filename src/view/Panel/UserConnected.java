@@ -42,7 +42,7 @@ public class UserConnected extends javax.swing.JPanel {
         ImageIcon icon = new ImageIcon(img);
         JLabel label = new JLabel(icon);
 
-        label.setBounds(400, 100, 233, 216);
+        label.setBounds(-5, -5, 233, 216);
         this.add(label);
     }
 
