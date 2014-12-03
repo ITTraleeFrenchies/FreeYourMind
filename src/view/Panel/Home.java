@@ -13,6 +13,15 @@ import view.Others.InterfaceApplication;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -36,15 +45,11 @@ public class Home extends javax.swing.JPanel {
         this.l_errorTnumber.setVisible(false);
         this.l_errorPassword.setVisible(false);
         
-
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        /*        g.setColor(Color.CYAN);
-         g.fillOval(0, 0, 30, 30);
-         g.drawOval(0, 50, 30, 30);*/
     }
 
     /**
@@ -257,6 +262,7 @@ public class Home extends javax.swing.JPanel {
                     }
                 }
             }
+             canConnect = true;
         }
 
         //System.out.println(tnumber + " -  " + password);

@@ -5,6 +5,8 @@
  */
 package view.Panel;
 
+import entities.Member;
+import entities_DAO.MemberDAO;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -29,13 +31,13 @@ public class Subscribe extends javax.swing.JPanel {
     /**
      * Creates new form LogIn
      */
-    public boolean canSubscribe = true;
-    
+    public boolean canBeConnected = false;
+
     public Subscribe() throws IOException {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
-        
+        this.l_error.setVisible(false);
 
         // ========== FOR THE IMAGE AND UPLOAD =============
         JLabel l_loadImage = new JLabel("Select an image from your Computer");
@@ -79,7 +81,6 @@ public class Subscribe extends javax.swing.JPanel {
         l_street = new javax.swing.JLabel();
         l_city = new javax.swing.JLabel();
         l_county = new javax.swing.JLabel();
-        l_country = new javax.swing.JLabel();
         b_subscribe = new javax.swing.JButton();
         b_backHome = new javax.swing.JButton();
         t_tnumber = new javax.swing.JTextField();
@@ -93,7 +94,6 @@ public class Subscribe extends javax.swing.JPanel {
         t_street = new javax.swing.JTextField();
         t_city = new javax.swing.JTextField();
         t_county = new javax.swing.JTextField();
-        t_country = new javax.swing.JTextField();
         l_asterix = new javax.swing.JLabel();
         l_asterix1 = new javax.swing.JLabel();
         l_asterix2 = new javax.swing.JLabel();
@@ -106,6 +106,7 @@ public class Subscribe extends javax.swing.JPanel {
         l_asterix6 = new javax.swing.JLabel();
         l_asterix7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        l_error = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(700, 700));
 
@@ -148,9 +149,6 @@ public class Subscribe extends javax.swing.JPanel {
         l_county.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         l_county.setText("County:");
 
-        l_country.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        l_country.setText("Country:");
-
         b_subscribe.setText("Subscribe");
         b_subscribe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,8 +179,6 @@ public class Subscribe extends javax.swing.JPanel {
         t_city.setToolTipText("");
 
         t_county.setToolTipText("");
-
-        t_country.setToolTipText("");
 
         l_asterix.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         l_asterix.setForeground(new java.awt.Color(204, 0, 0));
@@ -225,6 +221,10 @@ public class Subscribe extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Fiels marqued by this asterix must are mandatory");
+
+        l_error.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        l_error.setForeground(new java.awt.Color(204, 0, 0));
+        l_error.setText("Error : fill correctly all the mandatory field");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -282,10 +282,6 @@ public class Subscribe extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(l_asterix5))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_country)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(t_country, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_dateBirth)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(t_dateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,7 +300,8 @@ public class Subscribe extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel1)
                                         .addGap(24, 24, 24)
-                                        .addComponent(b_subscribe)))
+                                        .addComponent(b_subscribe))
+                                    .addComponent(l_error, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(b_backHome))
                             .addGroup(layout.createSequentialGroup()
@@ -386,25 +383,23 @@ public class Subscribe extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_city)
                     .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_country)
-                    .addComponent(t_country, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(l_error)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_subscribe)
                     .addComponent(b_backHome)
                     .addComponent(l_asterix7)
                     .addComponent(jLabel1))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_subscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_subscribeActionPerformed
-       /* String tnumber = "";
+        String tnumber = "";
         String password = "";
         String nickname = "";
-        String name = "";
+        String firstname = "";
         String surname = "";
         Date dateBirth = null;
         String email = "";
@@ -416,23 +411,49 @@ public class Subscribe extends javax.swing.JPanel {
         tnumber = this.t_tnumber.getText();
         password = this.t_password.getText();
         nickname = this.t_nickname.getText();
-        name = this.t_name.getText();
+        firstname = this.t_name.getText();
         surname = this.t_surname.getText();
         email = this.t_email.getText();
         street = this.t_street.getText();
         city = this.t_city.getText();
         county = this.t_county.getText();
-        country = this.t_country.getText();
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-        String dateInString = this.t_dateBirth.getText();
-        try {
-            dateBirth = formatter.parse(dateInString);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        String dateInString = "";
+        dateInString = this.t_dateBirth.getText();
+        if (!dateInString.equalsIgnoreCase("")) {
+            try {
+                dateBirth = formatter.parse(dateInString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
-        */
-        canSubscribe = true;
+         MemberDAO memberDAO = new MemberDAO();
+         Member member = null;
+        
+        if (!tnumber.equalsIgnoreCase("") && !password.equalsIgnoreCase("")
+                && !nickname.equalsIgnoreCase("") && !this.t_password1.getText().equalsIgnoreCase("")
+                && dateBirth != null) {
+            member = new Member();
+            member.setTnumber(tnumber);
+            member.setPassword(password);
+            member.setNickname(nickname);
+            member.setFirstname(firstname);
+            member.setSurname(surname);
+            member.setEmail_addr(email);
+            member.setStreet(street);
+            member.setCity(city);
+            member.setCounty(county);
+        }else{
+            //  this.l_error.setVisible(true);
+        }
+        
+        if(member != null && memberDAO.findByTnumber(tnumber) ==null){
+          //  memberDAO.create(member);
+             canBeConnected = true;
+        }
+        
+        canBeConnected = true;
 
     }//GEN-LAST:event_b_subscribeActionPerformed
 
@@ -452,10 +473,10 @@ public class Subscribe extends javax.swing.JPanel {
     private javax.swing.JLabel l_asterix6;
     private javax.swing.JLabel l_asterix7;
     private javax.swing.JLabel l_city;
-    private javax.swing.JLabel l_country;
     private javax.swing.JLabel l_county;
     private javax.swing.JLabel l_dateBirth;
     private javax.swing.JLabel l_email;
+    private javax.swing.JLabel l_error;
     private javax.swing.JLabel l_indication;
     private javax.swing.JLabel l_indication1;
     private javax.swing.JLabel l_indication2;
@@ -469,7 +490,6 @@ public class Subscribe extends javax.swing.JPanel {
     private javax.swing.JLabel l_title;
     private javax.swing.JLabel l_tnumber;
     private javax.swing.JTextField t_city;
-    private javax.swing.JTextField t_country;
     private javax.swing.JTextField t_county;
     private javax.swing.JTextField t_dateBirth;
     private javax.swing.JTextField t_email;
