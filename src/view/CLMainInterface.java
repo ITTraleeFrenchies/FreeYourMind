@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import view.Panel.Home;
 import view.Panel.Subscribe;
 import view.Panel.Terms;
+import view.Panel.UserConnected;
 
 public class CLMainInterface extends JFrame {
 
@@ -27,18 +28,21 @@ public class CLMainInterface extends JFrame {
     private final Home cardHome;
     private final Subscribe cardSubscribe;
     private final Terms terms;
+    private final UserConnected userConnected;
 
     public CLMainInterface() throws IOException {
         container = new JPanel();
         cardHome = new Home();
         cardSubscribe = new Subscribe();
         terms = new Terms();
+        userConnected = new UserConnected();
         cl = new CardLayout();
 
         container.setLayout(cl);
         container.add(cardHome, "home");
         container.add(cardSubscribe, "subscribe");
         container.add(terms, "terms");
+        container.add(userConnected, "terms");
 
         // =============== PANEL HOME ==================
         cardHome.b_subscribe.addActionListener(new ActionListener() {
@@ -89,7 +93,9 @@ public class CLMainInterface extends JFrame {
                     cl.show(container, "subscribe");
              }
         });
-        
+         // =============== PANEL USER CONNECTED ==================
+       
+         
         getContentPane().add(container, BorderLayout.CENTER);
     }
 
