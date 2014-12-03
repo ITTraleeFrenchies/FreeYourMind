@@ -8,6 +8,8 @@ package view.Panel;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +46,17 @@ public class UserConnected extends javax.swing.JPanel {
 
         label.setBounds(-5, -5, 233, 216);
         this.add(label);
+        
+        
+        tf_search.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                tf_search.setText("");
+            }
+        });
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
