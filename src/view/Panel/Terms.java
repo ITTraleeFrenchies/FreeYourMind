@@ -7,6 +7,9 @@ package view.Panel;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -21,7 +24,33 @@ public class Terms extends javax.swing.JPanel {
     public Terms() {
         initComponents();
         this.setPreferredSize(new Dimension(700,700));
-        this.setBackground(Color.DARK_GRAY);
+        this.setBackground(Color.LIGHT_GRAY);
+        
+        BufferedReader br = null;
+        String allContent="";
+        String Newligne=System.getProperty("line.separator"); 
+        this.t_terms.setEditable(false);
+        this.t_terms.setBackground(Color.black);
+        this.b_subscribe.setEnabled(false);
+        
+		try {
+			String sCurrentLine;
+			br = new BufferedReader(new FileReader("src/Ressources/rights.txt"));
+ 
+			while ((sCurrentLine = br.readLine()) != null) {
+				allContent +=(sCurrentLine) + Newligne;
+			}
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+         this.t_terms.setText(allContent);
     }
 
     /**
@@ -59,6 +88,11 @@ public class Terms extends javax.swing.JPanel {
 
         cb_confirm.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cb_confirm.setText("I have read and agree to the terms and conditions");
+        cb_confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_confirmActionPerformed(evt);
+            }
+        });
 
         b_previous.setText("Previous");
 
@@ -125,10 +159,18 @@ public class Terms extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_subscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_subscribeActionPerformed
-        if(this.cb_confirm.isSelected()){
-            
-        }
+       
     }//GEN-LAST:event_b_subscribeActionPerformed
+
+    private void cb_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_confirmActionPerformed
+       
+        if(this.cb_confirm.isSelected()){
+            canSubscribe = true;
+            this.b_subscribe.setEnabled(true);
+        }else{
+             this.b_subscribe.setEnabled(false);
+        }
+    }//GEN-LAST:event_cb_confirmActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

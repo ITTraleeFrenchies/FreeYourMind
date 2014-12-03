@@ -29,10 +29,13 @@ public class Subscribe extends javax.swing.JPanel {
     /**
      * Creates new form LogIn
      */
+    public boolean canSubscribe = true;
+    
     public Subscribe() throws IOException {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
+        
 
         // ========== FOR THE IMAGE AND UPLOAD =============
         JLabel l_loadImage = new JLabel("Select an image from your Computer");
@@ -398,7 +401,7 @@ public class Subscribe extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_subscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_subscribeActionPerformed
-        String tnumber = "";
+       /* String tnumber = "";
         String password = "";
         String nickname = "";
         String name = "";
@@ -428,14 +431,15 @@ public class Subscribe extends javax.swing.JPanel {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+        */
+        canSubscribe = true;
 
     }//GEN-LAST:event_b_subscribeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton b_backHome;
-    private javax.swing.JButton b_subscribe;
+    public javax.swing.JButton b_subscribe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

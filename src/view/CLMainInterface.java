@@ -5,8 +5,6 @@
  */
 package view;
 
-import view.Panel.Subscribe;
-import view.Panel.Home;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -16,25 +14,34 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import view.Panel.Home;
+import view.Panel.Subscribe;
+import view.Panel.Terms;
 
 public class CLMainInterface extends JFrame {
 
  //   private int currentCard = 1;
-    private JPanel container;
-    private final Home cardHome;
     private CardLayout cl;
+    private JPanel container;
+    
+    // ========= ALL PANELS
+    private final Home cardHome;
     private final Subscribe cardSubscribe;
+    private final Terms terms;
 
     public CLMainInterface() throws IOException {
         container = new JPanel();
         cardHome = new Home();
         cardSubscribe = new Subscribe();
+        terms = new Terms();
         cl = new CardLayout();
 
         container.setLayout(cl);
         container.add(cardHome, "home");
         container.add(cardSubscribe, "subscribe");
+        container.add(terms, "terms");
 
+        // =============== PANEL HOME ==================
         cardHome.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -42,31 +49,44 @@ public class CLMainInterface extends JFrame {
                
             }
         });
-        
-        cardHome.b_login.addActionListener(new ActionListener() {
+         cardHome.b_login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                   //   cl.next(container);
                
             }
         });
-
+        
+          // =============== PANEL SUBSCRIBE ==================
+        cardSubscribe.b_subscribe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                     cl.next(container);
+               
+            }
+        });
         cardSubscribe.b_backHome.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 cl.first(container);
             }
         });
-
-        /*
-         nextBtn.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent arg0) {
-         if (currentCard < 4) {
-         currentCard += 1;
-         cl.show(cardPanel, "" + (currentCard));
-         }
-         }
-         });
-        */
+        
+        
+          // =============== PANEL TERMS ==================
+        terms.b_subscribe.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if(terms.canSubscribe){
+                    cl.next(container);
+                }
+             }
+        });
+        terms.b_previous.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                    cl.show(container, "subscribe");
+             }
+        });
         getContentPane().add(container, BorderLayout.CENTER);
     }
 
