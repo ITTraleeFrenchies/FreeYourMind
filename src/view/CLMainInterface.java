@@ -20,7 +20,6 @@ import view.Panel.Terms;
 
 public class CLMainInterface extends JFrame {
 
- //   private int currentCard = 1;
     private CardLayout cl;
     private JPanel container;
     
@@ -61,7 +60,10 @@ public class CLMainInterface extends JFrame {
         cardSubscribe.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                if(cardSubscribe.canBeConnected){
                      cl.next(container);
+                }
+                    
                
             }
         });
@@ -87,6 +89,7 @@ public class CLMainInterface extends JFrame {
                     cl.show(container, "subscribe");
              }
         });
+        
         getContentPane().add(container, BorderLayout.CENTER);
     }
 
