@@ -10,6 +10,9 @@ import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -26,34 +29,27 @@ public class Subscribe extends javax.swing.JPanel {
     /**
      * Creates new form LogIn
      */
-    public Subscribe() {
+    public Subscribe() throws IOException {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
-        
+
         // ========== FOR THE IMAGE AND UPLOAD =============
-      /*  JLabel l_loadImage = new JLabel("Select an image from your Computer");
+        JLabel l_loadImage = new JLabel("Select an image from your Computer");
         JButton b_loadImage = new JButton("Load");
-        l_loadImage.setBounds(340, 430, 250, 15);
-        b_loadImage.setBounds(560, 428, 70, 20);
+        l_loadImage.setBounds(340, 280, 250, 15);
+        b_loadImage.setBounds(560, 280, 70, 20);
         this.add(l_loadImage);
         this.add(b_loadImage);
-        
 
         BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File("src/Ressources/profile_image.png"));
-            ImageIcon icon = new ImageIcon(img);
-            JLabel label = new JLabel(icon);
-        } catch (IOException ex) {
-            Logger.getLogger(InterfaceApplication.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        img = ImageIO.read(new File("src/Ressources/rsz_profile_image.png"));
         ImageIcon icon = new ImageIcon(img);
         JLabel label = new JLabel(icon);
 
-        label.setBounds(400, 200, 233, 216);
+        label.setBounds(400, 100, 233, 216);
         this.add(label);
-        */
+
     }
 
     /**
@@ -402,7 +398,38 @@ public class Subscribe extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_subscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_subscribeActionPerformed
-        // TODO add your handling code here:
+        String tnumber = "";
+        String password = "";
+        String nickname = "";
+        String name = "";
+        String surname = "";
+        Date dateBirth = null;
+        String email = "";
+        String street = "";
+        String city = "";
+        String county = "";
+        String country = "";
+
+        tnumber = this.t_tnumber.getText();
+        password = this.t_password.getText();
+        nickname = this.t_nickname.getText();
+        name = this.t_name.getText();
+        surname = this.t_surname.getText();
+        email = this.t_email.getText();
+        street = this.t_street.getText();
+        city = this.t_city.getText();
+        county = this.t_county.getText();
+        country = this.t_country.getText();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
+        String dateInString = this.t_dateBirth.getText();
+        try {
+            dateBirth = formatter.parse(dateInString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_b_subscribeActionPerformed
 
 

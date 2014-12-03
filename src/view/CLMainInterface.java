@@ -12,6 +12,7 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,7 +25,7 @@ public class CLMainInterface extends JFrame {
     private CardLayout cl;
     private final Subscribe cardSubscribe;
 
-    public CLMainInterface() {
+    public CLMainInterface() throws IOException {
         container = new JPanel();
         cardHome = new Home();
         cardSubscribe = new Subscribe();
@@ -69,7 +70,7 @@ public class CLMainInterface extends JFrame {
         getContentPane().add(container, BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         CLMainInterface cl = new CLMainInterface();
         cl.setTitle("Free Your Mind");
         cl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
