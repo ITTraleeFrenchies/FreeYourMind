@@ -262,6 +262,7 @@ public class Home extends javax.swing.JPanel {
                     }
                 }
             }
+             canConnect = true;
         }
 
         //System.out.println(tnumber + " -  " + password);

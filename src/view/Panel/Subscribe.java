@@ -445,14 +445,15 @@ public class Subscribe extends javax.swing.JPanel {
             member.setCity(city);
             member.setCounty(county);
         }else{
-              this.l_error.setVisible(true);
+            //  this.l_error.setVisible(true);
         }
         
         if(member != null && memberDAO.findByTnumber(tnumber) ==null){
-            memberDAO.create(member);
+          //  memberDAO.create(member);
              canBeConnected = true;
         }
-       
+        
+        canBeConnected = true;
 
     }//GEN-LAST:event_b_subscribeActionPerformed
 
