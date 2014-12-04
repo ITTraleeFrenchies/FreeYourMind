@@ -23,6 +23,10 @@ public class Administrator {
         this.email_address = email_addr;
     }
 
+    public Administrator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     public String getTnumber() {
         return Tnumber;
