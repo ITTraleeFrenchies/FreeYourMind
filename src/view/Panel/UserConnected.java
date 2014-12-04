@@ -84,14 +84,19 @@ public class UserConnected extends javax.swing.JPanel {
         l_followers = new javax.swing.JLabel();
         l_nbfollowers = new javax.swing.JLabel();
         b_seefollowerslist = new javax.swing.JButton();
-        sp_newsfeed = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_newsFeed = new javax.swing.JTextArea();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
 
         tf_search.setText("Enter an artist, a music, an album...");
         tf_search.setToolTipText("");
+        tf_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_searchActionPerformed(evt);
+            }
+        });
 
         b_search.setText("Search");
 
@@ -105,12 +110,32 @@ public class UserConnected extends javax.swing.JPanel {
         l_tnumber1.setText("T00000000");
 
         b_seeprofile.setText("See my profile");
+        b_seeprofile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seeprofileActionPerformed(evt);
+            }
+        });
 
         b_seerecommend.setText("See my recommendations");
+        b_seerecommend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seerecommendActionPerformed(evt);
+            }
+        });
 
         b_seelibrary.setText("See my library");
+        b_seelibrary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seelibraryActionPerformed(evt);
+            }
+        });
 
         b_disconnect.setText("Disconnect");
+        b_disconnect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_disconnectActionPerformed(evt);
+            }
+        });
 
         l_follow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         l_follow.setText("Your follow list");
@@ -119,6 +144,11 @@ public class UserConnected extends javax.swing.JPanel {
         l_nbfollow.setText("0");
 
         b_seefollowlist.setText("See My Follow List");
+        b_seefollowlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seefollowlistActionPerformed(evt);
+            }
+        });
 
         l_followers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         l_followers.setText("Followers");
@@ -127,19 +157,16 @@ public class UserConnected extends javax.swing.JPanel {
         l_nbfollowers.setText("0");
 
         b_seefollowerslist.setText("See My Followers");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        b_seefollowerslist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seefollowerslistActionPerformed(evt);
             }
-        ));
-        sp_newsfeed.setViewportView(jTable1);
+        });
+
+        jt_newsFeed.setEditable(false);
+        jt_newsFeed.setColumns(20);
+        jt_newsFeed.setRows(5);
+        jScrollPane1.setViewportView(jt_newsFeed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -148,10 +175,10 @@ public class UserConnected extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(l_tnumber1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(l_news)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,30 +192,28 @@ public class UserConnected extends javax.swing.JPanel {
                                     .addGap(26, 26, 26)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(b_seefollowerslist)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(l_follow)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(l_nbfollow))
-                                    .addComponent(b_seefollowerslist)
-                                    .addComponent(jSeparator1))
-                                .addGap(32, 32, 32))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(b_disconnect)
-                                    .addComponent(b_seelibrary)
                                     .addComponent(b_seerecommend)
-                                    .addComponent(b_seeprofile)
-                                    .addComponent(l_username)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(l_followers)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(l_nbfollowers))
-                                        .addComponent(b_seefollowlist)))
+                                        .addComponent(b_seefollowlist))
+                                    .addComponent(b_seelibrary)
+                                    .addComponent(b_seeprofile)
+                                    .addComponent(l_username))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(sp_newsfeed, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))))
         );
         layout.setVerticalGroup(
@@ -230,10 +255,38 @@ public class UserConnected extends javax.swing.JPanel {
                             .addComponent(l_nbfollowers))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(b_seefollowerslist))
-                    .addComponent(sp_newsfeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_searchActionPerformed
+
+    private void b_seeprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeprofileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seeprofileActionPerformed
+
+    private void b_seelibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seelibraryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seelibraryActionPerformed
+
+    private void b_seerecommendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seerecommendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seerecommendActionPerformed
+
+    private void b_disconnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_disconnectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_disconnectActionPerformed
+
+    private void b_seefollowlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowlistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seefollowlistActionPerformed
+
+    private void b_seefollowerslistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowerslistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seefollowerslistActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -244,8 +297,9 @@ public class UserConnected extends javax.swing.JPanel {
     public javax.swing.JButton b_seelibrary;
     public javax.swing.JButton b_seeprofile;
     public javax.swing.JButton b_seerecommend;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jt_newsFeed;
     private javax.swing.JLabel l_follow;
     private javax.swing.JLabel l_followers;
     public javax.swing.JLabel l_nbfollow;
@@ -254,7 +308,6 @@ public class UserConnected extends javax.swing.JPanel {
     private javax.swing.JLabel l_title;
     public javax.swing.JLabel l_tnumber1;
     public javax.swing.JLabel l_username;
-    public javax.swing.JScrollPane sp_newsfeed;
     public javax.swing.JTextField tf_search;
     // End of variables declaration//GEN-END:variables
 }
