@@ -75,7 +75,7 @@ public class UserConnected extends javax.swing.JPanel {
         l_tnumber1 = new javax.swing.JLabel();
         b_seeprofile = new javax.swing.JButton();
         b_seerecommend = new javax.swing.JButton();
-        b_seelibrary1 = new javax.swing.JButton();
+        b_seelibrary = new javax.swing.JButton();
         b_disconnect = new javax.swing.JButton();
         l_follow = new javax.swing.JLabel();
         l_nbfollow = new javax.swing.JLabel();
@@ -108,7 +108,7 @@ public class UserConnected extends javax.swing.JPanel {
 
         b_seerecommend.setText("See my recommendations");
 
-        b_seelibrary1.setText("See my library");
+        b_seelibrary.setText("See my library");
 
         b_disconnect.setText("Disconnect");
 
@@ -171,20 +171,22 @@ public class UserConnected extends javax.swing.JPanel {
                                         .addComponent(l_follow)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(l_nbfollow))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(l_nbfollowers)
-                                        .addComponent(b_seefollowerslist))
+                                    .addComponent(b_seefollowerslist)
                                     .addComponent(jSeparator1))
                                 .addGap(32, 32, 32))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(l_followers)
-                                    .addComponent(b_seefollowlist)
                                     .addComponent(b_disconnect)
-                                    .addComponent(b_seelibrary1)
+                                    .addComponent(b_seelibrary)
                                     .addComponent(b_seerecommend)
                                     .addComponent(b_seeprofile)
-                                    .addComponent(l_username))
+                                    .addComponent(l_username)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(l_followers)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(l_nbfollowers))
+                                        .addComponent(b_seefollowlist)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(sp_newsfeed, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))))
@@ -209,7 +211,7 @@ public class UserConnected extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(b_seeprofile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seelibrary1)
+                        .addComponent(b_seelibrary)
                         .addGap(11, 11, 11)
                         .addComponent(b_seerecommend)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -239,7 +241,7 @@ public class UserConnected extends javax.swing.JPanel {
     public javax.swing.JButton b_search;
     public javax.swing.JButton b_seefollowerslist;
     public javax.swing.JButton b_seefollowlist;
-    public javax.swing.JButton b_seelibrary1;
+    public javax.swing.JButton b_seelibrary;
     public javax.swing.JButton b_seeprofile;
     public javax.swing.JButton b_seerecommend;
     private javax.swing.JSeparator jSeparator1;
