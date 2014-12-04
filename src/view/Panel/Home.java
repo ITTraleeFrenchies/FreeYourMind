@@ -9,7 +9,6 @@ import entities.Administrator;
 import entities.Member;
 import entities_DAO.AdministratorDAO;
 import entities_DAO.MemberDAO;
-import view.Others.InterfaceApplication;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -35,7 +34,6 @@ public class Home extends javax.swing.JPanel {
      * Creates new form Home
      */
     private JPanel subscribe;
-    private InterfaceApplication interfaceApplication;
     public boolean canConnect = false;
 
     public Home() {
