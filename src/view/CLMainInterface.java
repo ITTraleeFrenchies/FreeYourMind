@@ -27,22 +27,22 @@ public class CLMainInterface extends JFrame {
     // ========= ALL PANELS
     private final Home cardHome;
     private final Subscribe cardSubscribe;
-    private final Terms terms;
-    private final UserConnected userConnected;
+    private final Terms cardTerms;
+    private final UserConnected cardUserConnected;
 
     public CLMainInterface() throws IOException {
         container = new JPanel();
         cardHome = new Home();
         cardSubscribe = new Subscribe();
-        terms = new Terms();
-        userConnected = new UserConnected();
+        cardTerms = new Terms();
+        cardUserConnected = new UserConnected();
         cl = new CardLayout();
 
         container.setLayout(cl);
         container.add(cardHome, "home");
         container.add(cardSubscribe, "subscribe");
-        container.add(terms, "terms");
-        container.add(userConnected, "terms");
+        container.add(cardTerms, "terms");
+        container.add(cardUserConnected, "userConnected");
 
         // =============== PANEL HOME ==================
         cardHome.b_subscribe.addActionListener(new ActionListener() {
@@ -79,15 +79,15 @@ public class CLMainInterface extends JFrame {
         
         
           // =============== PANEL TERMS ==================
-        terms.b_subscribe.addActionListener(new ActionListener() {
+        cardTerms.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if(terms.canSubscribe){
+                if(cardTerms.canSubscribe){
                     cl.next(container);
                 }
              }
         });
-        terms.b_previous.addActionListener(new ActionListener() {
+        cardTerms.b_previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                     cl.show(container, "subscribe");
@@ -97,6 +97,12 @@ public class CLMainInterface extends JFrame {
        
          
         getContentPane().add(container, BorderLayout.CENTER);
+        cardUserConnected.b_disconnect.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+                cl.first(container);
+            }
+    });
     }
 
     public static void main(String[] args) throws IOException {
