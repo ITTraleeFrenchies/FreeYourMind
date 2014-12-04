@@ -134,6 +134,63 @@ public class CLMainInterface extends JFrame {
                cl.show(container, "home");
             }
     });
+        cardAdministratorConnected.b_seemembers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Members");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    });
+        cardAdministratorConnected.b_seelibraries.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Libraries");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    });
+        cardAdministratorConnected.b_seeplaylists.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Playlists");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    }); 
+        cardAdministratorConnected.b_seemusics.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Musics");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    });  
+        cardAdministratorConnected.b_seelikes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Likes");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    });  
+        cardAdministratorConnected.b_seerecommends.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Recommendations");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    });
+        cardAdministratorConnected.b_seefollowlists.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Follow Lists");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    });  
+        cardAdministratorConnected.b_seeblocked.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.l_view.setText("Users blocked");
+               cardAdministratorConnected.l_view.setVisible(true);
+            }
+    });  
+        
         
     }
 
