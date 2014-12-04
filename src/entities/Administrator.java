@@ -24,7 +24,7 @@ public class Administrator {
     }
 
     public Administrator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     

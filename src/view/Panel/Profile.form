@@ -197,8 +197,6 @@
                               <Component id="l_tnumber" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="t_tnumber" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="l_asterix" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="l_password" min="-2" max="-2" attributes="0"/>
@@ -316,7 +314,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="l_tnumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="t_tnumber" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="l_asterix" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -499,17 +496,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator3">
-    </Component>
-    <Component class="javax.swing.JLabel" name="l_asterix">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="cc" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="*"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="l_asterix1">
       <Properties>
