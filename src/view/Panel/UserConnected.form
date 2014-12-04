@@ -48,23 +48,26 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="l_nbfollow" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="l_nbfollowers" min="-2" max="-2" attributes="0"/>
-                                      <Component id="b_seefollowerslist" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="b_seefollowerslist" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="l_followers" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="b_seefollowlist" min="-2" max="-2" attributes="0"/>
                                   <Component id="b_disconnect" min="-2" max="-2" attributes="0"/>
-                                  <Component id="b_seelibrary1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="b_seelibrary" min="-2" max="-2" attributes="0"/>
                                   <Component id="b_seerecommend" min="-2" max="-2" attributes="0"/>
                                   <Component id="b_seeprofile" min="-2" max="-2" attributes="0"/>
                                   <Component id="l_username" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="l_followers" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="l_nbfollowers" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="b_seefollowlist" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -98,7 +101,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="b_seeprofile" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="b_seelibrary1" min="-2" max="-2" attributes="0"/>
+                      <Component id="b_seelibrary" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="b_seerecommend" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -199,7 +202,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="b_seelibrary1">
+    <Component class="javax.swing.JButton" name="b_seelibrary">
       <Properties>
         <Property name="text" type="java.lang.String" value="See my library"/>
       </Properties>
