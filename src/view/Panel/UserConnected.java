@@ -47,8 +47,7 @@ public class UserConnected extends javax.swing.JPanel {
         label.setBounds(-5, -5, 233, 216);
         this.add(label);
         
-        
-        tf_search.addMouseListener(new MouseAdapter() {
+             tf_search.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 tf_search.setText("");

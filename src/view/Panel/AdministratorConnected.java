@@ -7,6 +7,10 @@ package view.Panel;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +48,70 @@ public class AdministratorConnected extends javax.swing.JPanel {
 
         label.setBounds(-5, -5, 233, 216);
         this.add(label);
+        
+                b_seemembers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Members");
+               l_view.setVisible(true);
+            }
+    });
+        b_seelibraries.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Libraries");
+               l_view.setVisible(true);
+            }
+    });
+        b_seeplaylists.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Playlists");
+               l_view.setVisible(true);
+            }
+    }); 
+        b_seemusics.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Musics");
+               l_view.setVisible(true);
+            }
+    });  
+        b_seelikes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Likes");
+               l_view.setVisible(true);
+            }
+    });  
+        b_seerecommends.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Recommendations");
+               l_view.setVisible(true);
+            }
+    });
+        b_seefollowlists.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Follow Lists");
+               l_view.setVisible(true);
+            }
+    });  
+        b_seeblocked.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               l_view.setText("Users blocked");
+               l_view.setVisible(true);
+            }
+    }); 
+        
+                tf_search.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                tf_search.setText("");
+            }
+        });
         
     }
 
