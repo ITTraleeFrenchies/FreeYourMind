@@ -8,6 +8,8 @@ package Controller;
 import entities.Member;
 import entities_DAO.AdministratorDAO;
 import entities_DAO.MemberDAO;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -29,29 +31,27 @@ public class TestMember {
         
          // -------------- TEST FOR FINDBYTNUMBER ----------------
         
-       /* Member member = memberDAO.findByTnumber("T10000000");
-         System.out.println(member.getNickname());
+        /*Member member = memberDAO.findByTnumber("T10000000");
+         System.out.println(member.getNickname());*/
         
-         Administrator admin = adminDAO.findByTnumber("T20000000");
-         System.out.println(admin.getNickname());   */   
         
         // -------------- TEST FOR CREATE ----------------
-     /*  Member member = new Member("T00000012","nicknamemember3","password3",null,null,null,"addr3@gmail.com",null,null,null,null,null);
-         System.out.println(memberDAO.create(member).getTnumber());
-         */
+      /* Member member = new Member("T10000001","nicknamemember2","password2",null,null,null,"addr1@gmai2.com",null,null,null,null,null);
+         System.out.println(memberDAO.create(member).getTnumber());*/
+         
         // -------------- TEST FOR UPDATE ----------------
-        /*
-        Member member = memberDAO.findByTnumber("T00000012");
-        memberDAO.update(member);
-*/
+        
+        /*Member member=new Member("T10000001","nicknameadmin3","password3",null,null,new Date("1993/12/04"),"addradmin3@gmail.com",null,null,null,new Date("2014/12/04"),null);
+        memberDAO.update(member);*/
+
         // -------------- TEST FOR FINDALL ----------------
        /* List<Member> members0 = memberDAO.findAll();
         for (Member member0 : members0) {
             System.out.println(member0.getTnumber() + " - " + member0.getNickname() + " - " + member0.getPassword());
         }*/
-         // -------------- TEST FOR DELET ----------------
-      /*  Member member = memberDAO.findByTnumber("T00000012");
-        memberDAO.delete(member);
-      */
+         // -------------- TEST FOR DELETE ----------------
+       /* Member member = memberDAO.findByTnumber("T10000001");
+        memberDAO.delete(member);*/
+      
     }
 }

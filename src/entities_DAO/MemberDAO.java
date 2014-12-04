@@ -89,8 +89,9 @@ public class MemberDAO {
         if (memberToUpdate.getSurbscription_date() != null) {
             dateSubscription = dateFormat.format(memberToUpdate.getSurbscription_date());
         }
-
-        String sql = " UPDATE MEMBER SET NICKNAME = '" + memberToUpdate.getNickname()
+        String sql ="";
+        if(dateBirth!=null && dateSubscription!=null){
+        sql = " UPDATE MEMBER SET NICKNAME = '" + memberToUpdate.getNickname()
                 + "', PASSWORD = '" + memberToUpdate.getPassword()
                 + "', FIRSTNAME = '" + memberToUpdate.getFirstname()
                 + "', SURNAME = '" + memberToUpdate.getSurname()
@@ -102,7 +103,47 @@ public class MemberDAO {
                 + "', SUBSCRIPTION_DATE = TO_DATE('" + dateSubscription +"', 'yyyy/MM/dd')"
                 + ",  PROFILE_PIC = " + memberToUpdate.getProfile_pic()
                 + " WHERE TNUMBER = '" + memberToUpdate.getTnumber() + "'";
-        
+        } else if(dateBirth==null && dateSubscription!=null){
+        sql = " UPDATE MEMBER SET NICKNAME = '" + memberToUpdate.getNickname()
+                + "', PASSWORD = '" + memberToUpdate.getPassword()
+                + "', FIRSTNAME = '" + memberToUpdate.getFirstname()
+                + "', SURNAME = '" + memberToUpdate.getSurname()
+                + "', DATE_BIRTH = " + dateBirth +","
+                + ", EMAIL_ADDR = '" + memberToUpdate.getEmail_addr()
+                + "', STREET = '" + memberToUpdate.getStreet()
+                + "', CITY = '" + memberToUpdate.getCity()
+                + "', COUNTY = '" + memberToUpdate.getCounty()
+                + "', SUBSCRIPTION_DATE = TO_DATE('" + dateSubscription +"', 'yyyy/MM/dd')"
+                + ",  PROFILE_PIC = " + memberToUpdate.getProfile_pic()
+                + " WHERE TNUMBER = '" + memberToUpdate.getTnumber() + "'";
+        } else if(dateBirth!=null && dateSubscription==null){
+        sql = " UPDATE MEMBER SET NICKNAME = '" + memberToUpdate.getNickname()
+                + "', PASSWORD = '" + memberToUpdate.getPassword()
+                + "', FIRSTNAME = '" + memberToUpdate.getFirstname()
+                + "', SURNAME = '" + memberToUpdate.getSurname()
+                + "', DATE_BIRTH = TO_DATE('" + dateBirth +"', 'yyyy/MM/dd')"
+                + ", EMAIL_ADDR = '" + memberToUpdate.getEmail_addr()
+                + "', STREET = '" + memberToUpdate.getStreet()
+                + "', CITY = '" + memberToUpdate.getCity()
+                + "', COUNTY = '" + memberToUpdate.getCounty()
+                + "', SUBSCRIPTION_DATE " + dateSubscription +"'"
+                + ",  PROFILE_PIC = " + memberToUpdate.getProfile_pic()
+                + " WHERE TNUMBER = '" + memberToUpdate.getTnumber() + "'";
+        }
+        else{
+             sql = " UPDATE MEMBER SET NICKNAME = '" + memberToUpdate.getNickname()
+                + "', PASSWORD = '" + memberToUpdate.getPassword()
+                + "', FIRSTNAME = '" + memberToUpdate.getFirstname()
+                + "', SURNAME = '" + memberToUpdate.getSurname()
+                + "', DATE_BIRTH = '" + dateBirth +"'"
+                + ", EMAIL_ADDR = '" + memberToUpdate.getEmail_addr()
+                + "', STREET = '" + memberToUpdate.getStreet()
+                + "', CITY = '" + memberToUpdate.getCity()
+                + "', COUNTY = '" + memberToUpdate.getCounty()
+                + "', SUBSCRIPTION_DATE = '" + dateSubscription +"'"
+                + ",  PROFILE_PIC = " + memberToUpdate.getProfile_pic()
+                + " WHERE TNUMBER = '" + memberToUpdate.getTnumber() + "'";
+        }
         System.out.println(sql);
         openConnection();
         try {
