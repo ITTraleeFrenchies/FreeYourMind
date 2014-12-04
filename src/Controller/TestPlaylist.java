@@ -25,7 +25,7 @@ public class TestPlaylist {
         System.out.println(playlist.getIDPlaylist());*/ 
         
         //TEST FOR CREATE
-        Playlist playlist = new Playlist(null,89,"postrock",null,false); //wrong library id, to be changed when db available
+        Playlist playlist = new Playlist(null,81,"postrock",null,false); //wrong library id, to be changed when db available
         System.out.println(playlistDAO.create(playlist).getIDPlaylist());
         
         //TEST FOR UPDATE

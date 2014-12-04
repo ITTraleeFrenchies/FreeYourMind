@@ -81,7 +81,7 @@ public class BlockedDAO {
     public Blocked create(Blocked blockedToCreate) {
         Blocked blocked = blockedToCreate;
         String sql = " INSERT INTO BLOCKED"+
-                "VALUES('" + blockedToCreate.get_id_blocked() + "','"
+                " VALUES('" + blockedToCreate.get_id_blocked() + "','"
                 + blockedToCreate.get_tNumber_admin() + "','" + blockedToCreate.get_tNumber_user() + 
                  "')";
                 

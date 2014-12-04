@@ -36,7 +36,7 @@ public class TestMember {
         
         
         // -------------- TEST FOR CREATE ----------------
-      /* Member member = new Member("T10000001","nicknamemember2","password2",null,null,null,"addr1@gmai2.com",null,null,null,null,null);
+      /* Member member = new Member("T10000000","nicknamemember2","password2",null,null,null,"addr1@gmai2.com",null,null,null,null,null);
          System.out.println(memberDAO.create(member).getTnumber());*/
          
         // -------------- TEST FOR UPDATE ----------------

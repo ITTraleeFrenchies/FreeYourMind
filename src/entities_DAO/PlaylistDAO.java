@@ -78,11 +78,25 @@ public class PlaylistDAO {
     
     public Playlist create(Playlist newPlaylist) {
         Playlist playlist = newPlaylist;
-        String sql = " INSERT INTO PLAYLIST(ID_PLAYLIST,ID_LIBRARY,NAME,CREATION_DATE,HIDDEN"
-                + " VALUES('" + newPlaylist.getIDPlaylist() +"','" 
-                + newPlaylist.getIDLibrary() +"','"+newPlaylist.getName()+"','"
-                + newPlaylist.getCreationDate() +"','"+newPlaylist.isHidden()+"');";
+        String hidden="";
+        if(newPlaylist.isHidden()){
+            hidden="y";
+        }else{
+            hidden="n";
+        }
         
+        String sql="";
+        if(newPlaylist.getCreationDate()!=null){
+        sql = " INSERT INTO PLAYLIST"
+                + " VALUES('" + newPlaylist.getIDPlaylist() +"'," 
+                + newPlaylist.getIDLibrary() +",'"+newPlaylist.getName()+"','"
+                + newPlaylist.getCreationDate() +"','"+hidden+"')";
+        }else{
+            sql = " INSERT INTO PLAYLIST"
+                + " VALUES('" + newPlaylist.getIDPlaylist() +"'," 
+                + newPlaylist.getIDLibrary() +",'"+newPlaylist.getName()+"',"
+                + newPlaylist.getCreationDate() +",'"+hidden+"')";
+        }
         System.out.println(sql);
         openConnection();
         try {

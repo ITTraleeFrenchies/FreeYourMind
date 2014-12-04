@@ -22,11 +22,11 @@ public class TestBlocked {
         BlockedDAO blockedDAO = new BlockedDAO();
         
         //TEST FOR FIND BY TNUMBER
-        /*Blocked blocked = blockedDAO.find(11); // wrong id, need to be changed when db available
-        System.out.println(blocked.get_id_blocked());*/
+        /*Blocked blocked = blockedDAO.find(21);
+        System.out.println(blocked.get_tNumber_admin());*/
         
         //TEST FOR CREATE
-        /*Blocked blocked = new Blocked(0,"T20000000","T10000001"); 
+        /*Blocked blocked = new Blocked(0,"T20000002","T10000000"); 
         System.out.println(blockedDAO.create(blocked).get_id_blocked());*/
         
         //TEST FOR UPDATE
@@ -40,7 +40,7 @@ public class TestBlocked {
         //TEST FOR FIND ALL
         /* List<Blocked> blockeds0 = blockedDAO.findAll();
         for (Blocked blocked0 : blockeds0) {
-            System.out.println(blocked0.get_id_blocked() + " - " + blocked0.get_id_blocked() + " - " + blocked0.get_id_blocked());
+            System.out.println(blocked0.get_id_blocked() + " - " + blocked0.get_tNumber_admin() + " - " + blocked0.get_tNumber_user());
     }*/
     } 
 }
