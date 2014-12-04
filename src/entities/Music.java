@@ -6,6 +6,7 @@
 
 package entities;
 
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -21,8 +22,9 @@ public class Music {
     private String AlbumTitle;
     private String TypeMusic;
     private Date ReleaseYear;
+    private Blob music_file;
 
-    public Music(String IDTrack, String IDPlaylist, String Title, int TrackNumber, String Artist, String AlbumTitle, String TypeMusic, Date ReleaseYear) {
+    public Music(String IDTrack, String IDPlaylist, String Title, int TrackNumber, String Artist, String AlbumTitle, String TypeMusic, Date ReleaseYear, Blob music_file) {
         this.IDTrack = IDTrack;
         this.IDPlaylist = IDPlaylist;
         this.Title = Title;
@@ -31,6 +33,7 @@ public class Music {
         this.AlbumTitle = AlbumTitle;
         this.TypeMusic = TypeMusic;
         this.ReleaseYear = ReleaseYear;
+        this.music_file = music_file;
     }
 
     public String getIDTrack() {
@@ -95,6 +98,14 @@ public class Music {
 
     public void setReleaseYear(Date ReleaseYear) {
         this.ReleaseYear = ReleaseYear;
+    }
+
+    public Blob getMusic_file() {
+        return music_file;
+    }
+
+    public void setMusic_file(Blob music_file) {
+        this.music_file = music_file;
     }
     
     

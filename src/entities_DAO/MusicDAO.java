@@ -3,15 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities_DAO;
 
 import entities.Music;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import static java.sql.JDBCType.BLOB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static java.sql.Types.BLOB;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +32,11 @@ public class MusicDAO {
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
-    
-        public void openConnection() {
+    private Blob music_file;
+    private String inputBinaryFileName = null;
+    private File inputBinaryFile = null;
+
+    public void openConnection() {
         try {
             this.connection = DriverManager.getConnection(nameDriver, username, password);
             this.statement = connection.createStatement();
@@ -49,13 +57,26 @@ public class MusicDAO {
         }
 
     }
-    
-    public Music find(String id) {
+
+    public Music find(String id) throws FileNotFoundException {
         Music music = null;
+        FileInputStream inputFileInputStream = null;
+        String sqlText = null;
+        Statement stmt = null;
+        ResultSet rset = null;
+        Blob image = null;
+        int chunkSize;
+        byte[] binaryBuffer;
+        long position;
+        int bytesRead = 0;
+        int bytesWritten = 0;
+        int totbytesRead = 0;
+        int totbytesWritten = 0;
 
         openConnection();
         try {
-            this.resultSet = statement.executeQuery("SELECT * FROM MUSIC WHERE ID_TRACK = '" + id +"';");
+
+            this.resultSet = statement.executeQuery("SELECT * FROM MUSIC WHERE ID_TRACK = '" + id + "';");
             if (this.resultSet.first()) {
                 music = new Music(
                         id,
@@ -65,7 +86,8 @@ public class MusicDAO {
                         this.resultSet.getString("artist"),
                         this.resultSet.getString("album_title"),
                         this.resultSet.getString("type_music"),
-                        this.resultSet.getDate("release_year")
+                        this.resultSet.getDate("release_year"),
+                        this.resultSet.getBlob("music_file")
                 );
             }
         } catch (SQLException e) {
@@ -76,23 +98,25 @@ public class MusicDAO {
         return music;
     }
 
-    public Music create(Music newMusic) {
+    public Music create(Music newMusic) throws FileNotFoundException {
         Music music = newMusic;
+         File musicToInsert=new File(newMusic.getMusic_file().toString());
+
         String sql = " INSERT INTO MUSIC(ID_TRACK,ID_PLAYLIST,TITLE,TRACK_NUMBER,"
                 + "ARTIST,ALBUM_TITLE,TYPE_MUSIC,RELEASE_YEAR"
-                + " VALUES('" + newMusic.getIDTrack() +"','" 
-                + newMusic.getIDPlaylist() +"','"+newMusic.getTitle()+"','"
-                + newMusic.getTrackNumber() +"','"+newMusic.getArtist()+"','"
-                + newMusic.getAlbumTitle() +"','" +newMusic.getTypeMusic()+"','"
-                + newMusic.getReleaseYear()+"');";
-        
+                + " VALUES('" + newMusic.getIDTrack() + "','"
+                + newMusic.getIDPlaylist() + "','" + newMusic.getTitle() + "','"
+                + newMusic.getTrackNumber() + "','" + newMusic.getArtist() + "','"
+                + newMusic.getAlbumTitle() + "','" + newMusic.getTypeMusic() + "','"
+                + newMusic.getReleaseYear() + "');";
+
         System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-              System.out.println(ex.getErrorCode() + " error with the method create");
+            System.out.println(ex.getErrorCode() + " error with the method create");
         }
         closeConnection();
 
@@ -101,22 +125,22 @@ public class MusicDAO {
 
     public Music update(Music upMusic) {
         String sql = "UPDATE MUSIC "
-                +"SET ID_PLAYLIST='"+upMusic.getIDPlaylist()+"',"
-                +"SET TITLE='"+upMusic.getTitle()+"',"
-                +"SET TRACK_NUMBER='"+upMusic.getTrackNumber()+"',"
-                +"SET ARTIST='"+upMusic.getArtist()+"',"
-                +"SET ALBUM_TITLE='"+upMusic.getAlbumTitle()+"',"
-                +"SET TYPE_MUSIC='"+upMusic.getTypeMusic()+"',"
-                +"SET RELEASE_YEAR='"+upMusic.getReleaseYear()+"'"
-                +"WHERE ID_TRACK='"+upMusic.getIDTrack()+"';";
-        
+                + "SET ID_PLAYLIST='" + upMusic.getIDPlaylist() + "',"
+                + "SET TITLE='" + upMusic.getTitle() + "',"
+                + "SET TRACK_NUMBER='" + upMusic.getTrackNumber() + "',"
+                + "SET ARTIST='" + upMusic.getArtist() + "',"
+                + "SET ALBUM_TITLE='" + upMusic.getAlbumTitle() + "',"
+                + "SET TYPE_MUSIC='" + upMusic.getTypeMusic() + "',"
+                + "SET RELEASE_YEAR='" + upMusic.getReleaseYear() + "'"
+                + "WHERE ID_TRACK='" + upMusic.getIDTrack() + "';";
+
         System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException e) {
-              System.out.println(e.getErrorCode() + " error with the method update");
+            System.out.println(e.getErrorCode() + " error with the method update");
         }
         closeConnection();
 
@@ -124,13 +148,13 @@ public class MusicDAO {
     }
 
     public void delete(Music music) {
-        String sql = "DELETE FROM MUSIC WHERE ID_TRACK = '"+music.getIDTrack()+"';";
-        
+        String sql = "DELETE FROM MUSIC WHERE ID_TRACK = '" + music.getIDTrack() + "';";
+
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
-        }catch (SQLException ex) {
-             System.out.println(ex.getErrorCode() + " error with the method find");
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " error with the method find");
         }
     }
 
@@ -151,8 +175,9 @@ public class MusicDAO {
                         this.resultSet.getString("artist"),
                         this.resultSet.getString("album_title"),
                         this.resultSet.getString("type_music"),
-                        this.resultSet.getDate("release_year")
-                        );
+                        this.resultSet.getDate("release_year"),
+                        this.resultSet.getBlob("music_file")
+                );
                 musics.add(music);
             }
 

@@ -7,7 +7,10 @@ package Controller;
 
 import entities.Music;
 import entities_DAO.MusicDAO;
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,15 +18,16 @@ import java.util.List;
  */
 public class TestMusic {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         MusicDAO musicDAO = new MusicDAO();
 
         // -------------- TEST FOR FIND BY IDTRACK ----------------
-        Music music = musicDAO.find("M61");
+        Music music = null;
+            music = musicDAO.find("M61");
         System.out.println(music.getIDTrack() + " - " + music.getTitle());
 
         // -------------- TEST FOR CREATE ----------------
-        music = new Music(null, null, "STupeflip vite", 1, null, null, null, null);
+        music = new Music(null, null, "STupeflip vite", 1, null, null, null, null,null);
         System.out.println(musicDAO.create(music).getIDTrack());
 
         // -------------- TEST FOR UPDATE ----------------
