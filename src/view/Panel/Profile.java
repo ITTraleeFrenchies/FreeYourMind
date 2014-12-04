@@ -55,8 +55,8 @@ public class Profile extends javax.swing.JPanel {
 // ========== FOR THE IMAGE AND UPLOAD =============
         JLabel l_loadImage = new JLabel("Select an image from your Computer");
         JButton b_loadImage = new JButton("Load");
-        l_loadImage.setBounds(300, 500, 250, 15);
-        b_loadImage.setBounds(300, 550, 70, 20);
+        l_loadImage.setBounds(360, 575, 250, 15);
+        b_loadImage.setBounds(575, 570, 70, 20);
         this.add(l_loadImage);
         this.add(b_loadImage);
 
@@ -69,7 +69,7 @@ public class Profile extends javax.swing.JPanel {
         ImageIcon icon = new ImageIcon(img);
         JLabel label = new JLabel(icon);
 
-        label.setBounds(300, 420, 233, 216);
+        label.setBounds(320, 400, 233, 216);
         this.add(label);
     }
 
@@ -122,7 +122,6 @@ public class Profile extends javax.swing.JPanel {
         l_nickname = new javax.swing.JLabel();
         t_county = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        l_asterix = new javax.swing.JLabel();
         l_asterix1 = new javax.swing.JLabel();
         l_name = new javax.swing.JLabel();
         l_asterix2 = new javax.swing.JLabel();
@@ -243,10 +242,6 @@ public class Profile extends javax.swing.JPanel {
 
         t_county.setToolTipText("");
 
-        l_asterix.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        l_asterix.setForeground(new java.awt.Color(204, 0, 0));
-        l_asterix.setText("*");
-
         l_asterix1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         l_asterix1.setForeground(new java.awt.Color(204, 0, 0));
         l_asterix1.setText("*");
@@ -337,9 +332,7 @@ public class Profile extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_tnumber)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(l_asterix))
+                                .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_password)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -435,8 +428,7 @@ public class Profile extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(l_tnumber)
-                            .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(l_asterix))
+                            .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(l_password)
@@ -590,7 +582,6 @@ public class Profile extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable2;
-    private javax.swing.JLabel l_asterix;
     private javax.swing.JLabel l_asterix1;
     private javax.swing.JLabel l_asterix2;
     private javax.swing.JLabel l_asterix3;

@@ -36,11 +36,22 @@ public class Home extends javax.swing.JPanel {
     private JPanel subscribe;
     public boolean canConnectAdmin = true;
     public boolean canConnectMember = false;
+    public MemberDAO memberDAO;
+    public Member memberConnected;
+    public AdministratorDAO adminDAO;
+    public Administrator adminConnected;
 
     public Home() {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
+        
+        memberDAO = new MemberDAO();
+        memberConnected = new Member();
+        
+        adminDAO = new AdministratorDAO();
+        adminConnected = new Administrator();
+        
         this.l_errorTnumber.setVisible(false);
         this.l_errorPassword.setVisible(false);
         
@@ -247,6 +258,7 @@ public class Home extends javax.swing.JPanel {
                 if (admin != null) {
                     if (password.equalsIgnoreCase(admin.getPassword())) {
                         canConnectAdmin = true;
+                        adminConnected = admin;
                     }
                 }
             } 
@@ -258,6 +270,7 @@ public class Home extends javax.swing.JPanel {
                 if (member != null) {
                     if (password.equalsIgnoreCase(member.getPassword())) {
                         canConnectMember = true;
+                        memberConnected = member;
                     }
                 }
             }
