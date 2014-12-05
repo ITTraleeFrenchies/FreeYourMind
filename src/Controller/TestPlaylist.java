@@ -20,13 +20,13 @@ public class TestPlaylist {
     public static void main(String[] args) {
         PlaylistDAO playlistDAO = new PlaylistDAO();
         
-        //TEST FOR FIND BY TNUMBER
-        /*Playlist playlist = playlistDAO.find("P182");
-        System.out.println(playlist.getIDPlaylist());*/ 
+        //TEST FOR FIND 
+        Playlist playlist = playlistDAO.find("P224");
+        System.out.println(playlist.getIDPlaylist());
         
         //TEST FOR CREATE
-        Playlist playlist = new Playlist(null,81,"postrock",null,false); //wrong library id, to be changed when db available
-        System.out.println(playlistDAO.create(playlist).getIDPlaylist());
+       /* Playlist playlist = new Playlist(null,81,"electro",null,false); //wrong library id, to be changed when db available
+        System.out.println(playlistDAO.create(playlist).getIDPlaylist());*/
         
         //TEST FOR UPDATE
         /*Playlist playlist=new Playlist("P184",89,"dub",null,false);//wrong library id, to be changed when db available. playlist id to check

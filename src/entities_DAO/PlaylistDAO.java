@@ -57,16 +57,20 @@ public class PlaylistDAO {
         Playlist playlist = null;
 
         openConnection();
+        String sql="SELECT * FROM PLAYLIST WHERE ID_PLAYLIST = '" + id +"'";
+         System.out.println(sql);
+        openConnection();
         try {
-            this.resultSet = statement.executeQuery("SELECT * FROM PLAYLIST WHERE ID_PLAYLIST = '" + id +"';");
-            if (this.resultSet.first()) {
+            this.resultSet = statement.executeQuery(sql);
+            while (this.resultSet.next()) {
                 playlist = new Playlist(
                         id,
                         this.resultSet.getInt("id_library"),
                         this.resultSet.getString("name"),
-                        this.resultSet.getDate("creation_date"),
+                        this.resultSet.getDate("date_creation"),
                         this.resultSet.getBoolean("hidden")
                 );
+                System.out.println(sql);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -144,7 +144,7 @@ public class AdministratorDAO{
     public Administrator findByTnumber(String tnumber) {
 
         Administrator admin = null;
-        String sql = "SELECT * FROM ADMINISTRATOR WHERE TNUMBER = '" + tnumber + "'";
+    String sql = "SELECT * FROM ADMINISTRATOR WHERE TNUMBER = '" + tnumber + "'";
         
         openConnection();
         try {
