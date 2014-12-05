@@ -45,14 +45,13 @@ public class TestLibrary {
        /*  MemberDAO memberDAO = new MemberDAO();
          Member member = new Member("T10000022","nicknamemember3","password2",null,null,null,"addr1@gmai2.com",null,null,null,null,null);
          System.out.println(memberDAO.create(member).getTnumber());*/
-       /* library = libraryDAO.findById(92);
-        libraryDAO.delete(library);*/
-
+        /* library = libraryDAO.findById(92);
+         libraryDAO.delete(library);*/
         // -------------- TEST FOR FINDALL ----------------
-        List<Library> libraries = libraryDAO.findAll();
-        for (Library aLibrary : libraries) {
-            System.out.println(aLibrary.getId_library() + " - " + aLibrary.getName() + " - " + aLibrary.getMember());
-        }
-
+       /* List<Library> libraries = libraryDAO.findAll();
+         for (Library aLibrary : libraries) {
+         System.out.println(aLibrary.getId_library() + " - " + aLibrary.getName() + " - " + aLibrary.getMember());
+         }
+         */
     }
 }

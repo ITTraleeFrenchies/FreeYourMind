@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities_DAO;
 
 import entities.Playlist;
@@ -20,18 +19,19 @@ import java.util.List;
  * @author t00178760
  */
 public class PlaylistDAO {
+
     private String nameDriver = "jdbc:oracle:thin:@cp3dbinstance.c4pxnpz4ojk8.us-east-1.rds.amazonaws.com:1521:cp3db";
     private String username = "mm3";
     private String password = "mm3";
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
-    
-    public PlaylistDAO(){
-        
+
+    public PlaylistDAO() {
+
     }
-    
-        public void openConnection() {
+
+    public void openConnection() {
         try {
             this.connection = DriverManager.getConnection(nameDriver, username, password);
             this.statement = connection.createStatement();
@@ -52,23 +52,29 @@ public class PlaylistDAO {
         }
 
     }
-    
+
     public Playlist find(String id) {
         Playlist playlist = null;
 
         openConnection();
-        String sql="SELECT * FROM PLAYLIST WHERE ID_PLAYLIST = '" + id +"'";
-         System.out.println(sql);
+        String sql = "SELECT * FROM PLAYLIST WHERE ID_PLAYLIST = '" + id + "'";
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
             while (this.resultSet.next()) {
+                Boolean hidden = false;
+
+                if (this.resultSet.getString("hidden") == "y") {
+                    hidden = true;
+                } else {
+                    hidden = false;
+                }
                 playlist = new Playlist(
                         id,
                         this.resultSet.getInt("id_library"),
                         this.resultSet.getString("name"),
                         this.resultSet.getDate("date_creation"),
-                        this.resultSet.getBoolean("hidden")
+                        hidden
                 );
                 System.out.println(sql);
             }
@@ -79,27 +85,27 @@ public class PlaylistDAO {
 
         return playlist;
     }
-    
+
     public Playlist create(Playlist newPlaylist) {
         Playlist playlist = newPlaylist;
-        String hidden="";
-        if(newPlaylist.isHidden()){
-            hidden="y";
-        }else{
-            hidden="n";
+        String hidden = "";
+        if (newPlaylist.isHidden()) {
+            hidden = "y";
+        } else {
+            hidden = "n";
         }
-        
-        String sql="";
-        if(newPlaylist.getCreationDate()!=null){
-        sql = " INSERT INTO PLAYLIST"
-                + " VALUES('" + newPlaylist.getIDPlaylist() +"'," 
-                + newPlaylist.getIDLibrary() +",'"+newPlaylist.getName()+"','"
-                + newPlaylist.getCreationDate() +"','"+hidden+"')";
-        }else{
+
+        String sql = "";
+        if (newPlaylist.getCreationDate() != null) {
             sql = " INSERT INTO PLAYLIST"
-                + " VALUES('" + newPlaylist.getIDPlaylist() +"'," 
-                + newPlaylist.getIDLibrary() +",'"+newPlaylist.getName()+"',"
-                + newPlaylist.getCreationDate() +",'"+hidden+"')";
+                    + " VALUES('" + newPlaylist.getIDPlaylist() + "',"
+                    + newPlaylist.getIDLibrary() + ",'" + newPlaylist.getName() + "','"
+                    + newPlaylist.getCreationDate() + "','" + hidden + "')";
+        } else {
+            sql = " INSERT INTO PLAYLIST"
+                    + " VALUES('" + newPlaylist.getIDPlaylist() + "',"
+                    + newPlaylist.getIDLibrary() + ",'" + newPlaylist.getName() + "',"
+                    + newPlaylist.getCreationDate() + ",'" + hidden + "')";
         }
         System.out.println(sql);
         openConnection();
@@ -107,46 +113,46 @@ public class PlaylistDAO {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-             ex.printStackTrace();
+            ex.printStackTrace();
         }
         closeConnection();
 
         return playlist;
     }
-    
+
     public Playlist update(Playlist upPlaylist) {
         String sql = "UPDATE PLAYLIST "
-                +"SET ID_PLAYLIST='"+upPlaylist.getIDPlaylist()+"',"
-                +"SET ID_LIBRARY='"+upPlaylist.getIDLibrary()+"',"
-                +"SET NAME='"+upPlaylist.getName()+"',"
-                +"SET CREATION_DATE='"+upPlaylist.getCreationDate()+"',"
-                +"SET HIDDEN='"+upPlaylist.isHidden()+"',;";
-        
+                + "SET ID_PLAYLIST='" + upPlaylist.getIDPlaylist() + "',"
+                + "SET ID_LIBRARY='" + upPlaylist.getIDLibrary() + "',"
+                + "SET NAME='" + upPlaylist.getName() + "',"
+                + "SET CREATION_DATE='" + upPlaylist.getCreationDate() + "',"
+                + "SET HIDDEN='" + upPlaylist.isHidden() + "'";
+
         System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-             ex.printStackTrace();
+            ex.printStackTrace();
         }
         closeConnection();
 
         return upPlaylist;
     }
-    
+
     public Playlist delete(Playlist playlist) {
-        String sql = "DELETE FROM PLAYLIST WHERE ID_PLAYLIST = '"+playlist.getIDPlaylist()+"';";
-        
+        String sql = "DELETE FROM PLAYLIST WHERE ID_PLAYLIST = '" + playlist.getIDPlaylist() + "'";
+
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getErrorCode() + " error with the sql request.");
         }
         return playlist;
     }
-    
+
     public List<Playlist> findAll() {
         List<Playlist> playlists = new ArrayList();
         Playlist playlist = null;
@@ -155,19 +161,27 @@ public class PlaylistDAO {
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
+
             while (this.resultSet.next()) {
+                Boolean hidden = false;
+
+                if (this.resultSet.getString("hidden") == "y") {
+                    hidden = true;
+                } else {
+                    hidden = false;
+                }
                 playlist = new Playlist(
                         this.resultSet.getString("id_playlist"),
                         this.resultSet.getInt("id_library"),
                         this.resultSet.getString("name"),
-                        this.resultSet.getDate("creation_date"),
-                        this.resultSet.getBoolean("hidden")
-                        );
+                        this.resultSet.getDate("date_creation"),
+                        hidden
+                );
                 playlists.add(playlist);
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the sql request.");
+            ex.printStackTrace();
         }
         closeConnection();
 

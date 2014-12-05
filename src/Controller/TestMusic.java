@@ -20,30 +20,29 @@ public class TestMusic {
 
     public static void main(String[] args) throws FileNotFoundException {
         MusicDAO musicDAO = new MusicDAO();
-
+           Music music = null;
+        
         // -------------- TEST FOR FIND BY IDTRACK ----------------
-        Music music = null;
-            music = musicDAO.find("M61");
+         music = musicDAO.find("M71");
         System.out.println(music.getIDTrack() + " - " + music.getTitle());
 
         // -------------- TEST FOR CREATE ----------------
-        music = new Music(null, null, "STupeflip vite", 1, null, null, null, null,null);
-        System.out.println(musicDAO.create(music).getIDTrack());
+     /*   music = new Music(null, null, "STupeflip vite", 1, null, null, null, null,null);
+        System.out.println(musicDAO.create(music).getIDTrack());*/
 
         // -------------- TEST FOR UPDATE ----------------
         
-         music = musicDAO.find("M61");
-         musicDAO.update(music);
+       /*  music = musicDAO.find("M61");
+         musicDAO.update(music);*/
+        // -------------- TEST FOR DELETE ----------------
+       /*  music = musicDAO.find("M61");
+         musicDAO.delete(music);*/
          
-        // -------------- TEST FOR FINDALL ----------------
+           // -------------- TEST FOR FINDALL ----------------
         List<Music> listMusic = musicDAO.findAll();
          for (Music aMusic : listMusic) {
          System.out.println(aMusic.getIDTrack() + " - " + aMusic.getTitle()+ " - " + aMusic.getIDPlaylist());
          }
-         
-        // -------------- TEST FOR DELETE ----------------
-         music = musicDAO.find("M61");
-         musicDAO.delete(music);
          
     }
 }

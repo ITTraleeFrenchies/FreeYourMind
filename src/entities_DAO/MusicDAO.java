@@ -76,7 +76,7 @@ public class MusicDAO {
         openConnection();
         try {
 
-            this.resultSet = statement.executeQuery("SELECT * FROM MUSIC WHERE ID_TRACK = '" + id + "';");
+            this.resultSet = statement.executeQuery("SELECT * FROM MUSIC WHERE ID_TRACK = '" + id + "'");
             if (this.resultSet.first()) {
                 music = new Music(
                         id,
