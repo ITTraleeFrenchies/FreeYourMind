@@ -22,13 +22,15 @@ public class TestMusic {
         MusicDAO musicDAO = new MusicDAO();
            Music music = null;
         
+           
+          
         // -------------- TEST FOR FIND BY IDTRACK ----------------
-         music = musicDAO.find("M71");
-        System.out.println(music.getIDTrack() + " - " + music.getTitle());
+        /* music = musicDAO.find("M71");
+        System.out.println(music.getIDTrack() + " - " + music.getTitle());*/
 
         // -------------- TEST FOR CREATE ----------------
-     /*   music = new Music(null, null, "STupeflip vite", 1, null, null, null, null,null);
-        System.out.println(musicDAO.create(music).getIDTrack());*/
+        music = new Music(null, "P231", "stupefiant", 1, null, null, null, null,null);
+        System.out.println(musicDAO.create(music).getIDTrack());
 
         // -------------- TEST FOR UPDATE ----------------
         

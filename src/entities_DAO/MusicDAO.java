@@ -77,7 +77,7 @@ public class MusicDAO {
         try {
 
             this.resultSet = statement.executeQuery("SELECT * FROM MUSIC WHERE ID_TRACK = '" + id + "'");
-            if (this.resultSet.first()) {
+            while (this.resultSet.next()) {
                 music = new Music(
                         id,
                         this.resultSet.getString("id_playlist"),
@@ -91,7 +91,7 @@ public class MusicDAO {
                 );
             }
         } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + " error with the method find");
+            e.printStackTrace();
         }
         closeConnection();
 
@@ -100,15 +100,18 @@ public class MusicDAO {
 
     public Music create(Music newMusic) throws FileNotFoundException {
         Music music = newMusic;
-         File musicToInsert=new File(newMusic.getMusic_file().toString());
+        if(newMusic.getMusic_file() != null){
+             File musicToInsert=new File(newMusic.getMusic_file().toString());
+        }
+        
 
         String sql = " INSERT INTO MUSIC(ID_TRACK,ID_PLAYLIST,TITLE,TRACK_NUMBER,"
-                + "ARTIST,ALBUM_TITLE,TYPE_MUSIC,RELEASE_YEAR"
+                + "ARTIST,ALBUM_TITLE,TYPE_MUSIC,RELEASE_YEAR, MUSIC_FILE)"
                 + " VALUES('" + newMusic.getIDTrack() + "','"
-                + newMusic.getIDPlaylist() + "','" + newMusic.getTitle() + "','"
-                + newMusic.getTrackNumber() + "','" + newMusic.getArtist() + "','"
-                + newMusic.getAlbumTitle() + "','" + newMusic.getTypeMusic() + "','"
-                + newMusic.getReleaseYear() + "');";
+                + newMusic.getIDPlaylist() + "','" + newMusic.getTitle() + "',"
+                + newMusic.getTrackNumber() + ",'" + newMusic.getArtist() + "','"
+                + newMusic.getAlbumTitle() + "','" + newMusic.getTypeMusic() + "',"
+                + newMusic.getReleaseYear() + "," + newMusic.getMusic_file()+ ");";
 
         System.out.println(sql);
         openConnection();
@@ -116,7 +119,7 @@ public class MusicDAO {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method create");
+            ex.printStackTrace();
         }
         closeConnection();
 
