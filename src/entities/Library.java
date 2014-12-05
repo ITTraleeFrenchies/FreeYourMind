@@ -14,31 +14,35 @@ public class Library {
     private int id_library;
     private String member;
     private String name;
-    
-    public Library(int id_library, String member,String name){
-        this.id_library=id_library;
-        this.member=member;
-        this.name=name;
+
+    public Library(int id_library, String member, String name) {
+        this.id_library = id_library;
+        this.member = member;
+        this.name = name;
     }
-    
-    public int get_id_library(){
+
+    public int getId_library() {
         return id_library;
     }
-        public void set_id_library(){
-        this.id_library=id_library;
+
+    public void setId_library(int id_library) {
+        this.id_library = id_library;
     }
-        
-    public String get_member(){
+
+    public String getMember() {
         return member;
     }
-        public void set_member(){
-        this.member=member;
+
+    public void setMember(String member) {
+        this.member = member;
     }
-        
-    public String get_name(){
+
+    public String getName() {
         return name;
     }
-        public void set_name(){
-        this.member=name;
-    }        
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
 }

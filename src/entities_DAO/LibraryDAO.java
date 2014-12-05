@@ -98,15 +98,15 @@ public class LibraryDAO {
 
     public Library update(Library libraryToUpdate) {
         Library library = libraryToUpdate;
-        String sql = " UPDATE LIBRARY SET NAME = '" +  library.get_name() + "' "+ 
-                "WHERE ID_LIBRARY = "+ library.get_id_library() + ")";
+        String sql = " UPDATE LIBRARY SET NAME = '" +  library.getName()+ "' "+ 
+                "WHERE ID_LIBRARY = "+ library.getId_library();
 
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-              System.out.println(ex.getErrorCode() + " error with the method update");
+              ex.printStackTrace();
         }
         closeConnection();
 
@@ -115,7 +115,7 @@ public class LibraryDAO {
 
     public Library delete(Library libraryToDelete) {
          Library library = libraryToDelete;
-        String sql = " DELETE FROM LIBRARY WHERE ID_LIBRARY = "+ libraryToDelete.get_id_library() + ")";
+        String sql = " DELETE FROM LIBRARY WHERE ID_LIBRARY = "+ libraryToDelete.getId_library();
 
         openConnection();
         try {
@@ -132,7 +132,7 @@ public class LibraryDAO {
     public List<Library> findAll() {
         List<Library> libraries = new ArrayList();
         Library library = null;
-        String sql = "SELECT * FROM MEMBER";
+        String sql = "SELECT * FROM LIBRARY";
 
         openConnection();
         try {

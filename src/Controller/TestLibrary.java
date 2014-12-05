@@ -6,7 +6,9 @@
 package Controller;
 
 import entities.Library;
+import entities.Member;
 import entities_DAO.LibraryDAO;
+import entities_DAO.MemberDAO;
 import java.util.List;
 
 /**
@@ -25,28 +27,32 @@ public class TestLibrary {
         
          */
         LibraryDAO libraryDAO = new LibraryDAO();
+        Library library = null;
 
          // -------------- TEST FOR FIND BY ID ----------------
-        Library library = libraryDAO.findById(1);
-        System.out.println(library.get_name());
-
+        /*library = libraryDAO.findById(81);
+         System.out.println(library.getName());*/
+        //================= WE DO NOT CREATE MANUALLY HERE ================
         // -------------- TEST FOR CREATE ----------------
        /* library = new Library(12, "myLibrary", "T00000012");
-        System.out.println(libraryDAO.create(library).get_id_library());
-        */
+         System.out.println(libraryDAO.create(library).get_id_library());
+         */
         // -------------- TEST FOR UPDATE ----------------
-        library = libraryDAO.findById(1);
-        libraryDAO.update(library);
+       /* library = libraryDAO.findById(81);
+         library.setName("Library updated");
+         libraryDAO.update(library);*/
+        // -------------- TEST FOR DELETE ----------------
+       /*  MemberDAO memberDAO = new MemberDAO();
+         Member member = new Member("T10000022","nicknamemember3","password2",null,null,null,"addr1@gmai2.com",null,null,null,null,null);
+         System.out.println(memberDAO.create(member).getTnumber());*/
+       /* library = libraryDAO.findById(92);
+        libraryDAO.delete(library);*/
 
         // -------------- TEST FOR FINDALL ----------------
         List<Library> libraries = libraryDAO.findAll();
         for (Library aLibrary : libraries) {
-            System.out.println(aLibrary.get_id_library() + " - " + aLibrary.get_name() + " - " + aLibrary.get_member());
+            System.out.println(aLibrary.getId_library() + " - " + aLibrary.getName() + " - " + aLibrary.getMember());
         }
-
-        // -------------- TEST FOR DELETE ----------------
-        library = libraryDAO.findById(1);
-        libraryDAO.delete(library);
 
     }
 }
