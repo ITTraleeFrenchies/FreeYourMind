@@ -34,7 +34,7 @@ public class Home extends javax.swing.JPanel {
      * Creates new form Home
      */
     private JPanel subscribe;
-    public boolean canConnectAdmin = false;
+    public boolean canConnectAdmin = true;
     public boolean canConnectMember = false;
     public MemberDAO memberDAO;
     public Member memberConnected;

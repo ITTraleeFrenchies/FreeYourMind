@@ -35,6 +35,7 @@ public class CLMainInterface extends JFrame {
     private final AdministratorConnected cardAdministratorConnected;
     
     public CLMainInterface() throws IOException {
+        this.setSize(700, 700);
         container = new JPanel();
         cardHome = new Home();
         cardSubscribe = new Subscribe();
@@ -114,14 +115,13 @@ public class CLMainInterface extends JFrame {
              }
         });
          // =============== PANEL USER CONNECTED ==================
-        getContentPane().add(container, BorderLayout.CENTER);
         cardUserConnected.b_disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0){
                 cl.first(container);
             }
         });
-        getContentPane().add(container, BorderLayout.CENTER);
+        
         cardUserConnected.b_seeprofile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0){
@@ -131,7 +131,6 @@ public class CLMainInterface extends JFrame {
 
             
         // =============== PANEL PROFILE ==================
-        getContentPane().add(container, BorderLayout.CENTER);
         cardProfile.b_backHome.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0){
@@ -139,13 +138,20 @@ public class CLMainInterface extends JFrame {
             }
     });
         // =============== PANEL ADMINISTRATOR CONNECTED ==================
-        getContentPane().add(container, BorderLayout.CENTER);
         cardAdministratorConnected.b_disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0){
                cl.show(container, "home");
             }
     });
+         cardAdministratorConnected.b_seemembers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+              //container.
+            }
+    });
+        
+        getContentPane().add(container, BorderLayout.CENTER);
  
         
         

@@ -5,6 +5,8 @@
  */
 package view.Panel;
 
+import entities.Member;
+import entities_DAO.MemberDAO;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -14,11 +16,15 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -31,12 +37,12 @@ public class AdministratorConnected extends javax.swing.JPanel {
      */
     public AdministratorConnected() {
         initComponents();
-        this.setPreferredSize(new Dimension(700,700));
+        this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
         this.l_view.setVisible(false);
-        this.ta_view.setVisible(false);
-        
-                // ========== FOR THE IMAGE =============
+        this.jt_content.setVisible(false);
+
+        // ========== FOR THE IMAGE =============
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File("src/Ressources/rsz_profile_image.png"));
@@ -48,71 +54,71 @@ public class AdministratorConnected extends javax.swing.JPanel {
 
         label.setBounds(-5, -5, 233, 216);
         this.add(label);
-        
-                b_seemembers.addActionListener(new ActionListener() {
+
+        b_seemembers.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Members");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Members");
+                l_view.setVisible(true);
             }
-    });
+        });
         b_seelibraries.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Libraries");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Libraries");
+                l_view.setVisible(true);
             }
-    });
+        });
         b_seeplaylists.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Playlists");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Playlists");
+                l_view.setVisible(true);
             }
-    }); 
+        });
         b_seemusics.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Musics");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Musics");
+                l_view.setVisible(true);
             }
-    });  
+        });
         b_seelikes.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Likes");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Likes");
+                l_view.setVisible(true);
             }
-    });  
+        });
         b_seerecommends.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Recommendations");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Recommendations");
+                l_view.setVisible(true);
             }
-    });
+        });
         b_seefollowlists.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Follow Lists");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Follow Lists");
+                l_view.setVisible(true);
             }
-    });  
+        });
         b_seeblocked.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               l_view.setText("Users blocked");
-               l_view.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+                l_view.setText("Users blocked");
+                l_view.setVisible(true);
             }
-    }); 
-        
-                tf_search.addMouseListener(new MouseAdapter() {
+        });
+
+        tf_search.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 tf_search.setText("");
             }
         });
-        
+
     }
 
     /**
@@ -141,7 +147,7 @@ public class AdministratorConnected extends javax.swing.JPanel {
         b_seefollowlists = new javax.swing.JButton();
         l_view = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        ta_view = new javax.swing.JTextArea();
+        jt_content = new javax.swing.JTextArea();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
@@ -160,6 +166,11 @@ public class AdministratorConnected extends javax.swing.JPanel {
         b_search.setText("Search");
 
         b_seemembers.setText("See Members");
+        b_seemembers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seemembersActionPerformed(evt);
+            }
+        });
 
         b_seeblocked.setText("See Blocked Students");
 
@@ -177,9 +188,9 @@ public class AdministratorConnected extends javax.swing.JPanel {
 
         l_view.setText("jLabel1");
 
-        ta_view.setColumns(20);
-        ta_view.setRows(5);
-        jScrollPane2.setViewportView(ta_view);
+        jt_content.setColumns(20);
+        jt_content.setRows(5);
+        jScrollPane2.setViewportView(jt_content);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,10 +225,9 @@ public class AdministratorConnected extends javax.swing.JPanel {
                             .addComponent(b_seefollowlists, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_view)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2))))
+                            .addComponent(l_view)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -230,10 +240,12 @@ public class AdministratorConnected extends javax.swing.JPanel {
                     .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_search))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_tnumber)
+                    .addComponent(l_view))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_tnumber)
-                        .addGap(18, 18, 18)
                         .addComponent(l_username)
                         .addGap(18, 18, 18)
                         .addComponent(b_disconnect)
@@ -255,13 +267,37 @@ public class AdministratorConnected extends javax.swing.JPanel {
                         .addComponent(b_seefollowlists)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(b_seeblocked))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_view)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b_seemembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seemembersActionPerformed
+        this.updateUI();
+        MemberDAO memberDAO = new MemberDAO();
+        List<Member> listMembers = null;
+        if (memberDAO.findAll() != null) {
+            listMembers = memberDAO.findAll();
+        }
+        String Newligne = System.getProperty("line.separator");
+        String allContent = "";
+        allContent += "TNUMBER" + " - " + "PASSWORD" + " - " + "FIRSTNAME" + " - " + "EMAIL" + " - " + "FIRSTNAME"
+                + " - " + "SURNAME" + " - " + "STREET" + " - " + "CITY";
+        allContent += Newligne;
+        
+        for (Member member : listMembers) {
+            allContent += member.getTnumber() + " - " + member.getPassword() + " - " + member.getNickname() + " - " + member.getEmail_addr();
+            allContent +=  " - " + member.getFirstname() + " - " + member.getSurname() + " - " + member.getStreet() + " - " + member.getCity();
+            allContent += Newligne;
+        }
+        jt_content.append(allContent + "\n");
+        jt_content.validate();
+        jt_content.updateUI();
+       
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seemembersActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -277,11 +313,11 @@ public class AdministratorConnected extends javax.swing.JPanel {
     public javax.swing.JButton b_seerecommends;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea jt_content;
     private javax.swing.JLabel l_title;
     public javax.swing.JLabel l_tnumber;
     public javax.swing.JLabel l_username;
     public javax.swing.JLabel l_view;
-    public javax.swing.JTextArea ta_view;
     public javax.swing.JTextField tf_search;
     // End of variables declaration//GEN-END:variables
 }

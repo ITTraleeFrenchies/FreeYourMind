@@ -56,9 +56,9 @@ public class MemberDAO {
 
     public Member create(Member memberToCreate) {
         Member member = memberToCreate;
-        String sql = " INSERT INTO MEMBER(TNUMBER,NICKNAME,PASSWORD,FIRSTNAME,"
-                + "SURNAME,DATE_BIRTH,EMAIL_ADDR,STREET,CITY,COUNTY,SUBSCRIPTION_DATE,"
-                + "PROFILE_PIC) VALUES('" + memberToCreate.getTnumber() + "','"
+        
+        System.out.println(memberToCreate.getDate_birth());
+        String sql = " INSERT INTO MEMBER VALUES('" + memberToCreate.getTnumber() + "','"
                 + memberToCreate.getNickname() + "','" + memberToCreate.getPassword() + "','"
                 + memberToCreate.getFirstname() + "','" + memberToCreate.getSurname() + "',"
                 + memberToCreate.getDate_birth() + ",'" + memberToCreate.getEmail_addr() + "','"
@@ -67,6 +67,8 @@ public class MemberDAO {
                 + memberToCreate.getProfile_pic() + ")";
 
         openConnection();
+        System.out.println(sql);
+        sql.replace("'null'", "null");
         try {
             this.resultSet = statement.executeQuery(sql);
 
