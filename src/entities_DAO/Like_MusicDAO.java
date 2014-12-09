@@ -86,10 +86,11 @@ public class Like_MusicDAO {
     public Like_Music create(Like_Music likeMusicToCreate) {
         Like_Music likeMusic = likeMusicToCreate;
         String sql = " INSERT INTO LIKELIST_MUSIC"+
-                "VALUES('" + likeMusicToCreate.getId_likelist()+ "','"
+                " VALUES(" + likeMusicToCreate.getId_likelist()+ ",'"
                 + likeMusicToCreate.getTNumber() + "','" + likeMusicToCreate.getId_music() + 
                 "','" + likeMusicToCreate.getDate_creation() + "')";
                 
+        sql=sql.replace("'null'","null");
         System.out.println(sql);
         openConnection();
         try {
@@ -112,8 +113,10 @@ public class Like_MusicDAO {
         
         String sql = " UPDATE LIKELIST_MUSIC SET TNUMBER = '" + likeMusicUpdate.getTNumber()
                 + "', ID_MUSIC = '" + likeMusicUpdate.getId_music()
-                + "', DATE_CREATION = TO_DATE('" + creationDate +" 'yyyy/MM/dd')"
-                + "' WHERE ID_LIKELIST = '" + likeMusicUpdate.getId_likelist() + "'";
+                + "', DATE_CREATION = TO_DATE('" + creationDate +"', 'yyyy/MM/dd')"
+                + " WHERE ID_LIKELIST = '" + likeMusicUpdate.getId_likelist() + "'";
+        
+        sql=sql.replace("'null'","null");
         System.out.println(sql);
         openConnection();
         try {

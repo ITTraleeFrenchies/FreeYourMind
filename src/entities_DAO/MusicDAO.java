@@ -104,15 +104,16 @@ public class MusicDAO {
              File musicToInsert=new File(newMusic.getMusic_file().toString());
         }
         
-
+        
         String sql = " INSERT INTO MUSIC(ID_TRACK,ID_PLAYLIST,TITLE,TRACK_NUMBER,"
                 + "ARTIST,ALBUM_TITLE,TYPE_MUSIC,RELEASE_YEAR, MUSIC_FILE)"
                 + " VALUES('" + newMusic.getIDTrack() + "','"
                 + newMusic.getIDPlaylist() + "','" + newMusic.getTitle() + "',"
                 + newMusic.getTrackNumber() + ",'" + newMusic.getArtist() + "','"
                 + newMusic.getAlbumTitle() + "','" + newMusic.getTypeMusic() + "',"
-                + newMusic.getReleaseYear() + "," + newMusic.getMusic_file()+ ");";
+                + newMusic.getReleaseYear() + "," + newMusic.getMusic_file()+ ")";
 
+        sql=sql.replace("'null'","null");
         System.out.println(sql);
         openConnection();
         try {
@@ -129,36 +130,39 @@ public class MusicDAO {
     public Music update(Music upMusic) {
         String sql = "UPDATE MUSIC "
                 + "SET ID_PLAYLIST='" + upMusic.getIDPlaylist() + "',"
-                + "SET TITLE='" + upMusic.getTitle() + "',"
-                + "SET TRACK_NUMBER='" + upMusic.getTrackNumber() + "',"
-                + "SET ARTIST='" + upMusic.getArtist() + "',"
-                + "SET ALBUM_TITLE='" + upMusic.getAlbumTitle() + "',"
-                + "SET TYPE_MUSIC='" + upMusic.getTypeMusic() + "',"
-                + "SET RELEASE_YEAR='" + upMusic.getReleaseYear() + "'"
-                + "WHERE ID_TRACK='" + upMusic.getIDTrack() + "';";
+                + "TITLE='" + upMusic.getTitle() + "',"
+                + "TRACK_NUMBER=" + upMusic.getTrackNumber() + ","
+                + "ARTIST='" + upMusic.getArtist() + "',"
+                + "ALBUM_TITLE='" + upMusic.getAlbumTitle() + "',"
+                + "TYPE_MUSIC='" + upMusic.getTypeMusic() + "',"
+                + "RELEASE_YEAR='" + upMusic.getReleaseYear() + "',"
+                + "MUSIC_FILE='" + upMusic.getMusic_file() + "' "
+                + "WHERE ID_TRACK='" + upMusic.getIDTrack() + "'";
 
+        sql=sql.replace("'null'","null");
         System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + " error with the method update");
+            e.printStackTrace();
         }
         closeConnection();
 
         return upMusic;
     }
 
-    public void delete(Music music) {
-        String sql = "DELETE FROM MUSIC WHERE ID_TRACK = '" + music.getIDTrack() + "';";
+    public Music delete(Music music) {
+        String sql = "DELETE FROM MUSIC WHERE ID_TRACK = '" + music.getIDTrack() + "'";
 
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
-        } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method find");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return music;
     }
 
     public List<Music> findAll() {

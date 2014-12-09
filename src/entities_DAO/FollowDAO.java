@@ -55,16 +55,16 @@ public class FollowDAO {
 
         openConnection();
         try {
-            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOW WHERE ID_FOLLOWLIST = '" + id +"';");
-            if (this.resultSet.first()) {
+            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOW WHERE ID_FOLLOWLIST = '" + id +"'");
+            if (this.resultSet.next()) {
                 followUser = new Follow(
                         id,
                         this.resultSet.getString("tnumber"),
-                        this.resultSet.getString("nickname_followed")
+                        this.resultSet.getString("nicknameFollowed")
                 );
             }
         } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + " error with the method find");
+            e.printStackTrace();
         }
         closeConnection();
 
@@ -73,17 +73,18 @@ public class FollowDAO {
 
     public Follow create(Follow follow) {
         Follow newFollow = follow;
-        String sql = " INSERT INTO FOLLOW(ID_FOLLOWLIST,TNUMBER,NICKNAME_FOLLOWED"
-                + " VALUES('" + newFollow.getIDFollowlist()+"','" 
-                + newFollow.getTnumber() +"','"+newFollow.getNicknameFollowed()+"');";
+        String sql = " INSERT INTO FOLLOW"
+                + " VALUES(" + newFollow.getIDFollowlist()+",'" 
+                + newFollow.getTnumber() +"','"+newFollow.getNicknameFollowed()+"')";
         
+        sql=sql.replace("'null'","null");
         System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-              System.out.println(ex.getErrorCode() + " error with the method create");
+              ex.printStackTrace();
         }
         closeConnection();
 
@@ -92,17 +93,18 @@ public class FollowDAO {
 
     public Follow update(Follow upFollow) {
         String sql = "UPDATE FOLLOW "
-                +"SET ID_FOLLOWLIST='"+upFollow.getIDFollowlist()+"',"
                 +"SET TNUMBER='"+upFollow.getTnumber()+"',"
-                +"SET NICKNAME_FOLLOWED='"+upFollow.getNicknameFollowed()+"';";
+                +"NICKNAMEFOLLOWED='"+upFollow.getNicknameFollowed()+"'"
+                + "WHERE ID_FOLLOWLIST="+upFollow.getIDFollowlist();
         
+        sql=sql.replace("'null'","null");
         System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException e) {
-              System.out.println(e.getErrorCode() + " error with the method update");
+              e.printStackTrace();
         }
         closeConnection();
 
@@ -110,35 +112,35 @@ public class FollowDAO {
     }
 
     public void delete(Follow follow) {
-        String sql = "DELETE FROM FOLLOW WHERE ID_FOLLOWLIST = '"+follow.getIDFollowlist()+"';";
+        String sql = "DELETE FROM FOLLOW WHERE ID_FOLLOWLIST = '"+follow.getIDFollowlist()+"'";
         
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
         }catch (SQLException ex) {
-             System.out.println(ex.getErrorCode() + " error with the method find");
+             ex.printStackTrace();
         }
     }
 
     public List<Follow> findAll() {
         List<Follow> followedList = new ArrayList();
         Follow follow = null;
-        String sql = "SELECT * FROM FOLLOW";
+        
 
         openConnection();
-        try {
-            this.resultSet = statement.executeQuery(sql);
-            while (this.resultSet.next()) {
+            try {
+            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOW");
+            if (this.resultSet.next()) {
                 follow = new Follow(
-                        this.resultSet.getInt("id_followlist"),
+                        this.resultSet.getInt("idFollowlist"),
                         this.resultSet.getString("tnumber"),
-                        this.resultSet.getString("nickname_followed")
-                        );
+                        this.resultSet.getString("nicknameFollowed")
+                );
                 followedList.add(follow);
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method findAll");
+            ex.printStackTrace();
         }
         closeConnection();
 

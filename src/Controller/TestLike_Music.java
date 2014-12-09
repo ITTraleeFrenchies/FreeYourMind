@@ -19,19 +19,19 @@ public class TestLike_Music {
         Like_MusicDAO like_musicDAO = new Like_MusicDAO();
 
         //TEST FOR FIND BY ID_LIKELIST
-        Like_Music likeMusic = like_musicDAO.find(1);
-        System.out.println(likeMusic.getId_likelist());
+       /* Like_Music likeMusic = like_musicDAO.find(21);
+        System.out.println(likeMusic.getId_likelist());*/
 
         //TEST FOR CREATE
-        likeMusic = new Like_Music(0, "T20000002", "M61", null);
-        System.out.println(like_musicDAO.create(likeMusic).getId_likelist());
+        /*Like_Music likeMusic = new Like_Music(0, "T10000002", "M92", null);
+        System.out.println(like_musicDAO.create(likeMusic).getId_likelist());*/
 
         //TEST FOR UPDATE
-        likeMusic = new Like_Music(2, "T20000002", "M61", null); //id_likelist to be changed
-        like_musicDAO.update(likeMusic);
+        /*Like_Music likeMusic = new Like_Music(21, "T10000002", "M81", null); 
+        like_musicDAO.update(likeMusic);*/
 
         //TEST FOR DELETE
-        likeMusic = new Like_Music(2, "T20000002", "M61", null); //id_likelist to be changed
+        Like_Music likeMusic = new Like_Music(22, "T10000002", "M92", null); 
         like_musicDAO.delete(likeMusic);
 
         //TEST FOR FIND ALL

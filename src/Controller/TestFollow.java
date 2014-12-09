@@ -18,25 +18,25 @@ public class TestFollow {
         FollowDAO followDAO = new FollowDAO();
 
         //TEST FOR FIND BY ID_LIKELIST
-        Follow follow = followDAO.find(1);
-        System.out.println(follow.getIDFollowlist());
+        /*Follow follow = followDAO.find(21);
+        System.out.println(follow.getIDFollowlist());*/
 
         //TEST FOR CREATE
-        follow = new Follow(2, "T10000000", "nicknamemember1");
-        System.out.println(followDAO.create(follow).getIDFollowlist());
+      /* Follow follow = new Follow(0, "T10000002", "nicknamemember2");
+        System.out.println(followDAO.create(follow).getIDFollowlist());*/
 
         //TEST FOR UPDATE
-        follow = new Follow(2, "T10000001", "nicknamemember2"); 
+        Follow follow = new Follow(23, "T10000022", "nicknamemember3"); 
         followDAO.update(follow);
 
         //TEST FOR DELETE
-        follow = new Follow(2, "T10000001", "nicknamemember2"); 
-        followDAO.delete(follow);
+      /*  follow = new Follow(2, "T10000001", "nicknamemember2"); 
+        followDAO.delete(follow);*/
 
         //TEST FOR FIND ALL
-        List<Follow> list_follow = followDAO.findAll();
+       /* List<Follow> list_follow = followDAO.findAll();
         for (Follow aFollow : list_follow) {
             System.out.println(aFollow.getIDFollowlist() + " - " + aFollow.getTnumber() + " - " + aFollow.getNicknameFollowed());
-        }
+        }*/
     }
 }

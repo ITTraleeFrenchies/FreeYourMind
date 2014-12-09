@@ -49,9 +49,9 @@ public class Like_PlaylistDAO {
 
     }
 
-    public Like_Playlist find(long id) {
+    public Like_Playlist find(int id) {
         Like_Playlist like_playlist = null;
-        String sql = "SELECT * FROM LIKE_PLAYLIST WHERE ID_LIKELIST = '" + id + "'";
+        String sql = "SELECT * FROM LIKELIST_PLAYLIST WHERE ID_LIKELIST = '" + id + "'";
 
         openConnection();
         try {
@@ -64,7 +64,7 @@ public class Like_PlaylistDAO {
                         this.resultSet.getDate("date_creation"));
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method find");
+            ex.printStackTrace();
         }
         closeConnection();
 
@@ -73,18 +73,19 @@ public class Like_PlaylistDAO {
 
     public Like_Playlist create(Like_Playlist likePlaylistToCreate) {
         Like_Playlist like_playlist = likePlaylistToCreate;
-        String sql = "INSERT INTO LIKE_PLAYLIST VALUES("
-                + like_playlist.getId_playlist() + ",'"
+        String sql = "INSERT INTO LIKELIST_PLAYLIST VALUES("
+                + like_playlist.getId_likelist() + ",'"
                 + like_playlist.getTNumber() + "','"
                 + like_playlist.getId_playlist() + "',"
                 + like_playlist.getDate_creation() + ")";
-
+        sql=sql.replace("'null'","null");
+        System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method create");
+            ex.printStackTrace();
         }
         closeConnection();
 
@@ -92,17 +93,20 @@ public class Like_PlaylistDAO {
     }
 
     public Like_Playlist update(Like_Playlist likePlaylistToUpdate) {
-        String sql = " UPDATE LIKE_PLAYLIST SET ID_LIKELIST = '" + likePlaylistToUpdate.getId_likelist()
+        String sql = " UPDATE LIKELIST_PLAYLIST SET ID_LIKELIST = '" + likePlaylistToUpdate.getId_likelist()
                 + "', TNUMBER = '" + likePlaylistToUpdate.getTNumber()
                 + "', ID_PLAYLIST = '" + likePlaylistToUpdate.getId_playlist()
                 + "', DATE_CREATION = '" + likePlaylistToUpdate.getDate_creation()
-                + " WHERE ID_LIKELIST = '" + likePlaylistToUpdate.getId_likelist() + "'";
+                + "' WHERE ID_LIKELIST = '" + likePlaylistToUpdate.getId_likelist() + "'";
+        
+        sql=sql.replace("'null'","null");
+        System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method update.");
+            ex.printStackTrace();
         }
         closeConnection();
 
@@ -111,14 +115,15 @@ public class Like_PlaylistDAO {
 
     public Like_Playlist delete(Like_Playlist likePlaylistToDelete) {
         Like_Playlist likePlaylist = likePlaylistToDelete;
-        String sql = " DELETE FROM LIKE_PLAYLIST WHERE ID_LIKELIST ='" + likePlaylist.getId_playlist() + "'";
+        String sql = " DELETE FROM LIKELIST_PLAYLIST WHERE ID_LIKELIST =" + likePlaylistToDelete.getId_likelist() ;
 
+        System.out.println(sql);
         openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method delete.");
+            ex.printStackTrace();
         }
         closeConnection();
 
@@ -128,7 +133,7 @@ public class Like_PlaylistDAO {
     public List<Like_Playlist> findAll() {
         List<Like_Playlist> list_likePlaylist = new ArrayList();
         Like_Playlist likePlaylist = null;
-        String sql = "SELECT * FROM LIKE_PLAYLIST";
+        String sql = "SELECT * FROM LIKELIST_PLAYLIST";
 
         openConnection();
         try {
@@ -143,7 +148,7 @@ public class Like_PlaylistDAO {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " error with the method findAll.");
+            ex.printStackTrace();
         }
         closeConnection();
 

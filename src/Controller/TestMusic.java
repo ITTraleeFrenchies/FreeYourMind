@@ -25,20 +25,20 @@ public class TestMusic {
            
           
         // -------------- TEST FOR FIND BY IDTRACK ----------------
-        /* music = musicDAO.find("M71");
+        /* music = musicDAO.find("M94");
         System.out.println(music.getIDTrack() + " - " + music.getTitle());*/
 
         // -------------- TEST FOR CREATE ----------------
-        music = new Music(null, "P231", "stupefiant", 1, null, null, null, null,null);
-        System.out.println(musicDAO.create(music).getIDTrack());
+        /*music = new Music(null, null, "Auto Rock", 3, null, null, null, null,null);
+        System.out.println(musicDAO.create(music).getIDTrack());*/
 
         // -------------- TEST FOR UPDATE ----------------
         
-       /*  music = musicDAO.find("M61");
+       /*  music = new Music("M92","P231", "Tracy", 7, null, null, null, null,null);
          musicDAO.update(music);*/
         // -------------- TEST FOR DELETE ----------------
-       /*  music = musicDAO.find("M61");
-         musicDAO.delete(music);*/
+        /*music = musicDAO.find("M94");
+        System.out.println(musicDAO.delete(music).getIDTrack());*/
          
            // -------------- TEST FOR FINDALL ----------------
         List<Music> listMusic = musicDAO.findAll();
