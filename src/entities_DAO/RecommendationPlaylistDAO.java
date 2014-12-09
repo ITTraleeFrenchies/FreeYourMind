@@ -57,16 +57,16 @@ public class RecommendationPlaylistDAO {
    	public RecommendationPlaylist find(int id) {
        	
             RecommendationPlaylist recommend = null;
-            String sql = "SELECT * FROM RECOMMENDATIONPLAYLIST WHERE ID_RECOMMENDATION = '" + id + "'";
+            String sql = "SELECT * FROM RECOMMENDATION_PLAYLIST WHERE ID_RECOMMENDATION = " + id + "";
 
             openConnection();
             try {
                     this.resultSet = statement.executeQuery(sql);
                     while (this.resultSet.next()) {
                     recommend = new RecommendationPlaylist(
-                            this.resultSet.getInt("idRecommendation"),
-                            this.resultSet.getString("idPlaylist"),
-                            this.resultSet.getDate("dateRecommend")
+                            this.resultSet.getInt("id_Recommendation"),
+                            this.resultSet.getString("id_Playlist"),
+                            this.resultSet.getDate("date_Recommend")
                             );
                     }
             } catch (SQLException ex) {
@@ -81,10 +81,12 @@ public class RecommendationPlaylistDAO {
         public RecommendationPlaylist create(RecommendationPlaylist recommendationPlaylistCreate) {
     	
             RecommendationPlaylist recommend = recommendationPlaylistCreate;
-            String sql = " INSERT INTO RECOMMENDATIONMUSIC(ID_RECOMMENDATION,ID_PLAYLIST,DATE_RECOMMEND)"
-                    + "VALUES('" + recommendationPlaylistCreate.getIDRecommendation() + "','"
-                    + recommendationPlaylistCreate.getIDPlaylist() + "','" + recommendationPlaylistCreate.getDateRecommend() + "')";
+            String sql = " INSERT INTO RECOMMENDATION_PLAYLIST(ID_RECOMMENDATION,ID_PLAYLIST,DATE_RECOMMEND)"
+                    + "VALUES(" + recommendationPlaylistCreate.getIDRecommendation() + ",'"
+                    + recommendationPlaylistCreate.getIDPlaylist() + "'," + recommendationPlaylistCreate.getDateRecommend() + ")";
+            sql.replace("'null'", "null");
             System.out.println(sql);
+            
             openConnection();
             try {
                     this.resultSet = statement.executeQuery(sql);
@@ -103,10 +105,9 @@ public class RecommendationPlaylistDAO {
                 recommandationDate = dateFormat.format(recommendationPlaylistUpdate.getDateRecommend());
             }
             
-            String sql = " UPDATE RECOMMENDATIONPLAYLIST SET ID_RECOMMENDATION = '" + recommendationPlaylistUpdate.getIDRecommendation()
-                    + "', ID_PLAYLIST = '" + recommendationPlaylistUpdate.getIDPlaylist()
-                    + "', DATE_RECOMMEND = TO_DATE('" + recommandationDate + " 'yyyy/MM/dd')"
-                    + "'";
+            String sql = " UPDATE RECOMMENDATION_PLAYLIST SET ID_RECOMMENDATION = " + recommendationPlaylistUpdate.getIDRecommendation()
+                    + ", ID_PLAYLIST = '" + recommendationPlaylistUpdate.getIDPlaylist()
+                    + "', DATE_RECOMMEND = TO_DATE('" + recommandationDate + "', 'yyyy/MM/dd')";
             System.out.println(sql);
             openConnection();
             try {
@@ -122,7 +123,7 @@ public class RecommendationPlaylistDAO {
         
 	public RecommendationPlaylist delete(RecommendationPlaylist recommendationPlaylistDelete) {
     	
-            String sql = "DELETE FROM RECOMMENDATIONPLAYLIST WHERE ID_RECOMMENDATION = '" + recommendationPlaylistDelete.getIDRecommendation() + "'";
+            String sql = "DELETE FROM RECOMMENDATION_PLAYLIST WHERE ID_RECOMMENDATION = '" + recommendationPlaylistDelete.getIDRecommendation() + "'";
             System.out.println(sql);
 
             openConnection();
@@ -141,20 +142,20 @@ public class RecommendationPlaylistDAO {
             List<RecommendationPlaylist> recommends = new ArrayList();
             RecommendationPlaylist recommend = null;
 
-            String sql="SELECT * FROM RECOMMENDATIONMUSIC";
+            String sql="SELECT * FROM RECOMMENDATION_PLAYLIST";
             openConnection();
             try {
                     this.resultSet = statement.executeQuery(sql);
                     while (this.resultSet.next()) {
                     recommend = new RecommendationPlaylist(
-                            this.resultSet.getInt("idRecommendation"),
-                            this.resultSet.getString("idPlaylist"),
-                            this.resultSet.getDate("dateRecommend")
+                            this.resultSet.getInt("id_Recommendation"),
+                            this.resultSet.getString("id_Playlist"),
+                            this.resultSet.getDate("date_Recommend")
                             );
                     recommends.add(recommend);
                     }
             } catch (SQLException ex) {
-                    System.out.println(ex.getErrorCode() + " error with the sql request.");
+                    ex.printStackTrace();
             }
             closeConnection();
 

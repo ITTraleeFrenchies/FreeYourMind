@@ -17,22 +17,26 @@ public class TestLinkFollowersRecommendation_P {
     public static void main(String[] args) {
         
         LinkFollowersRecommendation_P_DAO link_P_DAO = new LinkFollowersRecommendation_P_DAO();
+        LinkFollowersRecommendation_P link_P = null;
+        
+         //TEST FOR CREATE
+      /*  link_P  = new LinkFollowersRecommendation_P(0, 22, 21);
+        System.out.println(link_P_DAO.create(link_P).getId_link());*/
 
+        
         //TEST FOR FIND BY ID_LIKELIST
-        LinkFollowersRecommendation_P link_P = link_P_DAO.find(1);
-        System.out.println(link_P.getId_link());
+       /*  link_P = link_P_DAO.find(22);
+        System.out.println(link_P.getId_link());*/
 
-        //TEST FOR CREATE
-        link_P = new LinkFollowersRecommendation_P(0, 11, 11);
-        System.out.println(link_P_DAO.create(link_P).getId_link());
-
+       
         //TEST FOR UPDATE
-        link_P = new LinkFollowersRecommendation_P(0, 12,12); 
-        link_P_DAO.update(link_P);
+      /*  link_P = link_P_DAO.find(22);
+        link_P.setId_recommendation_playlist(23);
+        link_P_DAO.update(link_P);*/
 
         //TEST FOR DELETE
-        link_P = new LinkFollowersRecommendation_P(0, 12,12); 
-        link_P_DAO.delete(link_P);
+      /*  link_P = link_P_DAO.find(22);
+        link_P_DAO.delete(link_P);*/
 
         //TEST FOR FIND ALL
         List<LinkFollowersRecommendation_P> list_link_P = link_P_DAO.findAll();
