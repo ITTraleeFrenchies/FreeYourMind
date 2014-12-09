@@ -34,7 +34,7 @@ public class Home extends javax.swing.JPanel {
      * Creates new form Home
      */
     private JPanel subscribe;
-    public boolean canConnectAdmin = true;
+    public boolean canConnectAdmin = false;
     public boolean canConnectMember = false;
     public MemberDAO memberDAO;
     public Member memberConnected;
@@ -259,7 +259,12 @@ public class Home extends javax.swing.JPanel {
                     if (password.equalsIgnoreCase(admin.getPassword())) {
                         canConnectAdmin = true;
                         adminConnected = admin;
+                    }else{
+                         l_errorTnumber.setVisible(false);
+                        l_errorPassword.setVisible(true);
                     }
+                }else{
+                    l_errorTnumber.setVisible(true);
                 }
             } 
              /* //==========================
@@ -271,14 +276,16 @@ public class Home extends javax.swing.JPanel {
                     if (password.equalsIgnoreCase(member.getPassword())) {
                         canConnectMember = true;
                         memberConnected = member;
+                    }else{
+                         l_errorTnumber.setVisible(false);
+                        l_errorPassword.setVisible(true);
                     }
+                }else{
+                    l_errorTnumber.setVisible(true);
                 }
             }
-              // canConnectMember = true;
-              canConnectAdmin = true;
         }
 
-        //System.out.println(tnumber + " -  " + password);
     }//GEN-LAST:event_b_loginActionPerformed
 
 

@@ -70,6 +70,15 @@ public class CLMainInterface extends JFrame {
                
             }
         });
+          cardHome.b_login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if(cardHome.canConnectMember){
+                    cl.show(container, "UserConnected");
+                }
+               
+            }
+        });
         
           // =============== PANEL SUBSCRIBE ==================
         cardSubscribe.b_subscribe.addActionListener(new ActionListener() {

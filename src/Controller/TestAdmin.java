@@ -22,7 +22,11 @@ public class TestAdmin {
         System.out.println(admin.getNickname()); */
         
         //TEST FOR CREATE
-        /*Administrator admin = new Administrator("T20000002","nicknameadmin3","password3","addradmin3@gmail.com");
+        //     public final String tnumber_Aurelien = "t00178764";
+        // public final String tnumber_Angele = "t00178747";
+        /// public final String tnumber_Mickael = "t00178760";
+         ///public final String tnumber_Quentin = "t00178730";
+       /* Administrator admin = new Administrator("t00178730","quentin","fym2014","quentin@gmail.com");
         System.out.println(adminDAO.create(admin).getTnumber());*/
         
         //TEST FOR UPDATE
