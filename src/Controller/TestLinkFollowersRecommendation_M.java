@@ -19,19 +19,19 @@ public class TestLinkFollowersRecommendation_M {
         LinkFollowersRecommendation_M_DAO link_M_DAO = new LinkFollowersRecommendation_M_DAO();
 
         //TEST FOR FIND BY ID_LIKELIST
-        LinkFollowersRecommendation_M link_M = link_M_DAO.find(1);
-        System.out.println(link_M.getId_link());
+       /* LinkFollowersRecommendation_M link_M = link_M_DAO.find(21);
+        System.out.println(link_M.getId_link());*/
 
         //TEST FOR CREATE
-        link_M = new LinkFollowersRecommendation_M(0, 11, 11);
-        System.out.println(link_M_DAO.create(link_M).getId_link());
+        /*LinkFollowersRecommendation_M link_M = new LinkFollowersRecommendation_M(0, 23, 21);
+        System.out.println(link_M_DAO.create(link_M).getId_link());*/
 
         //TEST FOR UPDATE
-        link_M = new LinkFollowersRecommendation_M(0, 12,12); 
-        link_M_DAO.update(link_M);
+        /*LinkFollowersRecommendation_M link_M = new LinkFollowersRecommendation_M(21, 24,21); 
+        link_M_DAO.update(link_M);*/
 
         //TEST FOR DELETE
-        link_M = new LinkFollowersRecommendation_M(0, 12,12); 
+        LinkFollowersRecommendation_M link_M = new LinkFollowersRecommendation_M(21, 24,21); 
         link_M_DAO.delete(link_M);
 
         //TEST FOR FIND ALL
