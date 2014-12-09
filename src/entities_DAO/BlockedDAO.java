@@ -5,7 +5,6 @@
  */
 package entities_DAO;
 
-import Controller.ConnectionDatabaseManager;
 import entities.Blocked;
 import java.awt.Image;
 import java.util.ArrayList;
