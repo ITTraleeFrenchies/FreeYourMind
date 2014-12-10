@@ -29,6 +29,7 @@ public class UserConnected extends javax.swing.JPanel {
     /**
      * Creates new form UserConnected
      */
+    
     public UserConnected() {
         initComponents();
         this.setPreferredSize(new Dimension(700,700));

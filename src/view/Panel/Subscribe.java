@@ -84,8 +84,6 @@ public class Subscribe extends javax.swing.JPanel {
         b_subscribe = new javax.swing.JButton();
         b_backHome = new javax.swing.JButton();
         t_tnumber = new javax.swing.JTextField();
-        t_password = new javax.swing.JTextField();
-        t_password1 = new javax.swing.JTextField();
         t_nickname = new javax.swing.JTextField();
         t_name = new javax.swing.JTextField();
         t_surname = new javax.swing.JTextField();
@@ -107,6 +105,8 @@ public class Subscribe extends javax.swing.JPanel {
         l_asterix7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         l_error = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
 
         setPreferredSize(new java.awt.Dimension(700, 700));
 
@@ -159,10 +159,6 @@ public class Subscribe extends javax.swing.JPanel {
         b_backHome.setText("Back home");
 
         t_tnumber.setToolTipText("");
-
-        t_password.setToolTipText("");
-
-        t_password1.setToolTipText("");
 
         t_nickname.setToolTipText("");
 
@@ -238,23 +234,11 @@ public class Subscribe extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_tnumber)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(l_asterix))
                             .addComponent(l_subscribe)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_password)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(l_asterix1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_password1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_password1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(l_asterix2))
                             .addGroup(layout.createSequentialGroup()
@@ -286,9 +270,7 @@ public class Subscribe extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(t_dateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(l_indication2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(l_asterix6))
+                                .addComponent(l_indication2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_county)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -305,7 +287,9 @@ public class Subscribe extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_email)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(l_asterix6))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_street)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -313,7 +297,21 @@ public class Subscribe extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_city)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(l_password)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPasswordField1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(l_tnumber)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(t_tnumber, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(l_asterix)
+                                    .addComponent(l_asterix1, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -333,13 +331,13 @@ public class Subscribe extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_password)
-                    .addComponent(t_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_asterix1))
+                    .addComponent(l_asterix1)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_password1)
-                    .addComponent(t_password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_asterix2))
+                    .addComponent(l_asterix2)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_nickname)
@@ -363,12 +361,12 @@ public class Subscribe extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_dateBirth)
                     .addComponent(t_dateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_indication2)
-                    .addComponent(l_asterix6))
+                    .addComponent(l_indication2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_email)
-                    .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_asterix6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_street)
@@ -407,7 +405,7 @@ public class Subscribe extends javax.swing.JPanel {
         String country = "";
 
         tnumber = this.t_tnumber.getText();
-        password = this.t_password.getText();
+        password = this.jPasswordField1.getText();
         nickname = this.t_nickname.getText();
         firstname = this.t_name.getText();
         surname = this.t_surname.getText();
@@ -430,8 +428,8 @@ public class Subscribe extends javax.swing.JPanel {
          Member member = null;
         
         if (!tnumber.equalsIgnoreCase("") && !password.equalsIgnoreCase("")
-                && !nickname.equalsIgnoreCase("") && !this.t_password1.getText().equalsIgnoreCase("")
-                && dateBirth != null) {
+                && !nickname.equalsIgnoreCase("") && !this.jPasswordField2.getText().equalsIgnoreCase("")
+                && !email.equalsIgnoreCase("")) {
             member = new Member();
             member.setTnumber(tnumber);
             member.setPassword(password);
@@ -443,15 +441,14 @@ public class Subscribe extends javax.swing.JPanel {
             member.setCity(city);
             member.setCounty(county);
         }else{
-            //  this.l_error.setVisible(true);
+              this.l_error.setVisible(true);
         }
         
-        if(member != null && memberDAO.findByTnumber(tnumber) ==null){
-          //  memberDAO.create(member);
+        if(member != null && memberDAO.findByTnumber(tnumber) ==null && password.equalsIgnoreCase(this.jPasswordField2.getText())){
+            memberDAO.create(member);
              canBeConnected = true;
         }
         
-        canBeConnected = true;
 
     }//GEN-LAST:event_b_subscribeActionPerformed
 
@@ -460,6 +457,8 @@ public class Subscribe extends javax.swing.JPanel {
     public javax.swing.JButton b_backHome;
     public javax.swing.JButton b_subscribe;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel l_asterix;
@@ -493,8 +492,6 @@ public class Subscribe extends javax.swing.JPanel {
     private javax.swing.JTextField t_email;
     private javax.swing.JTextField t_name;
     private javax.swing.JTextField t_nickname;
-    private javax.swing.JTextField t_password;
-    private javax.swing.JTextField t_password1;
     private javax.swing.JTextField t_street;
     private javax.swing.JTextField t_surname;
     private javax.swing.JTextField t_tnumber;
