@@ -61,7 +61,8 @@ public class FollowersDAO {
             if (this.resultSet.first()) {
                 followerUser = new Followers(
                         id,
-                        this.resultSet.getString("tnumber")
+                        this.resultSet.getString("tnumber"),
+                        this.resultSet.getString("tnumber_follow")
                 );
             }
         } catch (SQLException e) {
@@ -74,9 +75,9 @@ public class FollowersDAO {
 
     public Followers create(Followers follower) {
         Followers newFollower = follower;
-        String sql = " INSERT INTO FOLLOWERS(ID_FOLLOWERSLIST,TNUMBER"
+        String sql = " INSERT INTO FOLLOWERS(ID_FOLLOWERSLIST,TNUMBER,TNUMBER_FOLLOW)"
                 + " VALUES('" + newFollower.getId_followerslist()+"','" 
-                + newFollower.getTnumber() +"');";
+                + newFollower.getTnumber() +"','" + newFollower.getTnumber_follow() +"');";
         
         System.out.println(sql);
         openConnection();
@@ -94,7 +95,9 @@ public class FollowersDAO {
     public Followers update(Followers upFollower) {
         String sql = "UPDATE FOLLOWERS "
                 +"SET ID_FOLLOWERSLIST='"+upFollower.getId_followerslist()+"',"
-                +"SET TNUMBER='"+upFollower.getTnumber()+"';";
+                +"SET TNUMBER='"+upFollower.getTnumber()+"';"
+                +"SET TNUMBER_FOLLOW='"+upFollower.getTnumber_follow()+"';"
+                ;
         
         System.out.println(sql);
         openConnection();
@@ -131,7 +134,8 @@ public class FollowersDAO {
             while (this.resultSet.next()) {
                 follower = new Followers(
                         this.resultSet.getInt("id_followerslist"),
-                        this.resultSet.getString("tnumber")
+                        this.resultSet.getString("tnumber"),
+                         this.resultSet.getString("tnumber_follow")
                         );
                 followersList.add(follower);
             }

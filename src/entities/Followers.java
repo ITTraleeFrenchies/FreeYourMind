@@ -13,10 +13,20 @@ package entities;
 public class Followers {
     private int id_followerslist;
     private String Tnumber;
+    private String Tnumber_follow;
 
-    public Followers(int id_followerslist, String Tnumber) {
+    public Followers(int id_followerslist, String Tnumber,String Tnumber_follow) {
         this.id_followerslist = id_followerslist;
         this.Tnumber = Tnumber;
+         this.Tnumber_follow = Tnumber_follow;
+    }
+
+    public String getTnumber_follow() {
+        return Tnumber_follow;
+    }
+
+    public void setTnumber_follow(String Tnumber_follow) {
+        this.Tnumber_follow = Tnumber_follow;
     }
 
     

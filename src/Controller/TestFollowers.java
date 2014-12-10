@@ -22,15 +22,15 @@ public class TestFollowers {
         System.out.println(follower.getId_followerslist());
 
         //TEST FOR CREATE
-        follower = new Followers(2, "T10000000");
+        follower = new Followers(2, "T10000000","T10000001");
         System.out.println(followersDAO.create(follower).getId_followerslist());
 
         //TEST FOR UPDATE
-        follower = new Followers(2, "T10000001"); 
+        follower = new Followers(2, "T10000001","T10000001"); 
         followersDAO.update(follower);
 
         //TEST FOR DELETE
-        follower = new Followers(2, "T10000001"); 
+        follower = new Followers(2, "T10000001","T10000001"); 
         followersDAO.delete(follower);
 
         //TEST FOR FIND ALL
