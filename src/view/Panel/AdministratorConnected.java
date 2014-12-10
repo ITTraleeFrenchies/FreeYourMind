@@ -40,7 +40,11 @@ public class AdministratorConnected extends javax.swing.JPanel {
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
         this.l_view.setVisible(false);
-        this.jt_content.setVisible(false);
+        this.jScrollPane1.setVisible(false);
+        this.jScrollPane3.setVisible(false);
+        this.jScrollPane4.setVisible(false);
+        this.jScrollPane5.setVisible(false);
+        this.jScrollPane6.setVisible(false);
 
         // ========== FOR THE IMAGE =============
         BufferedImage img = null;
@@ -60,6 +64,11 @@ public class AdministratorConnected extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent arg0) {
                 l_view.setText("Members");
                 l_view.setVisible(true);
+                jScrollPane1.setVisible(true);
+                jScrollPane3.setVisible(true);
+                jScrollPane4.setVisible(true);
+                jScrollPane5.setVisible(true);
+                jScrollPane6.setVisible(true);
             }
         });
         b_seelibraries.addActionListener(new ActionListener() {
@@ -146,8 +155,16 @@ public class AdministratorConnected extends javax.swing.JPanel {
         b_seerecommends = new javax.swing.JButton();
         b_seefollowlists = new javax.swing.JButton();
         l_view = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jt_content = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_members = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_password = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jl_nickname = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jl_email = new javax.swing.JList();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jl_firstname = new javax.swing.JList();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
@@ -188,9 +205,15 @@ public class AdministratorConnected extends javax.swing.JPanel {
 
         l_view.setText("jLabel1");
 
-        jt_content.setColumns(20);
-        jt_content.setRows(5);
-        jScrollPane2.setViewportView(jt_content);
+        jScrollPane1.setViewportView(jl_members);
+
+        jScrollPane3.setViewportView(jl_password);
+
+        jScrollPane4.setViewportView(jl_nickname);
+
+        jScrollPane5.setViewportView(jl_email);
+
+        jScrollPane6.setViewportView(jl_firstname);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -223,10 +246,21 @@ public class AdministratorConnected extends javax.swing.JPanel {
                             .addComponent(b_seelikes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(b_seerecommends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(b_seefollowlists, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(l_view)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(l_view))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -239,61 +273,97 @@ public class AdministratorConnected extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_search))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_tnumber)
-                    .addComponent(l_view))
-                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_username)
-                        .addGap(18, 18, 18)
-                        .addComponent(b_disconnect)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(b_seemembers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seelibraries)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seeplaylists)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seemusics)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seelikes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seerecommends)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seefollowlists)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seeblocked))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(123, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(l_tnumber)
+                                    .addComponent(l_view))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(23, 23, 23)
+                                        .addComponent(l_username)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(b_disconnect)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(b_seemembers)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(b_seelibraries)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(b_seeplaylists)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(b_seemusics)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(b_seelikes)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(b_seerecommends)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(b_seefollowlists)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(b_seeblocked))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 135, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_seemembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seemembersActionPerformed
-        this.updateUI();
+
         MemberDAO memberDAO = new MemberDAO();
         List<Member> listMembers = null;
         if (memberDAO.findAll() != null) {
             listMembers = memberDAO.findAll();
         }
-        String Newligne = System.getProperty("line.separator");
-        String allContent = "";
-        allContent += "TNUMBER" + " - " + "PASSWORD" + " - " + "FIRSTNAME" + " - " + "EMAIL" + " - " + "FIRSTNAME"
-                + " - " + "SURNAME" + " - " + "STREET" + " - " + "CITY";
-        allContent += Newligne;
-        
+        /*    String Newligne = System.getProperty("line.separator");
+         String allContent = "";
+         allContent += "TNUMBER" + " - " + "PASSWORD" + " - " + "NICKNAME" + " - " + "EMAIL" + " - " + "FIRSTNAME"
+         + " - " + "SURNAME" + " - " + "STREET" + " - " + "CITY";
+         allContent += Newligne;*/
+        String[] listTnumbers = new String[listMembers.size()];
+        String[] listPassword = new String[listMembers.size()];
+        String[] listNickname = new String[listMembers.size()];
+        String[] listEmail = new String[listMembers.size()];
+        String[] listFirstname = new String[listMembers.size()];
+
+        int i = 0;
         for (Member member : listMembers) {
-            allContent += member.getTnumber() + " - " + member.getPassword() + " - " + member.getNickname() + " - " + member.getEmail_addr();
-            allContent +=  " - " + member.getFirstname() + " - " + member.getSurname() + " - " + member.getStreet() + " - " + member.getCity();
-            allContent += Newligne;
+            listTnumbers[i] = member.getTnumber();
+            listPassword[i] = member.getPassword();
+            listNickname[i] = member.getNickname();
+            listEmail[i] = member.getEmail_addr();
+            listFirstname[i] = member.getFirstname();
+
+            /* allContent += member.getTnumber() + " - " + member.getPassword() + " - " + member.getNickname() + " - " + member.getEmail_addr();
+             allContent += " - " + member.getFirstname() + " - " + member.getSurname() + " - " + member.getStreet() + " - " + member.getCity();
+             allContent += Newligne;*/
+            i++;
         }
-        jt_content.append(allContent + "\n");
-        jt_content.validate();
-        jt_content.updateUI();
-       
+        jl_members.setListData(listTnumbers);
+        jl_password.setListData(listPassword);
+        jl_nickname.setListData(listNickname);
+        jl_email.setListData(listEmail);
+        jl_firstname.setListData(listFirstname);
+
+      //  jt_content.append(allContent + "\n");
+      /*  jt_content.setVisible(false);
+         jt_content.validate();
+         jt_content.updateUI();
+         */
         this.invalidate();
         this.validate();
         this.repaint();
@@ -311,9 +381,17 @@ public class AdministratorConnected extends javax.swing.JPanel {
     public javax.swing.JButton b_seemusics;
     public javax.swing.JButton b_seeplaylists;
     public javax.swing.JButton b_seerecommends;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jt_content;
+    public javax.swing.JList jl_email;
+    public javax.swing.JList jl_firstname;
+    private javax.swing.JList jl_members;
+    private javax.swing.JList jl_nickname;
+    private javax.swing.JList jl_password;
     private javax.swing.JLabel l_title;
     public javax.swing.JLabel l_tnumber;
     public javax.swing.JLabel l_username;
