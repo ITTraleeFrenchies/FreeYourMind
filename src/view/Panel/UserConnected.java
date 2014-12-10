@@ -35,7 +35,13 @@ public class UserConnected extends javax.swing.JPanel {
      */
     MemberDAO memberDAO = new MemberDAO();
     Member member = new Member();
+    FollowDAO followDAO = new FollowDAO();
+    FollowersDAO followersDAO = new FollowersDAO();
+    Follow follow = new Follow();
+    Followers followers = new Followers();
     String tnumber = "";
+    String nickname="";
+    int nbfollowers=0;
     
     public UserConnected() {
         initComponents();
@@ -64,14 +70,13 @@ public class UserConnected extends javax.swing.JPanel {
     }
     
     public void setTnumber(String tnumberToCreate){
-        FollowDAO followDAO = new FollowDAO();
-        FollowersDAO followersDAO = new FollowersDAO();
-        
+                
         tnumber = tnumberToCreate;
         member = memberDAO.findByTnumber(tnumber);
+        nickname=member.getNickname();
         
         l_tnumber1.setText(tnumber);
-        l_nickname.setText(tnumber);
+        l_nickname.setText(nickname);
         l_nbfollowers.setText(tnumber);
         
     }

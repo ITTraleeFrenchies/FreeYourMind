@@ -75,7 +75,7 @@ public class CLMainInterface extends JFrame {
                 }else if(cardHome.canConnectMember){
                     System.out.println(cardHome.memberConnected.getTnumber());
                     cardUserConnected.setTnumber(cardHome.memberConnected.getTnumber());
-                    cl.show(container, "UserConnected");
+                    cl.show(container, "userConnected");
                 }
             }
         });

@@ -52,25 +52,46 @@ public class FollowersDAO {
     }
     
     
-    public Followers find(int id) {
-        Followers followerUser = null;
+    public Followers findFollowed(String tnumber) {
+        Followers followersUser = null;
 
         openConnection();
         try {
-            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOWERS WHERE ID_FOLLOWERSLIST = '" + id +"';");
-            if (this.resultSet.first()) {
-                followerUser = new Followers(
-                        id,
-                        this.resultSet.getString("tnumber"),
-                        this.resultSet.getString("tnumber_follow")
+            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOWERS WHERE TNUMBER = '" + tnumber +"'");
+            if (this.resultSet.next()) {
+                followersUser = new Followers(
+                        this.resultSet.getInt("id_followerslist"),
+                        tnumber,
+                        this.resultSet.getString("tnumber_Follow")
                 );
             }
         } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + " error with the method find");
+            e.printStackTrace();
         }
         closeConnection();
 
-        return followerUser;
+        return followersUser;
+    }
+    
+    public Followers findFollower(String tnumber) {
+        Followers followersUser = null;
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOWERS WHERE TNUMBER_FOLLOW = '" + tnumber +"'");
+            if (this.resultSet.next()) {
+                followersUser = new Followers(
+                        this.resultSet.getInt("id_followerslist"),
+                        this.resultSet.getString("tnumber"),
+                        tnumber
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+
+        return followersUser;
     }
 
     public Followers create(Followers follower) {
@@ -146,6 +167,19 @@ public class FollowersDAO {
         closeConnection();
 
         return followersList;
+    }
+    
+    public int count(){
+        int count=0;
+        String sql="SELECT COUNT(*) FROM FOLLOWERS";
+        
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            count=this.resultSet.getInt("count(*)");
+            }catch (SQLException ex) {
+             System.out.println(ex.getErrorCode() + " error with the method find");
+        }
+        return count;
     }
 
 }
