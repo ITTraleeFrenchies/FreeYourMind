@@ -7,6 +7,7 @@
 package view.Panel;
 
 import entities.Member;
+import entities_DAO.FollowDAO;
 import entities_DAO.MemberDAO;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -62,7 +63,15 @@ public class UserConnected extends javax.swing.JPanel {
     }
     
     public void setTnumber(String tnumberToCreate){
+        FollowDAO followDAO = new FollowDAO();
+        
         tnumber = tnumberToCreate;
+        member = memberDAO.findByTnumber(tnumber);
+        
+        l_tnumber1.setText(tnumber);
+        
+        l_nbfollow.setText(tnumber);
+        
     }
     
 
@@ -80,7 +89,7 @@ public class UserConnected extends javax.swing.JPanel {
         tf_search = new javax.swing.JTextField();
         b_search = new javax.swing.JButton();
         l_news = new javax.swing.JLabel();
-        l_username = new javax.swing.JLabel();
+        l_nickname = new javax.swing.JLabel();
         l_tnumber1 = new javax.swing.JLabel();
         b_seeprofile = new javax.swing.JButton();
         b_seerecommend = new javax.swing.JButton();
@@ -112,8 +121,8 @@ public class UserConnected extends javax.swing.JPanel {
         l_news.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         l_news.setText("News Feed");
 
-        l_username.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        l_username.setText("User Name");
+        l_nickname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        l_nickname.setText("Nick name");
 
         l_tnumber1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         l_tnumber1.setText("T00000000");
@@ -202,25 +211,22 @@ public class UserConnected extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1)
+                            .addComponent(b_seefollowerslist)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(b_seefollowerslist)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(l_follow)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(l_nbfollow))
-                                    .addComponent(b_disconnect)
-                                    .addComponent(b_seerecommend)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(l_followers)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(l_nbfollowers))
-                                        .addComponent(b_seefollowlist))
-                                    .addComponent(b_seelibrary)
-                                    .addComponent(b_seeprofile)
-                                    .addComponent(l_username))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(l_follow)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(l_nbfollow))
+                            .addComponent(b_disconnect)
+                            .addComponent(b_seerecommend)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(l_followers)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(l_nbfollowers))
+                                .addComponent(b_seefollowlist))
+                            .addComponent(b_seelibrary)
+                            .addComponent(b_seeprofile)
+                            .addComponent(l_nickname))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))))
@@ -241,7 +247,7 @@ public class UserConnected extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_username)
+                        .addComponent(l_nickname)
                         .addGap(18, 18, 18)
                         .addComponent(b_seeprofile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -314,9 +320,9 @@ public class UserConnected extends javax.swing.JPanel {
     public javax.swing.JLabel l_nbfollow;
     public javax.swing.JLabel l_nbfollowers;
     private javax.swing.JLabel l_news;
+    public javax.swing.JLabel l_nickname;
     private javax.swing.JLabel l_title;
     public javax.swing.JLabel l_tnumber1;
-    public javax.swing.JLabel l_username;
     public javax.swing.JTextField tf_search;
     // End of variables declaration//GEN-END:variables
 }
