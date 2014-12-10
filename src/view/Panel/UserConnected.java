@@ -8,6 +8,7 @@ package view.Panel;
 
 import entities.Member;
 import entities_DAO.FollowDAO;
+import entities_DAO.FollowersDAO;
 import entities_DAO.MemberDAO;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -64,13 +65,14 @@ public class UserConnected extends javax.swing.JPanel {
     
     public void setTnumber(String tnumberToCreate){
         FollowDAO followDAO = new FollowDAO();
+        FollowersDAO followersDAO = new FollowersDAO();
         
         tnumber = tnumberToCreate;
         member = memberDAO.findByTnumber(tnumber);
         
         l_tnumber1.setText(tnumber);
-        
-        l_nbfollow.setText(tnumber);
+        l_nickname.setText(tnumber);
+        l_nbfollowers.setText(tnumber);
         
     }
     

@@ -31,7 +31,8 @@ public class Profile extends javax.swing.JPanel {
     /**
      * Creates new form Profile
      */
-    String tnumberConnected = "";
+    MemberDAO memberDAO =new MemberDAO();
+    Member member = new Member();
 
     public Profile() {
         initComponents();
@@ -74,7 +75,17 @@ public class Profile extends javax.swing.JPanel {
     }
 
     public void getTnumberConnected(String tnumber) {
-        tnumberConnected = tnumber;
+        member = memberDAO.findByTnumber(tnumber);
+        
+        this.t_tnumber.setText(member.getTnumber());
+        this.t_password.setText(member.getPassword());
+         this.t_password1.setText(member.getPassword());
+         this.t_nickname.setText(member.getNickname());
+         this.t_surname.setText(member.getSurname());
+         this.t_name.setText(member.getFirstname());
+         this.t_email.setText(member.getEmail_addr());
+         
+
     }
 
     /**
@@ -145,6 +156,7 @@ public class Profile extends javax.swing.JPanel {
         l_asterix6 = new javax.swing.JLabel();
         l_asterix7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        l_error = new javax.swing.JLabel();
 
         tf_search1.setText("Enter an artist, a music, an album...");
         tf_search1.setToolTipText("");
@@ -316,6 +328,10 @@ public class Profile extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
         jLabel1.setText("Fiels marqued by this asterix must are mandatory");
 
+        l_error.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        l_error.setForeground(new java.awt.Color(204, 51, 0));
+        l_error.setText("Fill correctly the field.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -373,9 +389,7 @@ public class Profile extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(t_dateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(l_indication2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(l_asterix6))
+                                .addComponent(l_indication2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_county)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -389,7 +403,9 @@ public class Profile extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_email)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(l_asterix6))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_street)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -397,7 +413,8 @@ public class Profile extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(l_city)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(l_error))
                         .addGap(0, 55, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -462,12 +479,12 @@ public class Profile extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(l_dateBirth)
                             .addComponent(t_dateBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(l_indication2)
-                            .addComponent(l_asterix6))
+                            .addComponent(l_indication2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(l_email)
-                            .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(l_asterix6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(l_street)
@@ -480,12 +497,14 @@ public class Profile extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(l_city)
                             .addComponent(t_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
+                        .addGap(18, 18, 18)
+                        .addComponent(l_error)
+                        .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(b_saveModification)
                             .addComponent(l_asterix7)
                             .addComponent(jLabel1))))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -527,7 +546,7 @@ public class Profile extends javax.swing.JPanel {
 
         if (!tnumber.equalsIgnoreCase("") && !password.equalsIgnoreCase("")
                 && !nickname.equalsIgnoreCase("") && !this.t_password1.getText().equalsIgnoreCase("")
-                && dateBirth != null) {
+                && !email.equalsIgnoreCase("")) {
             member = new Member();
             member.setTnumber(tnumber);
             member.setPassword(password);
@@ -539,15 +558,12 @@ public class Profile extends javax.swing.JPanel {
             member.setCity(city);
             member.setCounty(county);
         } else {
-            //  this.l_error.setVisible(true);
+              this.l_error.setVisible(true);
         }
 
         if (member != null && memberDAO.findByTnumber(tnumber) == null) {
-            //  memberDAO.create(member);
-            // canBeConnected = true;
+             memberDAO.update(member);
         }
-
-        // canBeConnected = true;
     }//GEN-LAST:event_b_saveModificationActionPerformed
 
     private void b_editProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_editProfileActionPerformed
@@ -593,6 +609,7 @@ public class Profile extends javax.swing.JPanel {
     private javax.swing.JLabel l_county;
     private javax.swing.JLabel l_dateBirth;
     private javax.swing.JLabel l_email;
+    private javax.swing.JLabel l_error;
     private javax.swing.JLabel l_follow1;
     private javax.swing.JLabel l_followers1;
     private javax.swing.JLabel l_indication;
