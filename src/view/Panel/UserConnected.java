@@ -6,6 +6,8 @@
 
 package view.Panel;
 
+import entities.Member;
+import entities_DAO.MemberDAO;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -29,6 +31,9 @@ public class UserConnected extends javax.swing.JPanel {
     /**
      * Creates new form UserConnected
      */
+    MemberDAO memberDAO = new MemberDAO();
+    Member member = new Member();
+    String tnumber = "";
     
     public UserConnected() {
         initComponents();
@@ -54,6 +59,10 @@ public class UserConnected extends javax.swing.JPanel {
                 tf_search.setText("");
             }
         });
+    }
+    
+    public void setTnumber(String tnumberToCreate){
+        tnumber = tnumberToCreate;
     }
     
 

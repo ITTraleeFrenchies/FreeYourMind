@@ -131,6 +131,7 @@ public class CLMainInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0){
                cl.show(container, "profile");
+               cardUserConnected.setTnumber(cardHome.memberConnected.getTnumber());
             }
         });
 
