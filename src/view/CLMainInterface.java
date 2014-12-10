@@ -5,6 +5,7 @@
  */
 package view;
 
+import entities.Library;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import javax.swing.JPanel;
 import view.Panel.AdministratorConnected;
 import view.Panel.Home;
 import view.Panel.Profile;
+import view.Panel.SeeLibrary;
 import view.Panel.Subscribe;
 import view.Panel.Terms;
 import view.Panel.UserConnected;
@@ -33,6 +35,7 @@ public class CLMainInterface extends JFrame {
     private final UserConnected cardUserConnected;
     private final Profile cardProfile;
     private final AdministratorConnected cardAdministratorConnected;
+    private final SeeLibrary cardLibrary;
     
     public CLMainInterface() throws IOException {
         this.setSize(700, 700);
@@ -43,6 +46,7 @@ public class CLMainInterface extends JFrame {
         cardUserConnected = new UserConnected();
         cardProfile = new Profile();
         cardAdministratorConnected = new AdministratorConnected();
+        cardLibrary = new SeeLibrary();
         
         cl = new CardLayout();
 
@@ -53,6 +57,7 @@ public class CLMainInterface extends JFrame {
         container.add(cardUserConnected, "userConnected");
         container.add(cardProfile, "profile");
         container.add(cardAdministratorConnected, "administratorConnected");
+        container.add(cardLibrary, "library");
         
         // =============== PANEL HOME ==================
         cardHome.b_subscribe.addActionListener(new ActionListener() {
@@ -150,6 +155,18 @@ public class CLMainInterface extends JFrame {
               //container.
             }
     });
+         
+         // =============== PANEL SEE LIBRARY ==================
+        cardHome.b_login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+             if(cardHome.canConnectMember) {
+                 cardLibrary.setTnumber(cardHome.memberConnected.getTnumber());
+             }
+            }
+    });
+         
+         
         
         getContentPane().add(container, BorderLayout.CENTER);
  

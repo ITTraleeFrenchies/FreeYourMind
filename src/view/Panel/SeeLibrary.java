@@ -5,6 +5,8 @@
  */
 package view.Panel;
 
+import entities.Member;
+import entities_DAO.MemberDAO;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -17,10 +19,19 @@ public class SeeLibrary extends javax.swing.JPanel {
     /**
      * Creates new form SeeLibrary
      */
+    MemberDAO memberDAO = new MemberDAO();
+    Member member = new Member();
+    String tnumber ="";
+    
     public SeeLibrary() {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
+    }
+    
+    public void setTnumber(String tnumberToGet){
+             tnumber =tnumberToGet;
+                System.out.println(tnumber);
     }
 
     /**
