@@ -160,6 +160,16 @@ public class CLMainInterface extends JFrame {
              }
             }
     });
+        
+        // =============== PANEL SEE PROFILE ==================
+        cardHome.b_login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+             if(cardHome.canConnectMember) {
+                 cardProfile.getTnumberConnected(cardHome.memberConnected.getTnumber());
+             }
+            }
+    });
          
          
         

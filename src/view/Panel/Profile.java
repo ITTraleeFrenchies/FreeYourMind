@@ -76,7 +76,6 @@ public class Profile extends javax.swing.JPanel {
 
     public void getTnumberConnected(String tnumber) {
         member = memberDAO.findByTnumber(tnumber);
-        
         this.t_tnumber.setText(member.getTnumber());
         this.t_password.setText(member.getPassword());
          this.t_password1.setText(member.getPassword());

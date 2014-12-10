@@ -18,7 +18,7 @@ public class TestFollowers {
         FollowersDAO followersDAO = new FollowersDAO();
 
         //TEST FOR FIND BY ID_LIKELIST
-        Followers follower = followersDAO.find(1);
+      /*  Followers follower = followersDAO.find(1);
         System.out.println(follower.getId_followerslist());
 
         //TEST FOR CREATE
@@ -37,6 +37,6 @@ public class TestFollowers {
         List<Followers> list_followers = followersDAO.findAll();
         for (Followers aFollower : list_followers) {
             System.out.println(aFollower.getId_followerslist() + " - " + aFollower.getTnumber());
-        }
+        }*/
     }
 }
