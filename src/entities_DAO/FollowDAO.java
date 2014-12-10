@@ -50,16 +50,16 @@ public class FollowDAO {
 
     }
     
-    public Follow find(int id) {
+    public Follow find(String tnumber) {
         Follow followUser = null;
 
         openConnection();
         try {
-            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOW WHERE ID_FOLLOWLIST = '" + id +"'");
+            this.resultSet = statement.executeQuery("SELECT * FROM FOLLOW WHERE TNUMBER = '" + tnumber +"'");
             if (this.resultSet.next()) {
                 followUser = new Follow(
-                        id,
-                        this.resultSet.getString("tnumber"),
+                        this.resultSet.getInt("id_followlist"),
+                        tnumber,
                         this.resultSet.getString("nicknameFollowed")
                 );
             }
@@ -145,6 +145,19 @@ public class FollowDAO {
         closeConnection();
 
         return followedList;
+    }
+    
+        public int count(){
+        int count=0;
+        String sql="SELECT COUNT(*) FROM FOLLOW";
+        
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            count=this.resultSet.getInt("count(*)");
+            }catch (SQLException ex) {
+             System.out.println(ex.getErrorCode() + " error with the method find");
+        }
+        return count;
     }
 
 }
