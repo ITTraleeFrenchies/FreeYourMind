@@ -72,17 +72,17 @@ public class CLMainInterface extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 if(cardHome.canConnectAdmin){
                     cl.show(container, "administratorConnected");
-                }
-               
-            }
-        });
-          cardHome.b_login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if(cardHome.canConnectMember){
+                }else if(cardHome.canConnectMember){
+                    System.out.println(cardHome.memberConnected.getTnumber());
+                    cardUserConnected.setTnumber(cardHome.memberConnected.getTnumber());
                     cl.show(container, "UserConnected");
                 }
-               
+            }
+        });
+          cardUserConnected.b_seeprofile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cl.show(container, "profile");
             }
         });
         
@@ -127,13 +127,7 @@ public class CLMainInterface extends JFrame {
             }
         });
         
-        cardUserConnected.b_seeprofile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0){
-               cl.show(container, "profile");
-               cardUserConnected.setTnumber(cardHome.memberConnected.getTnumber());
-            }
-        });
+        
 
             
         // =============== PANEL PROFILE ==================
