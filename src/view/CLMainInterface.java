@@ -173,12 +173,6 @@ public class CLMainInterface extends JFrame {
                 cl.show(container, "home");
             }
         });
-        cardAdministratorConnected.b_seemembers.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                //container.
-            }
-        });
 
         // =============== PANEL SEE LIBRARY ==================
         cardHome.b_login.addActionListener(new ActionListener() {
@@ -197,6 +191,20 @@ public class CLMainInterface extends JFrame {
                 if (cardHome.canConnectMember) {
                     cardProfile.getTnumberConnected(cardHome.memberConnected.getTnumber());
                 }
+            }
+        });
+         // =============== PANEL SEE FOLLOW ==================
+        cardFollow.b_back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                     cl.show(container, "userConnected");
+            }
+        });
+         // =============== PANEL SEE FOLLOWERS ==================
+        cardFollowers.b_backhome.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                     cl.show(container, "userConnected");
             }
         });
 
