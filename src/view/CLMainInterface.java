@@ -16,6 +16,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import view.Panel.AdministratorConnected;
+import view.Panel.SeeFollow;
 import view.Panel.Home;
 import view.Panel.Profile;
 import view.Panel.SeeLibrary;
@@ -27,7 +28,7 @@ public class CLMainInterface extends JFrame {
 
     private CardLayout cl;
     private JPanel container;
-    
+
     // ========= ALL PANELS
     private final Home cardHome;
     private final Subscribe cardSubscribe;
@@ -36,7 +37,8 @@ public class CLMainInterface extends JFrame {
     private final Profile cardProfile;
     private final AdministratorConnected cardAdministratorConnected;
     private final SeeLibrary cardLibrary;
-    
+    private final SeeFollow cardFollow;
+
     public CLMainInterface() throws IOException {
         this.setSize(700, 700);
         container = new JPanel();
@@ -47,7 +49,8 @@ public class CLMainInterface extends JFrame {
         cardProfile = new Profile();
         cardAdministratorConnected = new AdministratorConnected();
         cardLibrary = new SeeLibrary();
-        
+        cardFollow = new SeeFollow();
+
         cl = new CardLayout();
 
         container.setLayout(cl);
@@ -58,44 +61,44 @@ public class CLMainInterface extends JFrame {
         container.add(cardProfile, "profile");
         container.add(cardAdministratorConnected, "administratorConnected");
         container.add(cardLibrary, "library");
-        
+        container.add(cardFollow, "follow");
+
         // =============== PANEL HOME ==================
         cardHome.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                     cl.next(container);
-               
+                cl.next(container);
+
             }
         });
-         cardHome.b_login.addActionListener(new ActionListener() {
+        cardHome.b_login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if(cardHome.canConnectAdmin){
-                    cardAdministratorConnected.setTnumberAdmin(cardHome.adminConnected.getTnumber());                    
+                if (cardHome.canConnectAdmin) {
+                    cardAdministratorConnected.setTnumberAdmin(cardHome.adminConnected.getTnumber());
                     cl.show(container, "administratorConnected");
-                }else if(cardHome.canConnectMember){
+                } else if (cardHome.canConnectMember) {
                     System.out.println(cardHome.memberConnected.getTnumber());
                     cardUserConnected.setTnumber(cardHome.memberConnected.getTnumber());
                     cl.show(container, "userConnected");
                 }
             }
         });
-          cardUserConnected.b_seeprofile.addActionListener(new ActionListener() {
+        cardUserConnected.b_seeprofile.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               cl.show(container, "profile");
+            public void actionPerformed(ActionEvent arg0) {
+                cl.show(container, "profile");
             }
         });
-        
-          // =============== PANEL SUBSCRIBE ==================
+
+        // =============== PANEL SUBSCRIBE ==================
         cardSubscribe.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if(cardSubscribe.canBeConnected){
-                     cl.next(container);
+                if (cardSubscribe.canBeConnected) {
+                    cl.next(container);
                 }
-                    
-               
+
             }
         });
         cardSubscribe.b_backHome.addActionListener(new ActionListener() {
@@ -103,92 +106,91 @@ public class CLMainInterface extends JFrame {
                 cl.first(container);
             }
         });
-        
-        
-          // =============== PANEL TERMS ==================
+
+        // =============== PANEL TERMS ==================
         cardTerms.b_subscribe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if(cardTerms.canSubscribe){
+                if (cardTerms.canSubscribe) {
                     cl.next(container);
                 }
-             }
+            }
         });
         cardTerms.b_previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                    cl.show(container, "subscribe");
-             }
+                cl.show(container, "subscribe");
+            }
         });
-         // =============== PANEL USER CONNECTED ==================
+        // =============== PANEL USER CONNECTED ==================
         cardUserConnected.b_disconnect.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
+            public void actionPerformed(ActionEvent arg0) {
                 cardUserConnected.reinitUser();
                 cardHome.setCanConnectMember(false);
                 cl.first(container);
             }
         });
-        
-         cardUserConnected.b_seelibrary.addActionListener(new ActionListener() {
+
+        cardUserConnected.b_seelibrary.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               cl.show(container, "library");
+            public void actionPerformed(ActionEvent arg0) {
+                cl.show(container, "library");
             }
         });
-        
-        
+           cardUserConnected.b_seefollowlist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                cardFollow.setTnumber(cardHome.memberConnected.getTnumber());
+                cl.show(container, "follow");
+            }
+        });
 
-            
         // =============== PANEL PROFILE ==================
         cardProfile.b_backHome.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               cl.show(container, "userConnected");
+            public void actionPerformed(ActionEvent arg0) {
+                cl.show(container, "userConnected");
             }
-    });
+        });
         // =============== PANEL ADMINISTRATOR CONNECTED ==================
         cardAdministratorConnected.b_disconnect.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-               cardAdministratorConnected.reinitUser();
-               cardHome.setCanConnectAdmin(false);
-               cl.show(container, "home");
+            public void actionPerformed(ActionEvent arg0) {
+                cardAdministratorConnected.reinitUser();
+                cardHome.setCanConnectAdmin(false);
+                cl.show(container, "home");
             }
-    });
-         cardAdministratorConnected.b_seemembers.addActionListener(new ActionListener() {
+        });
+        cardAdministratorConnected.b_seemembers.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-              //container.
+            public void actionPerformed(ActionEvent arg0) {
+                //container.
             }
-    });
-         
-         // =============== PANEL SEE LIBRARY ==================
+        });
+
+        // =============== PANEL SEE LIBRARY ==================
         cardHome.b_login.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-             if(cardHome.canConnectMember) {
-                 cardLibrary.setTnumber(cardHome.memberConnected.getTnumber());
-             }
+            public void actionPerformed(ActionEvent arg0) {
+                if (cardHome.canConnectMember) {
+                    cardLibrary.setTnumber(cardHome.memberConnected.getTnumber());
+                }
             }
-    });
-        
+        });
+
         // =============== PANEL SEE PROFILE ==================
         cardHome.b_login.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0){
-             if(cardHome.canConnectMember) {
-                 cardProfile.getTnumberConnected(cardHome.memberConnected.getTnumber());
-             }
+            public void actionPerformed(ActionEvent arg0) {
+                if (cardHome.canConnectMember) {
+                    cardProfile.getTnumberConnected(cardHome.memberConnected.getTnumber());
+                }
             }
-    });
-         
-         
-        
+        });
+
         getContentPane().add(container, BorderLayout.CENTER);
- 
-        
-        
+
     }
 
     public static void main(String[] args) throws IOException {
@@ -199,7 +201,7 @@ public class CLMainInterface extends JFrame {
         cl.setSize(700, 700);
         cl.setResizable(false);
         cl.setLocationRelativeTo(null);
-     //   cl.setIconImage(new ImageIcon("src/Ressources/logo.PNG").getImage());
+        //   cl.setIconImage(new ImageIcon("src/Ressources/logo.PNG").getImage());
 
     }
 }

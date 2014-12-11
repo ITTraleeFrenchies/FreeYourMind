@@ -22,6 +22,10 @@ public class Follow {
         this.nicknameFollowed = nicknameFollowed;
     }
 
+    public Follow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIDFollowlist() {
         return idFollowlist;
     }

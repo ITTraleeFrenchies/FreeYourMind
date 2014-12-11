@@ -3,20 +3,54 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view.Panel;
+
+import entities.Follow;
+import entities.Member;
+import entities_DAO.FollowDAO;
+import entities_DAO.MemberDAO;
+import java.util.List;
 
 /**
  *
  * @author t00178730
  */
-public class Follow extends javax.swing.JPanel {
+public class SeeFollow extends javax.swing.JPanel {
 
     /**
-     * Creates new form Follow
+     * Creates new form SeeFollow
      */
-    public Follow() {
+    MemberDAO memberDAO = new MemberDAO();
+    Member member = new Member();
+    FollowDAO followDAO = new FollowDAO();
+    Follow follow = new Follow();
+
+    public SeeFollow() {
         initComponents();
+    }
+
+    public void setTnumber(String tnumber) {
+        tnumber = tnumber;
+        member = memberDAO.findByTnumber(tnumber);
+        follow = followDAO.find(tnumber);
+        
+        l_tnumber1.setText(tnumber);
+        l_username.setText(member.getNickname());
+        l_nbfollow.setText(String.valueOf(followDAO.count(tnumber)));
+        
+        List<Follow> allFollow= null;
+        if(followDAO.findAll() != null){
+            allFollow = followDAO.findAll();
+        }
+        
+        String[] listFollow = new String[allFollow.size()];
+
+        int i = 0;
+        for (Follow follow : allFollow) {
+            listFollow[i] = follow.getNicknameFollowed();
+            i++;
+        }
+        jl_nickname.setListData(listFollow);
     }
 
     /**
@@ -35,10 +69,11 @@ public class Follow extends javax.swing.JPanel {
         b_seeprofile = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
-        b_seefollowlist = new javax.swing.JButton();
+        b_seeProfile = new javax.swing.JButton();
         l_news = new javax.swing.JLabel();
-        textArea1 = new java.awt.TextArea();
         l_username = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_nickname = new javax.swing.JList();
 
         setPreferredSize(new java.awt.Dimension(700, 700));
 
@@ -63,10 +98,10 @@ public class Follow extends javax.swing.JPanel {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        b_seefollowlist.setText("See profile");
-        b_seefollowlist.addActionListener(new java.awt.event.ActionListener() {
+        b_seeProfile.setText("See profile");
+        b_seeProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seefollowlistActionPerformed(evt);
+                b_seeProfileActionPerformed(evt);
             }
         });
 
@@ -76,14 +111,17 @@ public class Follow extends javax.swing.JPanel {
         l_username.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         l_username.setText("User Name");
 
+        jl_nickname.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jl_nickname);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(l_title)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,33 +135,40 @@ public class Follow extends javax.swing.JPanel {
                         .addGap(5, 5, 5)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(b_seefollowlist)
-                        .addGap(120, 120, 120)
-                        .addComponent(l_follow)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(l_nbfollow)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(l_news)
-                            .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(b_seeProfile)
+                                .addGap(120, 120, 120)
+                                .addComponent(l_follow)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(l_nbfollow)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(l_news)
+                                .addContainerGap(335, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(l_title)
+                .addGap(87, 87, 87))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(l_title)
-                .addGap(97, 97, 97)
+                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_news)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
@@ -131,15 +176,19 @@ public class Follow extends javax.swing.JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(l_username)
                             .addGap(18, 18, 18)
-                            .addComponent(b_seeprofile))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(b_seeprofile)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(l_news)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_follow)
                     .addComponent(l_nbfollow)
-                    .addComponent(b_seefollowlist))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(b_seeProfile))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -147,22 +196,23 @@ public class Follow extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_b_seeprofileActionPerformed
 
-    private void b_seefollowlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowlistActionPerformed
+    private void b_seeProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeProfileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_b_seefollowlistActionPerformed
+    }//GEN-LAST:event_b_seeProfileActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton b_seefollowlist;
+    public javax.swing.JButton b_seeProfile;
     public javax.swing.JButton b_seeprofile;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JList jl_nickname;
     private javax.swing.JLabel l_follow;
     public javax.swing.JLabel l_nbfollow;
     private javax.swing.JLabel l_news;
     private javax.swing.JLabel l_title;
     public javax.swing.JLabel l_tnumber1;
     public javax.swing.JLabel l_username;
-    private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }
