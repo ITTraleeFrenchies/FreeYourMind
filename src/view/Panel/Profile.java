@@ -38,6 +38,7 @@ public class Profile extends javax.swing.JPanel {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
+        l_error.setVisible(false);
         
         this.t_city.setEditable(false);
         this.t_county.setEditable(false);
