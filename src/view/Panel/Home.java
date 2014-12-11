@@ -236,6 +236,9 @@ public class Home extends javax.swing.JPanel {
     }//GEN-LAST:event_b_retrieveActionPerformed
 
     private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
+         this.l_errorTnumber.setVisible(false);
+        this.l_errorPassword.setVisible(false);
+        
         String tnumber = "";
         String password = "";
 
