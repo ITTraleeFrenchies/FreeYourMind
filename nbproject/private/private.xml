@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/entities_DAO/FollowDAO.java</file>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/entities_DAO/AdministratorDAO.java</file>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/entities/Follow.java</file>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/entities_DAO/MusicDAO.java</file>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/Controller/TestPlaylist.java</file>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/entities_DAO/FollowersDAO.java</file>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/entities_DAO/PlaylistDAO.java</file>
+            <file>file:/C:/Users/Here%20we%20go/Documents/NetBeansProjects/turbo-bear/src/entities/Followers.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -6,9 +6,13 @@
 package view.Panel;
 
 import entities.Member;
+import entities.Playlist;
 import entities_DAO.MemberDAO;
+import entities_DAO.PlaylistDAO;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,10 +25,14 @@ public class SeeLibrary extends javax.swing.JPanel {
      */
     MemberDAO memberDAO = new MemberDAO();
     Member member = new Member();
-    String tnumber ="";
+    PlaylistDAO playlistDAO = new PlaylistDAO();
+    List<Playlist> playlists = new ArrayList();
+    
+    String tnumber ="t10000000";
     
     public SeeLibrary() {
         initComponents();
+        
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
     }
@@ -47,8 +55,7 @@ public class SeeLibrary extends javax.swing.JPanel {
         username = new javax.swing.JLabel();
         user_tnumber = new javax.swing.JLabel();
         libraryLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listPlaylistMusic = new javax.swing.JList();
+        jComboBox1 = new javax.swing.JComboBox();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
@@ -62,12 +69,7 @@ public class SeeLibrary extends javax.swing.JPanel {
         libraryLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         libraryLabel.setText("Library");
 
-        listPlaylistMusic.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "item1 item2 item3", "item4 item5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(listPlaylistMusic);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,15 +82,15 @@ public class SeeLibrary extends javax.swing.JPanel {
                         .addGap(1, 1, 1)
                         .addComponent(user_tnumber))
                     .addComponent(username))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l_title)
                     .addComponent(libraryLabel))
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 62, Short.MAX_VALUE))
+                .addGap(214, 214, 214)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,18 +103,17 @@ public class SeeLibrary extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username)
                     .addComponent(libraryLabel))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(513, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel l_title;
     private javax.swing.JLabel libraryLabel;
-    private javax.swing.JList listPlaylistMusic;
     public javax.swing.JLabel user_tnumber;
     public javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
