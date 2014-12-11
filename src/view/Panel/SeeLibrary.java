@@ -96,16 +96,7 @@ public class SeeLibrary extends javax.swing.JPanel {
         libraryLabel = new javax.swing.JLabel();
         comboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        b_disconnect1 = new javax.swing.JButton();
-        l_follow = new javax.swing.JLabel();
-        l_nbfollow = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        b_seefollowlist = new javax.swing.JButton();
-        l_followers = new javax.swing.JLabel();
-        l_nbfollowers = new javax.swing.JLabel();
-        b_seefollowerslist = new javax.swing.JButton();
-        b_seeprofile = new javax.swing.JButton();
-        b_seerecommend = new javax.swing.JButton();
+        b_back = new javax.swing.JButton();
         b_seelibrary = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listNames = new javax.swing.JList();
@@ -147,50 +138,10 @@ public class SeeLibrary extends javax.swing.JPanel {
 
         jLabel1.setText("Playlists");
 
-        b_disconnect1.setText("Disconnect");
-        b_disconnect1.addActionListener(new java.awt.event.ActionListener() {
+        b_back.setText("Back");
+        b_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_disconnect1ActionPerformed(evt);
-            }
-        });
-
-        l_follow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        l_follow.setText("Your follow list");
-
-        l_nbfollow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        l_nbfollow.setText("0");
-
-        b_seefollowlist.setText("See My Follow List");
-        b_seefollowlist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seefollowlistActionPerformed(evt);
-            }
-        });
-
-        l_followers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        l_followers.setText("Followers");
-
-        l_nbfollowers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        l_nbfollowers.setText("0");
-
-        b_seefollowerslist.setText("See My Followers");
-        b_seefollowerslist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seefollowerslistActionPerformed(evt);
-            }
-        });
-
-        b_seeprofile.setText("See my profile");
-        b_seeprofile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seeprofileActionPerformed(evt);
-            }
-        });
-
-        b_seerecommend.setText("See my recommendations");
-        b_seerecommend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seerecommendActionPerformed(evt);
+                b_backActionPerformed(evt);
             }
         });
 
@@ -233,27 +184,14 @@ public class SeeLibrary extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(user_tnumber))
                             .addComponent(username)
-                            .addComponent(jSeparator2)
-                            .addComponent(b_seefollowerslist)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_follow)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(l_nbfollow))
-                            .addComponent(b_disconnect1)
-                            .addComponent(b_seerecommend)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(l_followers)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(l_nbfollowers))
-                            .addComponent(b_seefollowlist, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(b_seelibrary)
-                            .addComponent(b_seeprofile))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(b_back)
+                            .addComponent(b_seelibrary))
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,23 +251,18 @@ public class SeeLibrary extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(b_seeprofile)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(b_seelibrary)
-                        .addGap(11, 11, 11)
-                        .addComponent(b_seerecommend)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_disconnect1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(b_back)
+                        .addGap(48, 48, 48))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -337,47 +270,21 @@ public class SeeLibrary extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addGap(9, 9, 9)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_follow)
-                    .addComponent(l_nbfollow)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(b_seefollowlist)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(l_followers)
-                            .addComponent(l_nbfollowers))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(b_seefollowerslist))
                     .addComponent(jScrollPane7)
                     .addComponent(jScrollPane6))
                 .addContainerGap(194, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void b_disconnect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_disconnect1ActionPerformed
+    private void b_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_b_disconnect1ActionPerformed
-
-    private void b_seefollowlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowlistActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_seefollowlistActionPerformed
-
-    private void b_seefollowerslistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowerslistActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_seefollowerslistActionPerformed
-
-    private void b_seeprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeprofileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_seeprofileActionPerformed
-
-    private void b_seerecommendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seerecommendActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_seerecommendActionPerformed
+    }//GEN-LAST:event_b_backActionPerformed
 
     private void b_seelibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seelibraryActionPerformed
         PlaylistDAO playlistDAO = new PlaylistDAO();
@@ -464,12 +371,8 @@ public class SeeLibrary extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton b_disconnect1;
-    public javax.swing.JButton b_seefollowerslist;
-    public javax.swing.JButton b_seefollowlist;
+    public javax.swing.JButton b_back;
     public javax.swing.JButton b_seelibrary;
-    public javax.swing.JButton b_seeprofile;
-    public javax.swing.JButton b_seerecommend;
     private javax.swing.JComboBox comboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -484,11 +387,6 @@ public class SeeLibrary extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel l_follow;
-    private javax.swing.JLabel l_followers;
-    public javax.swing.JLabel l_nbfollow;
-    public javax.swing.JLabel l_nbfollowers;
     private javax.swing.JLabel l_title;
     private javax.swing.JLabel libraryLabel;
     private javax.swing.JList listAlbumTitle;
