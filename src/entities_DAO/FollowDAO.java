@@ -132,7 +132,7 @@ public class FollowDAO {
             this.resultSet = statement.executeQuery("SELECT * FROM FOLLOW");
             if (this.resultSet.next()) {
                 follow = new Follow(
-                        this.resultSet.getInt("idFollowlist"),
+                        this.resultSet.getInt("id_Followlist"),
                         this.resultSet.getString("tnumber"),
                         this.resultSet.getString("nicknameFollowed")
                 );
