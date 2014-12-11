@@ -5,7 +5,9 @@
  */
 package view.Panel;
 
+import entities.Administrator;
 import entities.Member;
+import entities_DAO.AdministratorDAO;
 import entities_DAO.MemberDAO;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -35,6 +37,10 @@ public class AdministratorConnected extends javax.swing.JPanel {
     /**
      * Creates new form AdministratorConnected
      */
+    
+    AdministratorDAO adminDAO = new AdministratorDAO();
+    Administrator admin = new Administrator();
+    
     public AdministratorConnected() {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
@@ -127,8 +133,18 @@ public class AdministratorConnected extends javax.swing.JPanel {
                 tf_search.setText("");
             }
         });
+        
+        
 
     }
+    
+    public void setTnumberAdmin(String tnumberAdmin){
+       admin = adminDAO.findByTnumber(tnumberAdmin);
+    }
+     public void reinitUser(){
+        admin = null;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
