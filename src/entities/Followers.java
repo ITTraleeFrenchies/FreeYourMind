@@ -21,6 +21,10 @@ public class Followers {
          this.Tnumber_follow = Tnumber_follow;
     }
 
+    public Followers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getTnumber_follow() {
         return Tnumber_follow;
     }

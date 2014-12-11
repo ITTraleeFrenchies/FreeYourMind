@@ -16,9 +16,10 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import view.Panel.AdministratorConnected;
-import view.Panel.SeeFollow;
 import view.Panel.Home;
 import view.Panel.Profile;
+import view.Panel.SeeFollow;
+import view.Panel.SeeFollowers;
 import view.Panel.SeeLibrary;
 import view.Panel.Subscribe;
 import view.Panel.Terms;
@@ -38,6 +39,7 @@ public class CLMainInterface extends JFrame {
     private final AdministratorConnected cardAdministratorConnected;
     private final SeeLibrary cardLibrary;
     private final SeeFollow cardFollow;
+    private final SeeFollowers cardFollowers;
 
     public CLMainInterface() throws IOException {
         this.setSize(700, 700);
@@ -50,6 +52,7 @@ public class CLMainInterface extends JFrame {
         cardAdministratorConnected = new AdministratorConnected();
         cardLibrary = new SeeLibrary();
         cardFollow = new SeeFollow();
+        cardFollowers = new SeeFollowers();
 
         cl = new CardLayout();
 
@@ -62,7 +65,8 @@ public class CLMainInterface extends JFrame {
         container.add(cardAdministratorConnected, "administratorConnected");
         container.add(cardLibrary, "library");
         container.add(cardFollow, "follow");
-
+        container.add(cardFollowers, "followers");
+        
         // =============== PANEL HOME ==================
         cardHome.b_subscribe.addActionListener(new ActionListener() {
             @Override
@@ -138,11 +142,18 @@ public class CLMainInterface extends JFrame {
                 cl.show(container, "library");
             }
         });
-           cardUserConnected.b_seefollowlist.addActionListener(new ActionListener() {
+        cardUserConnected.b_seefollowlist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 cardFollow.setTnumber(cardHome.memberConnected.getTnumber());
                 cl.show(container, "follow");
+            }
+        });
+        cardUserConnected.b_seefollowerslist.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                cardFollowers.setTnumber(cardHome.memberConnected.getTnumber());
+                cl.show(container, "followers");
             }
         });
 

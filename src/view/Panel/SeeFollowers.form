@@ -21,45 +21,37 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="82" max="32767" attributes="0"/>
-              <Component id="l_title" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="l_tnumber1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="l_username" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="b_seeprofile" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="l_username" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="b_backhome" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="l_tnumber1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="jSeparator2" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="b_seefollowlist" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="l_follow" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="l_title" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="l_nbfollow" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jSeparator1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="l_news" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="textArea1" min="-2" pref="513" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                      <Component id="b_seeprofile" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="71" max="32767" attributes="0"/>
+                      <Component id="l_follow" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="l_nbfollow" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="l_news" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="246" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -70,33 +62,29 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="l_title" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="l_news" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="l_news" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textArea1" min="-2" pref="295" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jSeparator2" min="-2" pref="103" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="l_tnumber1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="l_username" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="b_seeprofile" min="-2" max="-2" attributes="0"/>
+                          <Component id="b_backhome" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="jScrollPane2" min="-2" pref="339" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="117" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="l_follow" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="l_nbfollow" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="b_seefollowlist" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="b_seeprofile" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="158" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -129,14 +117,12 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator1">
-    </Component>
-    <Component class="javax.swing.JButton" name="b_seefollowlist">
+    <Component class="javax.swing.JButton" name="b_seeprofile">
       <Properties>
         <Property name="text" type="java.lang.String" value="See profile"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_seefollowlistActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_seeprofileActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -172,23 +158,40 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="b_seeprofile">
+    <Component class="javax.swing.JButton" name="b_backhome">
       <Properties>
         <Property name="text" type="java.lang.String" value="Back Home"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_seeprofileActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_backhomeActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
-    </Component>
-    <Component class="java.awt.TextArea" name="textArea1">
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator2">
       <Properties>
         <Property name="orientation" type="int" value="1"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="j1">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
