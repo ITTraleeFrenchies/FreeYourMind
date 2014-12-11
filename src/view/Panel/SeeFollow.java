@@ -66,7 +66,7 @@ public class SeeFollow extends javax.swing.JPanel {
         l_tnumber1 = new javax.swing.JLabel();
         l_title = new javax.swing.JLabel();
         l_nbfollow = new javax.swing.JLabel();
-        b_seeprofile = new javax.swing.JButton();
+        b_back = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         b_seeProfile = new javax.swing.JButton();
@@ -89,10 +89,10 @@ public class SeeFollow extends javax.swing.JPanel {
         l_nbfollow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         l_nbfollow.setText("0");
 
-        b_seeprofile.setText("Back Home");
-        b_seeprofile.addActionListener(new java.awt.event.ActionListener() {
+        b_back.setText("Back Home");
+        b_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seeprofileActionPerformed(evt);
+                b_backActionPerformed(evt);
             }
         });
 
@@ -131,7 +131,7 @@ public class SeeFollow extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(l_username)
-                            .addComponent(b_seeprofile))
+                            .addComponent(b_back))
                         .addGap(5, 5, 5)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,7 +176,7 @@ public class SeeFollow extends javax.swing.JPanel {
                             .addGap(18, 18, 18)
                             .addComponent(l_username)
                             .addGap(18, 18, 18)
-                            .addComponent(b_seeprofile)))
+                            .addComponent(b_back)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(l_news)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -192,9 +192,9 @@ public class SeeFollow extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void b_seeprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeprofileActionPerformed
+    private void b_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_b_seeprofileActionPerformed
+    }//GEN-LAST:event_b_backActionPerformed
 
     private void b_seeProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeProfileActionPerformed
         // TODO add your handling code here:
@@ -202,8 +202,8 @@ public class SeeFollow extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton b_back;
     public javax.swing.JButton b_seeProfile;
-    public javax.swing.JButton b_seeprofile;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -21,6 +21,10 @@ public class Followers {
          this.Tnumber_follow = Tnumber_follow;
     }
 
+    public Followers() {
+       
+    }
+
     public String getTnumber_follow() {
         return Tnumber_follow;
     }

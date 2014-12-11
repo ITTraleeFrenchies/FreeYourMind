@@ -6,17 +6,65 @@
 
 package view.Panel;
 
+import entities.Followers;
+import entities.Member;
+import entities_DAO.FollowersDAO;
+import entities_DAO.MemberDAO;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.List;
+
 /**
  *
  * @author t00178730
  */
-public class Followers extends javax.swing.JPanel {
+public class SeeFollowers extends javax.swing.JPanel {
+    
+    MemberDAO memberDAO = new MemberDAO();
+    Member member = new Member();
+    
+    FollowersDAO followersDAO = new FollowersDAO();
+    Followers followers = new Followers();
+    
+    String tnumber="";
+    String nickname="";
+    int nbfollowers=0;
 
     /**
      * Creates new form Followers
      */
-    public Followers() {
+    public SeeFollowers() {
         initComponents();
+        this.setPreferredSize(new Dimension(700, 700));
+        this.setBackground(Color.LIGHT_GRAY);
+                
+    }
+    
+    public void setTnumber(String tnumberUser){
+        
+        tnumber=tnumberUser;
+        member=memberDAO.findByTnumber(tnumber);
+        nickname=member.getNickname();
+        nbfollowers=followersDAO.count(tnumber);       
+       
+        l_tnumber1.setText(tnumber);
+        l_username.setText(nickname);
+        l_nbfollow.setText(String.valueOf(nbfollowers));
+        
+        List<Followers> allFollowers= null;
+        if(followersDAO.findAll() != null){
+            allFollowers = followersDAO.findAll();
+        }
+        
+        String[] listFollow = new String[allFollowers.size()];
+
+        int i = 0;
+        for (Followers followers : allFollowers) {
+            listFollow[i] = memberDAO.findByTnumber(followers.getTnumber()).getNickname();
+            i++;
+        }
+        j1.setListData(listFollow);
+        
     }
 
     /**
@@ -31,14 +79,14 @@ public class Followers extends javax.swing.JPanel {
         l_follow = new javax.swing.JLabel();
         l_title = new javax.swing.JLabel();
         l_nbfollow = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        b_seefollowlist = new javax.swing.JButton();
+        b_seeprofile = new javax.swing.JButton();
         l_news = new javax.swing.JLabel();
         l_username = new javax.swing.JLabel();
         l_tnumber1 = new javax.swing.JLabel();
-        b_seeprofile = new javax.swing.JButton();
-        textArea1 = new java.awt.TextArea();
+        b_backhome = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        j1 = new javax.swing.JList();
 
         setPreferredSize(new java.awt.Dimension(700, 700));
 
@@ -51,10 +99,10 @@ public class Followers extends javax.swing.JPanel {
         l_nbfollow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         l_nbfollow.setText("0");
 
-        b_seefollowlist.setText("See profile");
-        b_seefollowlist.addActionListener(new java.awt.event.ActionListener() {
+        b_seeprofile.setText("See profile");
+        b_seeprofile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seefollowlistActionPerformed(evt);
+                b_seeprofileActionPerformed(evt);
             }
         });
 
@@ -67,95 +115,90 @@ public class Followers extends javax.swing.JPanel {
         l_tnumber1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         l_tnumber1.setText("T00000000");
 
-        b_seeprofile.setText("Back Home");
-        b_seeprofile.addActionListener(new java.awt.event.ActionListener() {
+        b_backhome.setText("Back Home");
+        b_backhome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_seeprofileActionPerformed(evt);
+                b_backhomeActionPerformed(evt);
             }
         });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jScrollPane2.setViewportView(j1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(l_title)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(l_tnumber1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(l_username)
-                            .addComponent(b_seeprofile))
-                        .addGap(5, 5, 5)))
-                .addGap(18, 18, 18)
+                    .addComponent(l_username)
+                    .addComponent(b_backhome)
+                    .addComponent(l_tnumber1))
+                .addGap(23, 23, 23)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(b_seefollowlist)
-                        .addGap(120, 120, 120)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(l_title)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(b_seeprofile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(l_follow)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(l_nbfollow)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)
+                        .addGap(73, 73, 73))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(l_news)
-                            .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(l_title)
-                .addGap(97, 97, 97)
+                .addGap(32, 32, 32)
+                .addComponent(l_news)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(l_news)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(l_tnumber1)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(l_username)
                             .addGap(18, 18, 18)
-                            .addComponent(b_seeprofile))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(b_backhome)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_follow)
                     .addComponent(l_nbfollow)
-                    .addComponent(b_seefollowlist))
-                .addContainerGap(158, Short.MAX_VALUE))
+                    .addComponent(b_seeprofile))
+                .addGap(55, 55, 55))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void b_seefollowlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowlistActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_seefollowlistActionPerformed
 
     private void b_seeprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeprofileActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_seeprofileActionPerformed
 
+    private void b_backhomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_backhomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_backhomeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton b_seefollowlist;
+    public javax.swing.JButton b_backhome;
     public javax.swing.JButton b_seeprofile;
-    private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JList j1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel l_follow;
     public javax.swing.JLabel l_nbfollow;
@@ -163,6 +206,5 @@ public class Followers extends javax.swing.JPanel {
     private javax.swing.JLabel l_title;
     public javax.swing.JLabel l_tnumber1;
     public javax.swing.JLabel l_username;
-    private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }
