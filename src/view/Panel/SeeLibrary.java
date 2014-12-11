@@ -432,14 +432,14 @@ public class SeeLibrary extends javax.swing.JPanel {
     }//GEN-LAST:event_b_seelibraryActionPerformed
 
     private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
-        MusicDAO musicDAO = new MusicDAO();
+         MusicDAO musicDAO = new MusicDAO();
         
         List<Music> listMusic = new ArrayList<Music>();
         
         System.out.println("Selected Combobox\n\n");
         
-        if (musicDAO.findByPlaylistName((String) comboBox.getSelectedItem(),) != null) {
-            listMusic = musicDAO.findByPlaylistName((String) comboBox.getSelectedItem());
+        if (musicDAO.findByPlaylistID((String) comboBox.getSelectedItem()) != null) {
+            listMusic = musicDAO.findByPlaylistID((String) comboBox.getSelectedItem());
         }
         
         String[] listMusicNames = new String[listMusic.size()];
@@ -447,8 +447,6 @@ public class SeeLibrary extends javax.swing.JPanel {
         String[] listArtists = new String[listMusic.size()];
         String[] listAlbumTitles = new String[listMusic.size()];
         String[] listTypes = new String[listMusic.size()];
-        String[] listReleaseDates = new String[listMusic.size()];
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         int i = 0;
         for (Music music : listMusic) {
@@ -457,8 +455,6 @@ public class SeeLibrary extends javax.swing.JPanel {
             listArtists[i] = music.getArtist();
             listAlbumTitles[i] = music.getAlbumTitle();
             listTypes[i] = music.getTypeMusic();
-            Date date = music.getReleaseYear();
-            listReleaseDates[i] = df.format(date);
             i++;
         }
         
@@ -467,7 +463,6 @@ public class SeeLibrary extends javax.swing.JPanel {
         listArtist.setListData(listArtists);
         listAlbumTitle.setListData(listAlbumTitles);
         listType.setListData(listTypes);
-        listDate.setListData(listReleaseDates);
     }//GEN-LAST:event_comboBoxActionPerformed
 
 
