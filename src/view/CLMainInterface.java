@@ -183,6 +183,12 @@ public class CLMainInterface extends JFrame {
                 }
             }
         });
+        cardLibrary.b_back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                 cl.show(container, "userConnected");
+            }
+        });
 
         // =============== PANEL SEE PROFILE ==================
         cardHome.b_login.addActionListener(new ActionListener() {
