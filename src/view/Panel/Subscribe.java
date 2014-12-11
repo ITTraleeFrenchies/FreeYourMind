@@ -404,7 +404,7 @@ public class Subscribe extends javax.swing.JPanel {
         String county = "";
         String country = "";
 
-        tnumber = this.t_tnumber.getText();
+        tnumber = this.t_tnumber.getText().toUpperCase();
         password = this.jPasswordField1.getText();
         nickname = this.t_nickname.getText();
         firstname = this.t_name.getText();
@@ -444,7 +444,8 @@ public class Subscribe extends javax.swing.JPanel {
               this.l_error.setVisible(true);
         }
         
-        if(member != null && memberDAO.findByTnumber(tnumber) ==null && password.equalsIgnoreCase(this.jPasswordField2.getText())){
+        if(memberDAO.findByTnumber(tnumber) ==null && password.equalsIgnoreCase(this.jPasswordField2.getText())){
+            System.out.println("coucou");
             memberDAO.create(member);
              canBeConnected = true;
         }

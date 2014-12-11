@@ -116,7 +116,7 @@ public class CLMainInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 if (cardTerms.canSubscribe) {
-                    cl.next(container);
+                    cl.show(container, "home");
                 }
             }
         });
