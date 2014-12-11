@@ -188,7 +188,7 @@ public class PlaylistDAO {
         return playlists;
     }
     
-    public List<Playlist> findByMember() {
+    public List<Playlist> findByMember(String Tnumber) {
         List<Playlist> playlists = new ArrayList();
         Playlist playlist = null;
         String sql = "SELECT * FROM PLAYLIST\n" +
@@ -196,7 +196,7 @@ public class PlaylistDAO {
                     "INNER JOIN MEMBER ON LIBRARY.MEMBER=MEMBER.TNUMBER\n" +
                     "WHERE PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY\n" +
                     "AND LIBRARY.MEMBER=MEMBER.TNUMBER\n" +
-                    "AND MEMBER.TNUMBER='T11111114';";
+                    "AND MEMBER.TNUMBER='"+Tnumber+"';";
 
         openConnection();
         try {

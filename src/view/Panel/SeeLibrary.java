@@ -11,7 +11,10 @@ import entities_DAO.MemberDAO;
 import entities_DAO.PlaylistDAO;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,18 +31,27 @@ public class SeeLibrary extends javax.swing.JPanel {
     PlaylistDAO playlistDAO = new PlaylistDAO();
     List<Playlist> playlists = new ArrayList();
     
-    String tnumber ="t10000000";
+    String tnumber ="";
     
     public SeeLibrary() {
         initComponents();
-        
+        initComboBox();
         this.setPreferredSize(new Dimension(700, 700));
         this.setBackground(Color.LIGHT_GRAY);
+
     }
     
     public void setTnumber(String tnumberToGet){
              tnumber =tnumberToGet;
-                System.out.println(tnumber);
+             member = memberDAO.findByTnumber(tnumber);
+    }
+    
+    public void initComboBox () {
+        playlists = playlistDAO.findByMember(tnumber);
+        
+        for (Playlist playlist : playlists) {
+            comboBox.addItem(playlist.getName());
+        }
     }
 
     /**
@@ -55,7 +67,27 @@ public class SeeLibrary extends javax.swing.JPanel {
         username = new javax.swing.JLabel();
         user_tnumber = new javax.swing.JLabel();
         libraryLabel = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        comboBox = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        b_disconnect1 = new javax.swing.JButton();
+        l_follow = new javax.swing.JLabel();
+        l_nbfollow = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        b_seefollowlist = new javax.swing.JButton();
+        l_followers = new javax.swing.JLabel();
+        l_nbfollowers = new javax.swing.JLabel();
+        b_seefollowerslist = new javax.swing.JButton();
+        b_seeprofile = new javax.swing.JButton();
+        b_seerecommend = new javax.swing.JButton();
+        b_seelibrary = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listIDs = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listName = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listCreationDate = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listHidden = new javax.swing.JList();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
@@ -69,28 +101,129 @@ public class SeeLibrary extends javax.swing.JPanel {
         libraryLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         libraryLabel.setText("Library");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Playlists");
+
+        b_disconnect1.setText("Disconnect");
+        b_disconnect1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_disconnect1ActionPerformed(evt);
+            }
+        });
+
+        l_follow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        l_follow.setText("Your follow list");
+
+        l_nbfollow.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        l_nbfollow.setText("0");
+
+        b_seefollowlist.setText("See My Follow List");
+        b_seefollowlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seefollowlistActionPerformed(evt);
+            }
+        });
+
+        l_followers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        l_followers.setText("Followers");
+
+        l_nbfollowers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        l_nbfollowers.setText("0");
+
+        b_seefollowerslist.setText("See My Followers");
+        b_seefollowerslist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seefollowerslistActionPerformed(evt);
+            }
+        });
+
+        b_seeprofile.setText("See my profile");
+        b_seeprofile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seeprofileActionPerformed(evt);
+            }
+        });
+
+        b_seerecommend.setText("See my recommendations");
+        b_seerecommend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seerecommendActionPerformed(evt);
+            }
+        });
+
+        b_seelibrary.setText("See my library");
+        b_seelibrary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seelibraryActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(listIDs);
+
+        jScrollPane2.setViewportView(listName);
+
+        jScrollPane3.setViewportView(listCreationDate);
+
+        jScrollPane4.setViewportView(listHidden);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(user_tnumber))
-                    .addComponent(username))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_title)
-                    .addComponent(libraryLabel))
-                .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(user_tnumber))
+                            .addComponent(username)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator2)
+                                .addComponent(b_seefollowerslist)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(l_follow)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(l_nbfollow))
+                                .addComponent(b_disconnect1)
+                                .addComponent(b_seerecommend)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(l_followers)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(l_nbfollowers))
+                                    .addComponent(b_seefollowlist))
+                                .addComponent(b_seelibrary)
+                                .addComponent(b_seeprofile)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(l_title)
+                                    .addComponent(libraryLabel))
+                                .addGap(20, 20, 20))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,17 +236,131 @@ public class SeeLibrary extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username)
                     .addComponent(libraryLabel))
-                .addGap(30, 30, 30)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(513, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(b_seeprofile)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(b_seelibrary)
+                                .addGap(11, 11, 11)
+                                .addComponent(b_seerecommend)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(b_disconnect1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(l_follow)
+                                    .addComponent(l_nbfollow))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(b_seefollowlist))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(l_followers)
+                    .addComponent(l_nbfollowers))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(b_seefollowerslist)
+                .addContainerGap(232, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void b_disconnect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_disconnect1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_disconnect1ActionPerformed
+
+    private void b_seefollowlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowlistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seefollowlistActionPerformed
+
+    private void b_seefollowerslistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowerslistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seefollowerslistActionPerformed
+
+    private void b_seeprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeprofileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seeprofileActionPerformed
+
+    private void b_seerecommendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seerecommendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_seerecommendActionPerformed
+
+    private void b_seelibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seelibraryActionPerformed
+        PlaylistDAO playlistDAO = new PlaylistDAO();
+        List<Playlist> listPlaylists = new ArrayList<Playlist>();
+        if (playlistDAO.findByMember(this.tnumber) != null) {
+            listPlaylists = playlistDAO.findByMember(this.tnumber);
+        }
+        
+        String[] listIDPlaylist = new String[listPlaylists.size()];
+        String[] listName = new String[listPlaylists.size()];
+        String[] listDateCreation = new String[listPlaylists.size()];
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String[] listHidden = new String[listPlaylists.size()];
+
+        int i = 0;
+        for (Playlist playlist : listPlaylists) {
+            listIDPlaylist[i] = playlist.getIDPlaylist();
+            listName[i] = playlist.getName();
+            Date date = playlist.getCreationDate();
+            listDateCreation[i] = df.format(date);
+            listHidden[i] = Boolean.toString(playlist.isHidden());
+            i++;
+        }
+        /*
+        jl_members.setListData(listTnumbers);
+        jl_password.setListData(listPassword);
+        jl_nickname.setListData(listNickname);
+        jl_email.setListData(listEmail);
+        jl_firstname.setListData(listFirstname);
+        */
+                
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seelibraryActionPerformed
+
+    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    public javax.swing.JButton b_disconnect1;
+    public javax.swing.JButton b_seefollowerslist;
+    public javax.swing.JButton b_seefollowlist;
+    public javax.swing.JButton b_seelibrary;
+    public javax.swing.JButton b_seeprofile;
+    public javax.swing.JButton b_seerecommend;
+    private javax.swing.JComboBox comboBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel l_follow;
+    private javax.swing.JLabel l_followers;
+    public javax.swing.JLabel l_nbfollow;
+    public javax.swing.JLabel l_nbfollowers;
     private javax.swing.JLabel l_title;
     private javax.swing.JLabel libraryLabel;
+    private javax.swing.JList listCreationDate;
+    private javax.swing.JList listHidden;
+    private javax.swing.JList listIDs;
+    private javax.swing.JList listName;
     public javax.swing.JLabel user_tnumber;
     public javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
