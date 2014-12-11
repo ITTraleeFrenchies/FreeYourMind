@@ -86,7 +86,9 @@ public class UserConnected extends javax.swing.JPanel {
         
     }
     
-
+    public void reinitUser(){
+        member = null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

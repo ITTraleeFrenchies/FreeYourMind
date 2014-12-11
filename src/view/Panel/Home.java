@@ -52,6 +52,14 @@ public class Home extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
     }
+    
+    public void setCanConnectAdmin(boolean canConnect){
+        canConnectAdmin = canConnect;
+    }
+    
+     public void setCanConnectMember(boolean canConnect){
+        canConnectMember = canConnect;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

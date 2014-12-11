@@ -71,6 +71,7 @@ public class CLMainInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 if(cardHome.canConnectAdmin){
+                    cardAdministratorConnected.setTnumberAdmin(cardHome.adminConnected.getTnumber());                    
                     cl.show(container, "administratorConnected");
                 }else if(cardHome.canConnectMember){
                     System.out.println(cardHome.memberConnected.getTnumber());
@@ -123,6 +124,8 @@ public class CLMainInterface extends JFrame {
         cardUserConnected.b_disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0){
+                cardUserConnected.reinitUser();
+                cardHome.setCanConnectMember(false);
                 cl.first(container);
             }
         });
@@ -148,6 +151,8 @@ public class CLMainInterface extends JFrame {
         cardAdministratorConnected.b_disconnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0){
+               cardAdministratorConnected.reinitUser();
+               cardHome.setCanConnectAdmin(false);
                cl.show(container, "home");
             }
     });
