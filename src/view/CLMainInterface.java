@@ -71,6 +71,7 @@ public class CLMainInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 if(cardHome.canConnectAdmin){
+                    cardAdministratorConnected.setTnumberAdmin(cardHome.adminConnected.getTnumber());                    
                     cl.show(container, "administratorConnected");
                 }else if(cardHome.canConnectMember){
                     System.out.println(cardHome.memberConnected.getTnumber());

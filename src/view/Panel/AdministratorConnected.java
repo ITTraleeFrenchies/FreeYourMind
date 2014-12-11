@@ -6,9 +6,28 @@
 package view.Panel;
 
 import entities.Administrator;
+import entities.Blocked;
+import entities.Library;
+import entities.Like_Music;
+import entities.Like_Playlist;
 import entities.Member;
+import entities.Music;
+import entities.Playlist;
+import entities.Follow;
+import entities.RecommendationMusic;
+import entities.RecommendationPlaylist;
 import entities_DAO.AdministratorDAO;
+import entities_DAO.BlockedDAO;
+import entities_DAO.FollowDAO;
+import entities_DAO.FollowersDAO;
+import entities_DAO.LibraryDAO;
+import entities_DAO.Like_MusicDAO;
+import entities_DAO.Like_PlaylistDAO;
 import entities_DAO.MemberDAO;
+import entities_DAO.MusicDAO;
+import entities_DAO.PlaylistDAO;
+import entities_DAO.RecommendationMusicDAO;
+import entities_DAO.RecommendationPlaylistDAO;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -37,10 +56,11 @@ public class AdministratorConnected extends javax.swing.JPanel {
     /**
      * Creates new form AdministratorConnected
      */
-    
     AdministratorDAO adminDAO = new AdministratorDAO();
     Administrator admin = new Administrator();
-    
+    String tnumber = "";
+    String nickname = "";
+
     public AdministratorConnected() {
         initComponents();
         this.setPreferredSize(new Dimension(700, 700));
@@ -65,86 +85,23 @@ public class AdministratorConnected extends javax.swing.JPanel {
         label.setBounds(-5, -5, 233, 216);
         this.add(label);
 
-        b_seemembers.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Members");
-                l_view.setVisible(true);
-                jScrollPane1.setVisible(true);
-                jScrollPane3.setVisible(true);
-                jScrollPane4.setVisible(true);
-                jScrollPane5.setVisible(true);
-                jScrollPane6.setVisible(true);
-            }
-        });
-        b_seelibraries.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Libraries");
-                l_view.setVisible(true);
-            }
-        });
-        b_seeplaylists.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Playlists");
-                l_view.setVisible(true);
-            }
-        });
-        b_seemusics.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Musics");
-                l_view.setVisible(true);
-            }
-        });
-        b_seelikes.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Likes");
-                l_view.setVisible(true);
-            }
-        });
-        b_seerecommends.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Recommendations");
-                l_view.setVisible(true);
-            }
-        });
-        b_seefollowlists.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Follow Lists");
-                l_view.setVisible(true);
-            }
-        });
-        b_seeblocked.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                l_view.setText("Users blocked");
-                l_view.setVisible(true);
-            }
-        });
 
-        tf_search.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                tf_search.setText("");
-            }
-        });
-        
-        
 
     }
-    
-    public void setTnumberAdmin(String tnumberAdmin){
-       admin = adminDAO.findByTnumber(tnumberAdmin);
+
+    public void setTnumberAdmin(String tnumberAdmin) {
+
+        tnumber = tnumberAdmin;
+        admin = adminDAO.findByTnumber(tnumber);
+        nickname = admin.getNickname();
+
+        l_tnumber.setText(tnumber);
+        l_username.setText(nickname);
     }
-     public void reinitUser(){
+
+    public void reinitUser() {
         admin = null;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -167,20 +124,22 @@ public class AdministratorConnected extends javax.swing.JPanel {
         b_seelibraries = new javax.swing.JButton();
         b_seeplaylists = new javax.swing.JButton();
         b_seemusics = new javax.swing.JButton();
-        b_seelikes = new javax.swing.JButton();
-        b_seerecommends = new javax.swing.JButton();
+        b_seemusiclikes = new javax.swing.JButton();
+        b_seerecommendsmusic = new javax.swing.JButton();
         b_seefollowlists = new javax.swing.JButton();
         l_view = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jl_members = new javax.swing.JList();
+        jl1 = new javax.swing.JList();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jl_password = new javax.swing.JList();
+        jl2 = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jl_nickname = new javax.swing.JList();
+        jl3 = new javax.swing.JList();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jl_email = new javax.swing.JList();
+        jl4 = new javax.swing.JList();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jl_firstname = new javax.swing.JList();
+        jl5 = new javax.swing.JList();
+        b_seeplaylistlikes = new javax.swing.JButton();
+        b_seerecommendsplaylist = new javax.swing.JButton();
 
         l_title.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         l_title.setText("Free Your Mind");
@@ -195,10 +154,15 @@ public class AdministratorConnected extends javax.swing.JPanel {
 
         tf_search.setText("Enter an artist, a music, an album...");
         tf_search.setToolTipText("");
+        tf_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_searchActionPerformed(evt);
+            }
+        });
 
         b_search.setText("Search");
 
-        b_seemembers.setText("See Members");
+        b_seemembers.setText("Members");
         b_seemembers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_seemembersActionPerformed(evt);
@@ -206,30 +170,79 @@ public class AdministratorConnected extends javax.swing.JPanel {
         });
 
         b_seeblocked.setText("See Blocked Students");
+        b_seeblocked.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seeblockedActionPerformed(evt);
+            }
+        });
 
-        b_seelibraries.setText("See Libraries");
+        b_seelibraries.setText("Libraries");
+        b_seelibraries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seelibrariesActionPerformed(evt);
+            }
+        });
 
-        b_seeplaylists.setText("See Playlists");
+        b_seeplaylists.setText("Playlists");
+        b_seeplaylists.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seeplaylistsActionPerformed(evt);
+            }
+        });
 
-        b_seemusics.setText("See Musics");
+        b_seemusics.setText("Musics");
+        b_seemusics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seemusicsActionPerformed(evt);
+            }
+        });
 
-        b_seelikes.setText("See Likes");
+        b_seemusiclikes.setText("Music Likes");
+        b_seemusiclikes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seemusiclikesActionPerformed(evt);
+            }
+        });
 
-        b_seerecommends.setText("See Recommendations");
+        b_seerecommendsmusic.setText("Recommendations Music");
+        b_seerecommendsmusic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seerecommendsmusicActionPerformed(evt);
+            }
+        });
 
         b_seefollowlists.setText("See Follow Lists");
+        b_seefollowlists.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seefollowlistsActionPerformed(evt);
+            }
+        });
 
         l_view.setText("jLabel1");
 
-        jScrollPane1.setViewportView(jl_members);
+        jScrollPane1.setViewportView(jl1);
 
-        jScrollPane3.setViewportView(jl_password);
+        jScrollPane3.setViewportView(jl2);
 
-        jScrollPane4.setViewportView(jl_nickname);
+        jScrollPane4.setViewportView(jl3);
 
-        jScrollPane5.setViewportView(jl_email);
+        jScrollPane5.setViewportView(jl4);
 
-        jScrollPane6.setViewportView(jl_firstname);
+        jScrollPane6.setViewportView(jl5);
+
+        b_seeplaylistlikes.setText("Playlist Likes");
+        b_seeplaylistlikes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seeplaylistlikesActionPerformed(evt);
+            }
+        });
+
+        b_seerecommendsplaylist.setText("Recommendations Playlist");
+        b_seerecommendsplaylist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_seerecommendsplaylistActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -238,7 +251,7 @@ public class AdministratorConnected extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(271, Short.MAX_VALUE)
+                        .addContainerGap(280, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(l_title, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -259,15 +272,15 @@ public class AdministratorConnected extends javax.swing.JPanel {
                             .addComponent(b_seeplaylists, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(b_seelibraries, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(b_seeblocked, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_seelikes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_seerecommends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_seefollowlists, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(b_seemusiclikes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_seerecommendsmusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_seefollowlists, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_seeplaylistlikes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_seerecommendsplaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(l_view)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(l_view))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,56 +302,59 @@ public class AdministratorConnected extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_search))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(l_tnumber)
+                    .addComponent(l_view))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(l_tnumber)
-                                    .addComponent(l_view))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addComponent(l_username)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(b_disconnect)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(b_seemembers)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_seelibraries)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_seeplaylists)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_seemusics)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_seelikes)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_seerecommends)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_seefollowlists)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(b_seeblocked))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 135, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(l_username)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_disconnect)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_seemembers)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seelibraries)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seeplaylists)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seemusics)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seemusiclikes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seeplaylistlikes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seerecommendsmusic)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seerecommendsplaylist)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seefollowlists)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b_seeblocked)))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_seemembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seemembersActionPerformed
+        l_view.setText("Members");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
 
         MemberDAO memberDAO = new MemberDAO();
         List<Member> listMembers = null;
@@ -369,13 +385,26 @@ public class AdministratorConnected extends javax.swing.JPanel {
              allContent += Newligne;*/
             i++;
         }
-        jl_members.setListData(listTnumbers);
-        jl_password.setListData(listPassword);
-        jl_nickname.setListData(listNickname);
-        jl_email.setListData(listEmail);
-        jl_firstname.setListData(listFirstname);
+        /* l1.setText("TNUMBER");
+         l2.setText("PASSWORD");
+         l3.setText("NICKNAME");
+         l4.setText("EMAIL");
+         l5.setText("FIRST NAME");
+        
+         this.l1.setVisible(true);
+         this.l2.setVisible(true);
+         this.l3.setVisible(true);
+         this.l4.setVisible(true);
+         this.l5.setVisible(true);*/
 
-      //  jt_content.append(allContent + "\n");
+        jl1.setListData(listTnumbers);
+        jl2.setListData(listPassword);
+        jl3.setListData(listNickname);
+        jl4.setListData(listEmail);
+        jl5.setListData(listFirstname);
+
+
+        //  jt_content.append(allContent + "\n");
       /*  jt_content.setVisible(false);
          jt_content.validate();
          jt_content.updateUI();
@@ -385,29 +414,390 @@ public class AdministratorConnected extends javax.swing.JPanel {
         this.repaint();
     }//GEN-LAST:event_b_seemembersActionPerformed
 
+    private void b_seelibrariesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seelibrariesActionPerformed
+        l_view.setText("Libraries");
+        l_view.setVisible(true);
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
 
+        LibraryDAO libraryDAO = new LibraryDAO();
+        List<Library> listLibrary = null;
+        if (libraryDAO.findAll() != null) {
+            listLibrary = libraryDAO.findAll();
+        }
+
+        String[] listIDLibrary = new String[listLibrary.size()];
+        String[] listMember = new String[listLibrary.size()];
+        String[] listName = new String[listLibrary.size()];
+
+        int i = 0;
+        for (Library library : listLibrary) {
+            listIDLibrary[i] = String.valueOf(library.getId_library());
+            listMember[i] = library.getMember();
+            listName[i] = library.getName();
+
+            i++;
+        }
+        jl1.setListData(listIDLibrary);
+        jl2.setListData(listMember);
+        jl3.setListData(listName);
+        this.jScrollPane5.setVisible(false);
+        this.jScrollPane6.setVisible(false);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seelibrariesActionPerformed
+
+    private void b_seeplaylistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeplaylistsActionPerformed
+        l_view.setText("Playlists");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+        PlaylistDAO playlistDAO = new PlaylistDAO();
+        List<Playlist> listPlaylist = null;
+        if (playlistDAO.findAll() != null) {
+            listPlaylist = playlistDAO.findAll();
+        }
+
+        String[] listIDPlaylist = new String[listPlaylist.size()];
+        String[] listIDLibrary = new String[listPlaylist.size()];
+        String[] listName = new String[listPlaylist.size()];
+        String[] listDateCreation = new String[listPlaylist.size()];
+        String[] listHidden = new String[listPlaylist.size()];
+
+        int i = 0;
+        for (Playlist playlist : listPlaylist) {
+            listIDPlaylist[i] = playlist.getIDPlaylist();
+            listIDLibrary[i] = String.valueOf(playlist.getIDLibrary());
+            listName[i] = playlist.getName();
+            listDateCreation[i] = String.valueOf(playlist.getCreationDate());
+            listHidden[i] = String.valueOf(playlist.isHidden());
+
+            i++;
+        }
+        jl1.setListData(listIDPlaylist);
+        jl2.setListData(listIDLibrary);
+        jl3.setListData(listName);
+        jl4.setListData(listDateCreation);
+        jl5.setListData(listHidden);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seeplaylistsActionPerformed
+
+    private void b_seemusicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seemusicsActionPerformed
+        l_view.setText("Musics");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+        MusicDAO musicDAO = new MusicDAO();
+        List<Music> listMusic = null;
+        if (musicDAO.findAll() != null) {
+            listMusic = musicDAO.findAll();
+        }
+
+        String[] listIDTrack = new String[listMusic.size()];
+        String[] listIDPlaylist = new String[listMusic.size()];
+        String[] listTitle = new String[listMusic.size()];
+        String[] listTrackNumber = new String[listMusic.size()];
+        String[] listArtist = new String[listMusic.size()];
+
+        int i = 0;
+        for (Music music : listMusic) {
+            listIDTrack[i] = String.valueOf(music.getIDTrack());
+            listIDPlaylist[i] = music.getIDPlaylist();
+            listTitle[i] = music.getTitle();
+            listTrackNumber[i] = String.valueOf(music.getTrackNumber());
+            listArtist[i] = music.getArtist();
+
+            i++;
+        }
+        jl1.setListData(listIDTrack);
+        jl2.setListData(listIDPlaylist);
+        jl3.setListData(listTitle);
+        jl4.setListData(listTrackNumber);
+        jl5.setListData(listArtist);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seemusicsActionPerformed
+
+    private void b_seemusiclikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seemusiclikesActionPerformed
+        l_view.setText("Music Likes");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+        Like_MusicDAO like_musicDAO = new Like_MusicDAO();
+        List<Like_Music> listLike_Music = null;
+        if (like_musicDAO.findAll() != null) {
+            listLike_Music = like_musicDAO.findAll();
+        }
+
+        String[] listIDLikelist = new String[listLike_Music.size()];
+        String[] listTnumber = new String[listLike_Music.size()];
+        String[] listIDMusic = new String[listLike_Music.size()];
+        String[] listDateCreation = new String[listLike_Music.size()];
+
+        int i = 0;
+        for (Like_Music like_Music : listLike_Music) {
+            listIDLikelist[i] = String.valueOf(like_Music.getId_likelist());
+            listTnumber[i] = like_Music.getTNumber();
+            listIDMusic[i] = like_Music.getId_music();
+            listDateCreation[i] = String.valueOf(like_Music.getDate_creation());
+
+            i++;
+        }
+        jl1.setListData(listIDLikelist);
+        jl2.setListData(listTnumber);
+        jl3.setListData(listIDMusic);
+        jl4.setListData(listDateCreation);
+        this.jScrollPane6.setVisible(false);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seemusiclikesActionPerformed
+
+    private void b_seeplaylistlikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeplaylistlikesActionPerformed
+        l_view.setText("Playlist Likes");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+        Like_PlaylistDAO like_playlistDAO = new Like_PlaylistDAO();
+        List<Like_Playlist> listLike_Playlist = null;
+        if (like_playlistDAO.findAll() != null) {
+            listLike_Playlist = like_playlistDAO.findAll();
+        }
+
+        String[] listIDLikelist = new String[listLike_Playlist.size()];
+        String[] listTnumber = new String[listLike_Playlist.size()];
+        String[] listIDPlaylist = new String[listLike_Playlist.size()];
+        String[] listDateCreation = new String[listLike_Playlist.size()];
+
+        int i = 0;
+        for (Like_Playlist like_Playlist : listLike_Playlist) {
+            listIDLikelist[i] = String.valueOf(like_Playlist.getId_likelist());
+            listTnumber[i] = like_Playlist.getTNumber();
+            listIDPlaylist[i] = like_Playlist.getId_playlist();
+            listDateCreation[i] = String.valueOf(like_Playlist.getDate_creation());
+
+            i++;
+        }
+        jl1.setListData(listIDLikelist);
+        jl2.setListData(listTnumber);
+        jl3.setListData(listIDPlaylist);
+        jl4.setListData(listDateCreation);
+        this.jScrollPane6.setVisible(false);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seeplaylistlikesActionPerformed
+
+    private void b_seerecommendsmusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seerecommendsmusicActionPerformed
+        l_view.setText("Recommendations music");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+        RecommendationMusicDAO recommendationMusicDAO = new RecommendationMusicDAO();
+        List<RecommendationMusic> listRecommendationMusic = null;
+        if (recommendationMusicDAO.findAll() != null) {
+            listRecommendationMusic = recommendationMusicDAO.findAll();
+        }
+
+        String[] listIDRecommend = new String[listRecommendationMusic.size()];
+        String[] listIDMusic = new String[listRecommendationMusic.size()];
+        String[] listDateRecommend = new String[listRecommendationMusic.size()];
+
+        int i = 0;
+        for (RecommendationMusic recommendationMusic : listRecommendationMusic) {
+            listIDRecommend[i] = String.valueOf(recommendationMusic.getIDRecommendation());
+            listIDMusic[i] = recommendationMusic.getIDMusic();
+            listDateRecommend[i] = String.valueOf(recommendationMusic.getDateRecommend());
+
+            i++;
+        }
+        jl1.setListData(listIDRecommend);
+        jl2.setListData(listIDMusic);
+        jl3.setListData(listDateRecommend);
+        this.jScrollPane5.setVisible(false);
+        this.jScrollPane6.setVisible(false);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seerecommendsmusicActionPerformed
+
+    private void b_seerecommendsplaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seerecommendsplaylistActionPerformed
+        l_view.setText("Recommendation playlist");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+
+        RecommendationPlaylistDAO recommendationPlaylistDAO = new RecommendationPlaylistDAO();
+        List<RecommendationPlaylist> listRecommendationPlaylist = null;
+        if (recommendationPlaylistDAO.findAll() != null) {
+            listRecommendationPlaylist = recommendationPlaylistDAO.findAll();
+        }
+
+        String[] listIDRecommend = new String[listRecommendationPlaylist.size()];
+        String[] listIDPlaylist = new String[listRecommendationPlaylist.size()];
+        String[] listDateRecommend = new String[listRecommendationPlaylist.size()];
+
+        int i = 0;
+        for (RecommendationPlaylist recommendationPlaylist : listRecommendationPlaylist) {
+            listIDRecommend[i] = String.valueOf(recommendationPlaylist.getIDRecommendation());
+            listIDPlaylist[i] = recommendationPlaylist.getIDPlaylist();
+            listDateRecommend[i] = String.valueOf(recommendationPlaylist.getDateRecommend());
+
+            i++;
+        }
+        jl1.setListData(listIDRecommend);
+        jl2.setListData(listIDPlaylist);
+        jl3.setListData(listDateRecommend);
+        this.jScrollPane5.setVisible(false);
+        this.jScrollPane6.setVisible(false);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seerecommendsplaylistActionPerformed
+
+    private void b_seefollowlistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seefollowlistsActionPerformed
+        l_view.setText("Follow Lists");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+        FollowDAO followDAO = new FollowDAO();
+        List<Follow> listFollow = null;
+        if (followDAO.findAll() != null) {
+            listFollow = followDAO.findAll();
+        }
+
+        String[] listIDFollowList = new String[listFollow.size()];
+        String[] listTnumber = new String[listFollow.size()];
+        String[] listNicknameFollowed = new String[listFollow.size()];
+
+        int i = 0;
+        for (Follow follow : listFollow) {
+            listIDFollowList[i] = String.valueOf(follow.getIDFollowlist());
+            listTnumber[i] = follow.getTnumber();
+            listNicknameFollowed[i] = follow.getNicknameFollowed();
+
+            i++;
+        }
+        jl1.setListData(listIDFollowList);
+        jl2.setListData(listTnumber);
+        jl3.setListData(listNicknameFollowed);
+        this.jScrollPane5.setVisible(false);
+        this.jScrollPane6.setVisible(false);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seefollowlistsActionPerformed
+
+    private void b_seeblockedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_seeblockedActionPerformed
+        l_view.setText("Users blocked");
+        l_view.setVisible(true);
+        jScrollPane1.setVisible(true);
+        jScrollPane3.setVisible(true);
+        jScrollPane4.setVisible(true);
+        jScrollPane5.setVisible(true);
+        jScrollPane6.setVisible(true);
+
+        BlockedDAO blockedDAO = new BlockedDAO();
+        List<Blocked> listBlocked = null;
+        if (blockedDAO.findAll() != null) {
+            listBlocked = blockedDAO.findAll();
+        }
+
+        String[] listIDBlocked = new String[listBlocked.size()];
+        String[] listTnumber_admin = new String[listBlocked.size()];
+        String[] listTnumber_user = new String[listBlocked.size()];
+
+        int i = 0;
+        for (Blocked blocked : listBlocked) {
+            listIDBlocked[i] = String.valueOf(blocked.get_id_blocked());
+            listTnumber_admin[i] = blocked.get_tNumber_admin();
+            System.out.println(blocked.get_tNumber_user());
+            listTnumber_user[i] = blocked.get_tNumber_user();
+            System.out.println(blocked.get_tNumber_user());
+            i++;
+        }
+        jl1.setListData(listIDBlocked);
+        jl2.setListData(listTnumber_admin);
+        jl3.setListData(listTnumber_user);
+        this.jScrollPane5.setVisible(false);
+        this.jScrollPane6.setVisible(false);
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_b_seeblockedActionPerformed
+
+    private void tf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchActionPerformed
+        tf_search.setText("");
+    }//GEN-LAST:event_tf_searchActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton b_disconnect;
     public javax.swing.JButton b_search;
     public javax.swing.JButton b_seeblocked;
     public javax.swing.JButton b_seefollowlists;
     public javax.swing.JButton b_seelibraries;
-    public javax.swing.JButton b_seelikes;
     public javax.swing.JButton b_seemembers;
+    public javax.swing.JButton b_seemusiclikes;
     public javax.swing.JButton b_seemusics;
+    public javax.swing.JButton b_seeplaylistlikes;
     public javax.swing.JButton b_seeplaylists;
-    public javax.swing.JButton b_seerecommends;
+    public javax.swing.JButton b_seerecommendsmusic;
+    public javax.swing.JButton b_seerecommendsplaylist;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JList jl_email;
-    public javax.swing.JList jl_firstname;
-    private javax.swing.JList jl_members;
-    private javax.swing.JList jl_nickname;
-    private javax.swing.JList jl_password;
+    public javax.swing.JList jl1;
+    public javax.swing.JList jl2;
+    public javax.swing.JList jl3;
+    public javax.swing.JList jl4;
+    public javax.swing.JList jl5;
     private javax.swing.JLabel l_title;
     public javax.swing.JLabel l_tnumber;
     public javax.swing.JLabel l_username;
