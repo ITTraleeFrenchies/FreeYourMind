@@ -53,10 +53,10 @@ public class LinkFollowersRecommendation_M_DAO {
 	}
 	
 	
-   	public LinkFollowersRecommendation_M find(long id) {
+   	public LinkFollowersRecommendation_M find(int id) {
     	
             LinkFollowersRecommendation_M link = null;
-            String sql = "SELECT * FROM LINK_FOLLOWERS_RECOMMEND_M WHERE ID_LINK = '" + id + "'";
+            String sql = "SELECT * FROM LINK_FOLLOWERS_RECOMMEND_M WHERE ID_LINK = " + id;
 
             openConnection();
             try {
@@ -69,7 +69,7 @@ public class LinkFollowersRecommendation_M_DAO {
                     );
                     }
             } catch (SQLException ex) {
-                    System.out.println(ex.getErrorCode() + " error with the sql request.");
+                    ex.printStackTrace();
             }
             closeConnection();
             return link;
@@ -78,9 +78,9 @@ public class LinkFollowersRecommendation_M_DAO {
 	public LinkFollowersRecommendation_M create(LinkFollowersRecommendation_M linkToCreate) {
     	
             LinkFollowersRecommendation_M link = linkToCreate;
-            String sql = " INSERT INTO LINK_FOLLOWERS_RECOMMEND_P(ID_LINK,ID_RECOMMENDATION_MUSIC,ID_FOLLOWERLIST)"
-                    + "VALUES('" + linkToCreate.getId_link() + "','"
-                    + linkToCreate.getId_recommendation_music() + "','" + linkToCreate.getId_followerlist() + "')";
+            String sql = " INSERT INTO LINK_FOLLOWERS_RECOMMEND_M(ID_LINK,ID_RECOMMENDATION_MUSIC,ID_FOLLOWERLIST)"
+                    + " VALUES(" + linkToCreate.getId_link() + ","
+                    + linkToCreate.getId_recommendation_music() + "," + linkToCreate.getId_followerlist() + ")";
             System.out.println(sql);
             openConnection();
             try {
@@ -94,9 +94,12 @@ public class LinkFollowersRecommendation_M_DAO {
         
 	public LinkFollowersRecommendation_M update(LinkFollowersRecommendation_M linkToUpdate) {
     	
-            String sql = " UPDATE LINK_FOLLOWERS_RECOMMEND_M SET ID_LINK = '" + linkToUpdate.getId_link()
-                    + "', ID_RECOMMENDATION_MUSIC = '" + linkToUpdate.getId_recommendation_music()
-                    + "', ID_FOLLOWERLIST = '" + linkToUpdate.getId_followerlist()+ "'";
+            String sql = " UPDATE LINK_FOLLOWERS_RECOMMEND_M "
+                    + " SET ID_RECOMMENDATION_MUSIC = " + linkToUpdate.getId_recommendation_music()
+                    + ", ID_FOLLOWERLIST = " + linkToUpdate.getId_followerlist() 
+                    + " WHERE ID_LINK = " + linkToUpdate.getId_link();
+            
+            sql=sql.replace("'null'","null");
             System.out.println(sql);
             openConnection();
             try {
@@ -129,7 +132,7 @@ public class LinkFollowersRecommendation_M_DAO {
             List<LinkFollowersRecommendation_M> link_followers = new ArrayList();
             LinkFollowersRecommendation_M link = null;
 
-            String sql="SELECT * FROM LINK_FOLLOWERS_RECOMMEND_P";
+            String sql="SELECT * FROM LINK_FOLLOWERS_RECOMMEND_M";
             openConnection();
             try {
                     this.resultSet = statement.executeQuery(sql);
@@ -142,7 +145,7 @@ public class LinkFollowersRecommendation_M_DAO {
                     link_followers.add(link);
                     }
             } catch (SQLException ex) {
-                    System.out.println(ex.getErrorCode() + " error with the sql request.");
+                    ex.printStackTrace();
             }
             closeConnection();
 

@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import static java.sql.JDBCType.BLOB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

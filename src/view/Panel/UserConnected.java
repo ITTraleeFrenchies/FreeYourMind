@@ -75,6 +75,7 @@ public class UserConnected extends javax.swing.JPanel {
         member = memberDAO.findByTnumber(tnumber);
         nickname=member.getNickname();
         
+        
         l_tnumber1.setText(tnumber);
         l_nickname.setText(nickname);
         l_nbfollowers.setText(tnumber);

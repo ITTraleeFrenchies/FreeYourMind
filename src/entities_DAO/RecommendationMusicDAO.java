@@ -54,20 +54,20 @@ public class RecommendationMusicDAO {
         
 	public RecommendationMusic find(int id) {
             RecommendationMusic recommend = null;
-            String sql = "SELECT * FROM RECOMMENDATIONMUSIC WHERE ID_RECOMMENDATION = '" + id + "'";
+            String sql = "SELECT * FROM RECOMMENDATION_MUSIC WHERE ID_RECOMMENDATION = " + id ;
 
             openConnection();
             try {
                     this.resultSet = statement.executeQuery(sql);
                     while (this.resultSet.next()) {
                     recommend = new RecommendationMusic(
-                            this.resultSet.getInt("idRecommendation"),
-                            this.resultSet.getString("idMusic"),
-                            this.resultSet.getDate("dateRecommend")
+                            id,
+                            this.resultSet.getString("id_Music"),
+                            this.resultSet.getDate("date_Recommend")
                             );
                     }
             } catch (SQLException ex) {
-                    System.out.println(ex.getErrorCode() + " error with the sql request.");
+                    ex.printStackTrace();
             }
             closeConnection();
             
@@ -76,9 +76,11 @@ public class RecommendationMusicDAO {
         
 	public RecommendationMusic create(RecommendationMusic recommendationMusicCreate) {
             RecommendationMusic recommend = recommendationMusicCreate;
-            String sql = " INSERT INTO RECOMMENDATIONMUSIC(ID_RECOMMENDATION,ID_MUSIC,DATE_RECOMMEND)"
-                    + "VALUES('" + recommendationMusicCreate.getIDRecommendation() + "','"
+            String sql = " INSERT INTO RECOMMENDATION_MUSIC"
+                    + " VALUES(" + recommendationMusicCreate.getIDRecommendation() + ",'"
                     + recommendationMusicCreate.getIDMusic() + "','" + recommendationMusicCreate.getDateRecommend() + "')";
+            
+            sql=sql.replace("'null'","null");
             System.out.println(sql);
             openConnection();
             try {
@@ -99,10 +101,12 @@ public class RecommendationMusicDAO {
                 recommandationDate = dateFormat.format(recommendationMusicUpdate.getDateRecommend());
             }
             
-            String sql = " UPDATE RECOMMENDATIONMUSIC SET ID_RECOMMENDATION = '" + recommendationMusicUpdate.getIDRecommendation()
-                    + "', ID_MUSIC = '" + recommendationMusicUpdate.getIDMusic()
-                    + "', DATE_RECOMMEND = TO_DATE('" + recommandationDate + " 'yyyy/MM/dd')"
-                    + "'";
+            String sql = " UPDATE RECOMMENDATION_MUSIC "
+                    + "SET ID_MUSIC = '" + recommendationMusicUpdate.getIDMusic()
+                    + "', DATE_RECOMMEND = TO_DATE('" + recommandationDate + "', 'yyyy/MM/dd')"
+                    + " WHERE ID_RECOMMENDATION = " + recommendationMusicUpdate.getIDRecommendation();
+            
+            sql=sql.replace("'null'","null");
             System.out.println(sql);
             openConnection();
             try {
@@ -116,7 +120,7 @@ public class RecommendationMusicDAO {
 	}
         
 	public RecommendationMusic delete(RecommendationMusic recommendationMusicDelete) {
-            String sql = "DELETE FROM RECOMMENDATIONMUSIC WHERE ID_RECOMMENDATION = '" + recommendationMusicDelete.getIDRecommendation() + "'";
+            String sql = "DELETE FROM RECOMMENDATION_MUSIC WHERE ID_RECOMMENDATION = '" + recommendationMusicDelete.getIDRecommendation() + "'";
             System.out.println(sql);
 
             openConnection();
@@ -134,20 +138,20 @@ public class RecommendationMusicDAO {
             List<RecommendationMusic> recommends = new ArrayList();
             RecommendationMusic recommend = null;
 
-            String sql="SELECT * FROM RECOMMENDATIONMUSIC";
+            String sql="SELECT * FROM RECOMMENDATION_MUSIC";
             openConnection();
             try {
                     this.resultSet = statement.executeQuery(sql);
                     while (this.resultSet.next()) {
                     recommend = new RecommendationMusic(
-                            this.resultSet.getInt("idRecommendation"),
-                            this.resultSet.getString("idMusic"),
-                            this.resultSet.getDate("dateRecommend")
+                            this.resultSet.getInt("id_Recommendation"),
+                            this.resultSet.getString("id_Music"),
+                            this.resultSet.getDate("date_Recommend")
                             );
                     recommends.add(recommend);
                     }
             } catch (SQLException ex) {
-                    System.out.println(ex.getErrorCode() + " error with the sql request.");
+                    ex.printStackTrace();
             }
             closeConnection();
 

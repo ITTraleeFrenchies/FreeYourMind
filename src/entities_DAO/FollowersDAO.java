@@ -34,7 +34,7 @@ public class FollowersDAO {
             this.connection = DriverManager.getConnection(nameDriver, username, password);
             this.statement = connection.createStatement();
         } catch (SQLException ex) {
-            System.out.println(ex.getErrorCode() + " : error with the openning of  connection. ");
+            ex.printStackTrace();
         }
     }
 
@@ -169,16 +169,19 @@ public class FollowersDAO {
         return followersList;
     }
     
-    public int count(){
+    public int count(String tnumber){
         int count=0;
-        String sql="SELECT COUNT(*) FROM FOLLOWERS";
-        
+        String sql="SELECT COUNT(*) AS COUNT FROM FOLLOWERS WHERE TNUMBER ='"+tnumber+"'";
+          openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
-            count=this.resultSet.getInt("count(*)");
-            }catch (SQLException ex) {
-             System.out.println(ex.getErrorCode() + " error with the method find");
+            while (this.resultSet.next()) {
+            count=this.resultSet.getInt("count");
+            }
+        }catch (SQLException ex) {
+             ex.printStackTrace();
         }
+          closeConnection();
         return count;
     }
 

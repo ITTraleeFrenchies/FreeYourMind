@@ -38,5 +38,6 @@ public class TestFollowers {
         for (Followers aFollower : list_followers) {
             System.out.println(aFollower.getId_followerslist() + " - " + aFollower.getTnumber());
         }*/
+        System.out.println(followersDAO.count("T11111114"));
     }
 }
