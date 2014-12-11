@@ -127,6 +127,13 @@ public class CLMainInterface extends JFrame {
             }
         });
         
+         cardUserConnected.b_seelibrary.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0){
+               cl.show(container, "library");
+            }
+        });
+        
         
 
             
