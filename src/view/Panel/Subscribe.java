@@ -216,7 +216,7 @@ public class Subscribe extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel1.setText("Fiels marqued by this asterix must are mandatory");
+        jLabel1.setText("Fiels marqued by this asterix are mandatory");
 
         l_error.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         l_error.setForeground(new java.awt.Color(204, 0, 0));
@@ -312,7 +312,7 @@ public class Subscribe extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(l_asterix)
                                     .addComponent(l_asterix1, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
