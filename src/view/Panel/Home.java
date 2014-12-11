@@ -242,7 +242,7 @@ public class Home extends javax.swing.JPanel {
         String tnumber = "";
         String password = "";
 
-        tnumber = this.t_tnumber.getText().toUpperCase();
+        tnumber = this.t_tnumber.getText();
         password = this.p_password.getText();
 
         MemberDAO memberDAO = new MemberDAO();
