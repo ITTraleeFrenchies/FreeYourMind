@@ -191,12 +191,51 @@ public class PlaylistDAO {
     public List<Playlist> findByMember(String Tnumber) {
         List<Playlist> playlists = new ArrayList();
         Playlist playlist = null;
-        String sql = "SELECT * FROM PLAYLIST\n" +
-                    "INNER JOIN LIBRARY ON PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY\n" +
-                    "INNER JOIN MEMBER ON LIBRARY.MEMBER=MEMBER.TNUMBER\n" +
-                    "WHERE PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY\n" +
-                    "AND LIBRARY.MEMBER=MEMBER.TNUMBER\n" +
-                    "AND MEMBER.TNUMBER='"+Tnumber+"';";
+        String sql = "SELECT * FROM PLAYLIST " +
+                    "INNER JOIN LIBRARY ON PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY " +
+                    "INNER JOIN MEMBER ON LIBRARY.MEMBER=MEMBER.TNUMBER " +
+                    "WHERE PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY " +
+                    "AND LIBRARY.MEMBER=MEMBER.TNUMBER " +
+                    "AND MEMBER.TNUMBER='"+Tnumber+"'";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+
+            while (this.resultSet.next()) {
+                Boolean hidden = false;
+
+                if (this.resultSet.getString("hidden") == "y") {
+                    hidden = true;
+                } else {
+                    hidden = false;
+                }
+                playlist = new Playlist(
+                        this.resultSet.getString("id_playlist"),
+                        this.resultSet.getInt("id_library"),
+                        this.resultSet.getString("name"),
+                        this.resultSet.getDate("date_creation"),
+                        hidden
+                );
+                playlists.add(playlist);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        closeConnection();
+
+        return playlists;
+    }
+    
+    public String findIdByName(String Name) {
+        Playlist playlist = null;
+        String sql = "SELECT * FROM PLAYLIST " +
+                    "INNER JOIN LIBRARY ON PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY " +
+                    "INNER JOIN MEMBER ON LIBRARY.MEMBER=MEMBER.TNUMBER " +
+                    "WHERE PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY " +
+                    "AND LIBRARY.MEMBER=MEMBER.TNUMBER " +
+                    "AND MEMBER.TNUMBER='"+Tnumber+"'";
 
         openConnection();
         try {

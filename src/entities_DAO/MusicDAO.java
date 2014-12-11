@@ -194,5 +194,110 @@ public class MusicDAO {
 
         return musics;
     }
+    
+    public List<Music> findByMember(String Tnumber) {
+        List<Music> musics = new ArrayList();
+        Music music = null;
+        String sql = "SELECT * FROM MUSIC " +
+                    "INNER JOIN PLAYLIST ON MUSIC.ID_PLAYLIST=PLAYLIST.ID_PLAYLIST " +
+                    "INNER JOIN LIBRARY ON PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY " +
+                    "INNER JOIN MEMBER ON LIBRARY.MEMBER=MEMBER.TNUMBER " +
+                    "WHERE MUSIC.ID_PLAYLIST=PLAYLIST.ID_PLAYLIST " +
+                    "AND PLAYLIST.ID_LIBRARY=LIBRARY.ID_LIBRARY " +
+                    "AND LIBRARY.MEMBER=MEMBER.TNUMBER " +
+                    "AND MEMBER.TNUMBER='"+Tnumber+"'";
 
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            while (this.resultSet.next()) {
+                music = new Music(
+                        this.resultSet.getString("id_track"),
+                        this.resultSet.getString("id_playlist"),
+                        this.resultSet.getString("title"),
+                        this.resultSet.getInt("track_number"),
+                        this.resultSet.getString("artist"),
+                        this.resultSet.getString("album_title"),
+                        this.resultSet.getString("type_music"),
+                        this.resultSet.getDate("release_year"),
+                        this.resultSet.getBlob("music_file")
+                );
+                musics.add(music);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " error with the method findAll");
+        }
+        closeConnection();
+
+        return musics;
+    }
+    
+    public List<Music> findByPlaylistID(String IDPlaylist) {
+        List<Music> musics = new ArrayList();
+        Music music = null;
+        String sql = "SELECT * FROM MUSIC WHERE MUSIC.ID_PLAYLIST='"+IDPlaylist+"'";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            while (this.resultSet.next()) {
+                music = new Music(
+                        this.resultSet.getString("id_track"),
+                        this.resultSet.getString("id_playlist"),
+                        this.resultSet.getString("title"),
+                        this.resultSet.getInt("track_number"),
+                        this.resultSet.getString("artist"),
+                        this.resultSet.getString("album_title"),
+                        this.resultSet.getString("type_music"),
+                        this.resultSet.getDate("release_year"),
+                        this.resultSet.getBlob("music_file")
+                );
+                musics.add(music);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " error with the method findByPlaylistID");
+        }
+        closeConnection();
+
+        return musics;
+    }
+
+    public List<Music> findByPlaylistName(String namePlaylist, String IDPlaylist) {
+        List<Music> musics = new ArrayList();
+        Music music = null;
+        String sql = "SELECT * FROM MUSIC " +
+                    "INNER JOIN PLAYLIST ON PLAYLIST.ID_PLAYLIST=MUSIC.ID_PLAYLIST " +
+                    "WHERE PLAYLIST.ID_PLAYLIST=MUSIC.ID_PLAYLIST " +
+                    "AND PLAYLIST.NAME='"+namePlaylist+" " +
+                    "AND PLAYLIST.ID_PLAYLIST='"+IDPlaylist+"'";
+
+        openConnection();
+        try {
+            this.resultSet = statement.executeQuery(sql);
+            while (this.resultSet.next()) {
+                music = new Music(
+                        this.resultSet.getString("id_track"),
+                        this.resultSet.getString("id_playlist"),
+                        this.resultSet.getString("title"),
+                        this.resultSet.getInt("track_number"),
+                        this.resultSet.getString("artist"),
+                        this.resultSet.getString("album_title"),
+                        this.resultSet.getString("type_music"),
+                        this.resultSet.getDate("release_year"),
+                        this.resultSet.getBlob("music_file")
+                );
+                musics.add(music);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getErrorCode() + " error with the method findByPlaylistName");
+            System.out.println(ex.getCause());
+            System.out.println(namePlaylist);
+        }
+        closeConnection();
+
+        return musics;
+    }
 }
