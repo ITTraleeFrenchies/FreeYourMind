@@ -35,13 +35,14 @@ public class UserConnected extends javax.swing.JPanel {
      */
     MemberDAO memberDAO = new MemberDAO();
     Member member = new Member();
+    
     FollowDAO followDAO = new FollowDAO();
     FollowersDAO followersDAO = new FollowersDAO();
-    Follow follow = new Follow();
-    Followers followers = new Followers();
+    
     String tnumber = "";
     String nickname="";
     int nbfollowers=0;
+    int nbfollow=0;
     
     public UserConnected() {
         initComponents();
@@ -74,11 +75,14 @@ public class UserConnected extends javax.swing.JPanel {
         tnumber = tnumberToCreate;
         member = memberDAO.findByTnumber(tnumber);
         nickname=member.getNickname();
-        
+        nbfollowers=followersDAO.count(tnumber);
+        nbfollow=followDAO.count(tnumber);
         
         l_tnumber1.setText(tnumber);
         l_nickname.setText(nickname);
-        l_nbfollowers.setText(tnumber);
+        l_nbfollowers.setText(String.valueOf(nbfollowers));
+        l_nbfollow.setText(String.valueOf(nbfollow));
+        
         
     }
     
@@ -218,24 +222,32 @@ public class UserConnected extends javax.swing.JPanel {
                                     .addGap(26, 26, 26)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addComponent(b_seefollowerslist)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(l_follow)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(l_nbfollow))
-                            .addComponent(b_disconnect)
-                            .addComponent(b_seerecommend)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(l_followers)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(l_nbfollowers))
-                                .addComponent(b_seefollowlist))
-                            .addComponent(b_seelibrary)
-                            .addComponent(b_seeprofile)
-                            .addComponent(l_nickname))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(b_seefollowerslist)
+                                            .addComponent(b_disconnect)
+                                            .addComponent(b_seerecommend)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(l_followers, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(b_seefollowlist))
+                                            .addComponent(b_seelibrary)
+                                            .addComponent(b_seeprofile)
+                                            .addComponent(l_nickname))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(l_nbfollowers))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(l_follow)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(l_nbfollow)))
+                                .addGap(38, 38, 38)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))))
         );

@@ -147,17 +147,21 @@ public class FollowDAO {
         return followedList;
     }
     
-        public int count(){
+        public int count(String tnumber){
         int count=0;
-        String sql="SELECT COUNT(*) FROM FOLLOW";
-        
+        String sql="SELECT COUNT(*) AS COUNT FROM FOLLOW WHERE TNUMBER ='"+tnumber+"'";
+          openConnection();
         try {
             this.resultSet = statement.executeQuery(sql);
-            count=this.resultSet.getInt("count(*)");
-            }catch (SQLException ex) {
-             System.out.println(ex.getErrorCode() + " error with the method find");
+            while (this.resultSet.next()) {
+            count=this.resultSet.getInt("count");
+            }
+        }catch (SQLException ex) {
+             ex.printStackTrace();
         }
+          closeConnection();
         return count;
     }
+
 
 }
