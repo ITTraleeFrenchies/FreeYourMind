@@ -9,6 +9,8 @@ import entities.Follow;
 import entities.Member;
 import entities_DAO.FollowDAO;
 import entities_DAO.MemberDAO;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.List;
 
 /**
@@ -27,6 +29,8 @@ public class SeeFollow extends javax.swing.JPanel {
 
     public SeeFollow() {
         initComponents();
+        this.setPreferredSize(new Dimension(700,700));
+        this.setBackground(Color.LIGHT_GRAY);
     }
 
     public void setTnumber(String tnumber) {
