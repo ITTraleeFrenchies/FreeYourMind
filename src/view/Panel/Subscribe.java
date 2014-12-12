@@ -445,7 +445,6 @@ public class Subscribe extends javax.swing.JPanel {
         }
         
         if(memberDAO.findByTnumber(tnumber) ==null && password.equalsIgnoreCase(this.jPasswordField2.getText())){
-            System.out.println("coucou");
             memberDAO.create(member);
              canBeConnected = true;
         }
